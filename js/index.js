@@ -12,7 +12,7 @@ var Ship = React.createClass({
 		return (
 			<div className="ship">
 				<h1>{this.props.data.display}</h1>
-				${priceusd}
+				${this.props.data.price.usd} | {this.props.data.price.rec} REC
 			</div>
 		);
 	}
