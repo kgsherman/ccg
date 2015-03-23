@@ -1,27 +1,26 @@
 {
-  "name": "react-browserify-template",
+  "name": "rsidb",
   "version": "0.0.1",
-  "description": "Quick boilerplate for browserify and React modules.",
-  "main": "index.js",
+  "description": "A database view for RSI ships.",
+  "main": "js/index.js",
   "dependencies": {
-    "react": "~0.8"
+    "react": "^0.12.0"
   },
   "devDependencies": {
-    "browserify": "~2.36.0",
-    "envify": "~0.2.0",
-    "reactify": "~0.4.0",
-    "statics": "~0.1.0",
-    "uglifyjs": "~2.3.6",
-    "watchify": "~0.4.1"
+    "browserify": "^6.2.0",
+    "envify": "^3.0.0",
+    "jest-cli": "~0.1.17",
+    "reactify": "^0.15.2",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1",
+    "lodash": "^3.5.0"
   },
   "scripts": {
-    "start": "STATIC_ROOT=./static watchify -o browser-bundle.js -v -d .",
-    "build": "STATIC_ROOT=./static NODE_ENV=production browserify . | uglifyjs -cm > browser-bundle.min.js",
-    "collect-static": "collect-static . ./static",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "watchify js/ -o bundle.js -d -v .",
+    "build": "SET NODE_ENV=production browserify . | uglifyjs -cm > bundle.min.js"
   },
-  "author": "Pete Hunt",
-  "license": "Apache 2",
+  "author": "Kevin Sherman",
+  "license": "MIT",
   "browserify": {
     "transform": [
       "reactify",
