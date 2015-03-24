@@ -1,0 +1,632 @@
+module.exports = {
+	"constellation_andromeda": {
+		"display": "Constellation Andromeda",
+		"class": "constellation",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 225,
+			"rec": null
+		},
+		"connects_to": [
+			{ "constellation_phoenix": 125 },
+			{ "constellation_aquila": 50 },
+			{ "constellation_taurus": 5 }
+		]
+	},
+	"constellation_phoenix": {
+		"display": "Constellation Phoenix",
+		"class": "constellation",
+		"mfg": "rsi",
+		"limited": true,
+		"price": {
+			"usd": 350,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"constellation_aquila": {
+		"display": "Constellation Aquila",
+		"class": "constellation",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 275,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"constellation_taurus": {
+		"display": "Constellation Taurus",
+		"class": "constellation",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 150,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"freelancer": {
+		"display": "Freelancer",
+		"class": "freelancer",
+		"mfg": "misc",
+		"limited": false,
+		"price": {
+			"usd": 110,
+			"rec": null
+		},
+		"connects_to": [
+			{ "freelancer_mis": 55 },
+			{ "freelancer_dur": 15 },
+			{ "freelancer_max": 30 }
+		]
+	},
+	"freelancer_mis": {
+		"display": "Freelancer MIS",
+		"class": "freelancer",
+		"mfg": "misc",
+		"limited": true,
+		"price": {
+			"usd": 165,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"freelancer_dur": {
+		"display": "Freelancer DUR",
+		"class": "freelancer",
+		"mfg": "misc",
+		"limited": false,
+		"price": {
+			"usd": 125,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"freelancer_max": {
+		"display": "Freelancer MAX",
+		"class": "freelancer",
+		"mfg": "misc",
+		"limited": false,
+		"price": {
+			"usd": 140,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"mustang_alpha": {
+		"display": "Mustang Alpha",
+		"class": "mustang",
+		"mfg": "co",
+		"limited": false,
+		"price": {
+			"usd": 30,
+			"rec": 3000
+		},
+		"connects_to": [
+			{ "mustang_beta": 10 },
+			{ "mustang_gamma": 25 },
+			{ "aurora_ln": 5 },
+			{ "aurora_mr": 0 }
+		]
+	},
+	"mustang_beta": {
+		"display": "Mustang Beta",
+		"class": "mustang",
+		"mfg": "co",
+		"limited": false,
+		"price": {
+			"usd": 40,
+			"rec": 4000
+		},
+		"connects_to": [
+			{ "aurora_cl": 5 }
+		]
+	},
+	"mustang_gamma": {
+		"display": "Mustang Gamma",
+		"class": "mustang",
+		"mfg": "co",
+		"limited": false,
+		"price": {
+			"usd": 55,
+			"rec": 5500
+		},
+		"connects_to": [
+			{ "mustang_delta": 10 },
+			{ "avenger": 5 }
+		]
+	},
+	"mustang_delta": {
+		"display": "Mustang Delta",
+		"class": "mustang",
+		"mfg": "co",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": [
+			{ "325": 10 }
+		]
+	},
+	"mustang_omega": {
+		"display": "Mustang Omega",
+		"class": "mustang",
+		"mfg": "co",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"reC": null
+		},
+		"connects_to": [
+			{ "mustang_gamma": 0 }
+		]
+	},
+	"aurora_es": {
+		"display": "Aurora ES",
+		"class": "aurora",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 20,
+			"rec": 2000
+		},
+		"connects_to": [
+			{ "aurora_ln": 10 },
+			{ "aurora_mr": 5 }
+		]
+	},
+	"aurora_mr": {
+		"display": "Aurora MR",
+		"class": "aurora",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 25,
+			"rec": null
+		},
+		"connects_to": [
+			{ "mustang_alpha": 0 },
+			{ "300": 30 },
+			{ "m50" : 75 },
+			{ "hornet": 85 }
+		]
+	},
+	"aurora_ln": {
+		"display": "Aurora LN",
+		"class": "aurora",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 35,
+			"rec": null
+		},
+		"connects_to": [
+			{ "mustang_beta": 5 },
+			{ "300": 20 },
+			{ "m50": 55 },
+			{ "hornet": 75 }
+		]
+	},
+	"aurora_cl": {
+		"display": "Aurora CL",
+		"class": "aurora",
+		"mfg": "rsi",
+		"limited": false,
+		"price": {
+			"usd": 45,
+			"rec": 4500
+		},
+		"connects_to": [
+			{ "mustang_gamma": 15 },
+			{ "300": 10 }
+		]
+	},
+	"aurora_lx": {
+		"display": "Aurora LX",
+		"class": "aurora",
+		"mfg": "rsi",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": [
+			{ "aurora_ln": 5 },
+			{ "300": 0 },
+			{ "m50": 70},
+			{ "hornet": 80 }
+		]
+	},
+	"300": {
+		"display": "300i",
+		"class": "300",
+		"mfg": "origin",
+		"limited": false,
+		"price": {
+			"usd": 55,
+			"rec": null
+		},
+		"connects_to": [
+			{ "315": 15 },
+			{ "325": 15 },
+			{ "350": 70 },
+			{ "m50": 45 },
+			{ "hornet": 55 },
+			{ "mustang_gamma": 0 }
+		]
+	},
+	"315": {
+		"display": "315p",
+		"class": "300",
+		"mfg": "origin",
+		"limited": false,
+		"price": {
+			"usd": 65,
+			"rec": 6500
+		},
+		"connects_to": [
+			{ "325": 5 },
+			{ "350": -1 },
+			{ "hornet": 45 },
+			{ "m50": 35 }
+		]
+	},
+	"325": {
+		"display": "325a",
+		"class": "300",
+		"mfg": "origin",
+		"limited": false,
+		"price": {
+			"usd": 70,
+			"rec": 7000
+		},
+		"connects_to": [
+			{ "cutlass_black": 30 },
+			{ "gladius": 20 },
+			{ "hornet": 40 },
+			{ "m50": 30 },
+			{ "350": -1 }
+		]
+	},
+	"350": {
+		"display": "350r",
+		"class": "300",
+		"mfg": "origin",
+		"limited": true,
+		"price": {
+			"usd": 125,
+			"rec": null
+		},
+		"connects_to": [
+			{ "hornet": 10 }
+		]
+	},
+	"m50": {
+		"display": "M50 Interceptor",
+		"class": null,
+		"mfg": "origin",
+		"limited": true,
+		"price": {
+			"usd": 100,
+			"rec": null
+		},
+		"connects_to": [
+			{ "350": 25 },
+			{ "cutlass_black": 5 },
+			{ "gladius": 10 },
+			{ "hornet": 20 }
+		]
+	},
+	"avenger": {
+		"display": "Avenger",
+		"class": null,
+		"mfg": "aegis",
+		"limited": false,
+		"price": {
+			"usd": 60,
+			"rec": 6000
+		},
+		"connects_to": [
+			{ "mustang_delta": 5 },
+			{ "315": 5 }
+		]
+	},
+	"gladius": {
+		"display": "Gladius",
+		"class": null,
+		"mfg": "aegis",
+		"limited": false,
+		"price": {
+			"usd": 90,
+			"rec": null
+		},
+		"connects_to": [
+			{ "cutlass_black": 10 }
+		]
+	},
+	"hornet": {
+		"display": "F7C Hornet",
+		"class": "hornet",
+		"mfg": "anvil",
+		"limited": false,
+		"price": {
+			"usd": 110,
+			"rec": 11000
+		},
+		"connects_to": [
+			{ "hornet_ghost": 15 },
+			{ "hornet_tracker": 30 },
+			{ "hornet_super": 55 },
+			{ "cutlass_red": 10 }
+		]
+	},
+	"hornet_ghost": {
+		"display": "F7C-S Hornet Ghost",
+		"class": "hornet",
+		"mfg": "anvil",
+		"limited": false,
+		"price": {
+			"usd": 125,
+			"rec": 12500
+		},
+		"connects_to": [
+			{ "hornet_tracker": 15 }
+		]
+	},
+	"hornet_tracker": {
+		"display": "F7C-R Hornet Tracker",
+		"class": "hornet",
+		"mfg": "anvil",
+		"limited": false,
+		"price": {
+			"usd": 140,
+			"rec": 14000
+		},
+		"connects_to": [
+			{ "hornet_super": 25 }
+		]
+	},
+	"hornet_super": {
+		"display": "F7C-M Super Hornet",
+		"class": "hornet",
+		"mfg": "anvil",
+		"limited": true,
+		"price": {
+			"usd": 165,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"hornet_uee": {
+		"display": "F7A Hornet",
+		"class": "hornet",
+		"mfg": "anvil",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"cutlass_black": {
+		"display": "Cutlass Black",
+		"class": "cutlass",
+		"mfg": "drake",
+		"limited": false,
+		"price": {
+			"usd": 100,
+			"rec": 10000
+		},
+		"connects_to": [
+			{ "hornet": 10 },
+			{ "cutlass_red": 20 },
+			{ "cutlass_blue": 50 }
+		]
+	},
+	"cutlass_red": {
+		"display": "Cutlass Red",
+		"class": "cutlass",
+		"mfg": "drake",
+		"limited": false,
+		"price": {
+			"usd": 120,
+			"rec": null
+		},
+		"connects_to": [
+			{ "hornet_ghost": 5 },
+			{ "cutlass_blue": 30 }
+		]
+	},
+	"cutlass_blue": {
+		"display": "Cutlass Blue",
+		"class": "cutlass",
+		"mfg": "drake",
+		"limited": true,
+		"price": {
+			"usd": 150,
+			"rec": null
+		},
+		"connects_to": [
+			{ "hornet_super": -1 }
+		]
+	},
+	"retaliator": {
+		"display": "Retaliator",
+		"class": null,
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": 275,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"redeemer": {
+		"display": "Redeemer",
+		"class": null,
+		"mfg": "aegis",
+		"limited": false,
+		"price": {
+			"usd": 250,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"carrack": {
+		"display": "Carrack",
+		"class": null,
+		"mfg": "anvil",
+		"limited": true,
+		"price": {
+			"usd": 350,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"orion": {
+		"display": "Orion",
+		"class": null,
+		"mfg": "rsi",
+		"limited": true,
+		"price": {
+			"usd": 350,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"hull_c": {
+		"display": "Hull C",
+		"class": null,
+		"mfg": "misc",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"reclaimer": {
+		"display": "Reclaimer",
+		"class": null,
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"890": {
+		"display": "890 Jump",
+		"class": null,
+		"mfg": "origin",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"merchantman": {
+		"display": "Merchantman",
+		"class": null,
+		"mfg": "banu",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"karthu_al": {
+		"display": "Karthu-Al",
+		"class": null,
+		"mfg": "xian",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"idris_p": {
+		"display": "Idris-P",
+		"class": "idris",
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"idris_m": {
+		"display": "Idris-M",
+		"class": "idris",
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"scythe": {
+		"display": "Scythe",
+		"class": null,
+		"mfg": "vanduul",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"caterpillar": {
+		"display": "Caterpillar",
+		"class": null,
+		"mfg": "drake",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"starfarer": {
+		"display": "Starfarer",
+		"class": null,
+		"mfg": "misc",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"herald": {
+		"display": "Herald",
+		"class": null,
+		"mfg": "drake",
+		"limited": true,
+		"price": {
+			"usd": null,
+			"rec": null
+		},
+		"connects_to": []
+	},
+	"javelin": {
+		"display": "Javelin",
+		"class": null,
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": 2500,
+			"rec": null
+		},
+		"connects_to": []
+	}
+};

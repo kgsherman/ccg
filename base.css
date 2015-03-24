@@ -1,11 +1,44 @@
+html, body, #mount, #app {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 .startList {
-	float: left;
-	width: 25%;
+	height: 100%;
+	width: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 .detailList {
-	float: left;
-	width: 75%;
+	position: absolute;
+	top: 0;
+	left: 300px;
+	right: 0;
+	height: 100%;
+	overflow: auto;
+	white-space: nowrap;
 }
-.hidden {
-	display: none;
+
+.detailShip {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	width: 200px;
+}
+.step {
+	width: 100%;
+	height: 3em;
+}
+.step-price, .step-ships {
+	float: left;
+}
+
+.step-price {
+	width: 2em;
+	text-align: center;
+	line-height: 2.5em;
 }

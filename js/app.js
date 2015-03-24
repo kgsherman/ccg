@@ -9,7 +9,7 @@ var App = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<div id="app">
 				<ShipList onSelect={this.getPaths} />
 				<DetailList paths={this.state.paths} />
 			</div>

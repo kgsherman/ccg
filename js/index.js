@@ -1,4 +1,4 @@
-global.React = require('react');
+global.React = require('react/addons');
 global.db = require('./db/ships.json');
 global._ = require('lodash');
 
