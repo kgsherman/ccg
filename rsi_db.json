@@ -1,105 +1,75 @@
-module.exports = {
+{
 	"constellation_andromeda": {
 		"display": "Constellation Andromeda",
 		"class": "constellation",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
-			"usd": 225,
-			"rec": null
+			"usd": 225
 		},
 		"connects_to": [
 			{ "constellation_phoenix": 125 },
 			{ "constellation_aquila": 50 },
-			{ "constellation_taurus": 5 }
+			{ "constellation_taurus": 5 },
 		]
 	},
 	"constellation_phoenix": {
 		"display": "Constellation Phoenix",
-		"class": "constellation",
-		"mfg": "rsi",
 		"limited": true,
+		"class": "constellation",
 		"price": {
-			"usd": 350,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 350
+		}
 	},
 	"constellation_aquila": {
 		"display": "Constellation Aquila",
 		"class": "constellation",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
-			"usd": 275,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 275
+		}
 	},
 	"constellation_taurus": {
 		"display": "Constellation Taurus",
 		"class": "constellation",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
-			"usd": 150,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 150
+		}
 	},
 	"freelancer": {
 		"display": "Freelancer",
 		"class": "freelancer",
-		"mfg": "misc",
-		"limited": false,
 		"price": {
-			"usd": 110,
-			"rec": null
+			"usd": 110
 		},
 		"connects_to": [
 			{ "freelancer_mis": 55 },
 			{ "freelancer_dur": 15 },
-			{ "freelancer_max": 30 }
+			{ "freelancer_max": 30 },
 		]
 	},
 	"freelancer_mis": {
 		"display": "Freelancer MIS",
-		"class": "freelancer",
-		"mfg": "misc",
 		"limited": true,
+		"class": "freelancer",
 		"price": {
-			"usd": 165,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 165
+		}
 	},
 	"freelancer_dur": {
 		"display": "Freelancer DUR",
 		"class": "freelancer",
-		"mfg": "misc",
-		"limited": false,
 		"price": {
-			"usd": 125,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 125
+		}
 	},
 	"freelancer_max": {
 		"display": "Freelancer MAX",
 		"class": "freelancer",
-		"mfg": "misc",
-		"limited": false,
 		"price": {
-			"usd": 140,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 140
+		}
 	},
 	"mustang_alpha": {
 		"display": "Mustang Alpha",
 		"class": "mustang",
-		"mfg": "co",
-		"limited": false,
 		"price": {
 			"usd": 30,
 			"rec": 3000
@@ -114,8 +84,6 @@ module.exports = {
 	"mustang_beta": {
 		"display": "Mustang Beta",
 		"class": "mustang",
-		"mfg": "co",
-		"limited": false,
 		"price": {
 			"usd": 40,
 			"rec": 4000
@@ -127,8 +95,6 @@ module.exports = {
 	"mustang_gamma": {
 		"display": "Mustang Gamma",
 		"class": "mustang",
-		"mfg": "co",
-		"limited": false,
 		"price": {
 			"usd": 55,
 			"rec": 5500
@@ -141,12 +107,7 @@ module.exports = {
 	"mustang_delta": {
 		"display": "Mustang Delta",
 		"class": "mustang",
-		"mfg": "co",
 		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
 		"connects_to": [
 			{ "325": 10 }
 		]
@@ -154,12 +115,7 @@ module.exports = {
 	"mustang_omega": {
 		"display": "Mustang Omega",
 		"class": "mustang",
-		"mfg": "co",
 		"limited": true,
-		"price": {
-			"usd": null,
-			"reC": null
-		},
 		"connects_to": [
 			{ "mustang_gamma": 0 }
 		]
@@ -167,8 +123,6 @@ module.exports = {
 	"aurora_es": {
 		"display": "Aurora ES",
 		"class": "aurora",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
 			"usd": 20,
 			"rec": 2000
@@ -181,11 +135,8 @@ module.exports = {
 	"aurora_mr": {
 		"display": "Aurora MR",
 		"class": "aurora",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
-			"usd": 25,
-			"rec": null
+			"usd": 25
 		},
 		"connects_to": [
 			{ "mustang_alpha": 0 },
@@ -197,11 +148,8 @@ module.exports = {
 	"aurora_ln": {
 		"display": "Aurora LN",
 		"class": "aurora",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
-			"usd": 35,
-			"rec": null
+			"usd": 35
 		},
 		"connects_to": [
 			{ "mustang_beta": 5 },
@@ -213,8 +161,6 @@ module.exports = {
 	"aurora_cl": {
 		"display": "Aurora CL",
 		"class": "aurora",
-		"mfg": "rsi",
-		"limited": false,
 		"price": {
 			"usd": 45,
 			"rec": 4500
@@ -227,12 +173,7 @@ module.exports = {
 	"aurora_lx": {
 		"display": "Aurora LX",
 		"class": "aurora",
-		"mfg": "rsi",
 		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
 		"connects_to": [
 			{ "aurora_ln": 5 },
 			{ "300": 0 },
@@ -243,11 +184,8 @@ module.exports = {
 	"300": {
 		"display": "300i",
 		"class": "300",
-		"mfg": "origin",
-		"limited": false,
 		"price": {
-			"usd": 55,
-			"rec": null
+			"usd": 55
 		},
 		"connects_to": [
 			{ "315": 15 },
@@ -261,8 +199,6 @@ module.exports = {
 	"315": {
 		"display": "315p",
 		"class": "300",
-		"mfg": "origin",
-		"limited": false,
 		"price": {
 			"usd": 65,
 			"rec": 6500
@@ -277,8 +213,6 @@ module.exports = {
 	"325": {
 		"display": "325a",
 		"class": "300",
-		"mfg": "origin",
-		"limited": false,
 		"price": {
 			"usd": 70,
 			"rec": 7000
@@ -294,11 +228,9 @@ module.exports = {
 	"350": {
 		"display": "350r",
 		"class": "300",
-		"mfg": "origin",
 		"limited": true,
 		"price": {
-			"usd": 125,
-			"rec": null
+			"usd": 125
 		},
 		"connects_to": [
 			{ "hornet": 10 }
@@ -306,12 +238,8 @@ module.exports = {
 	},
 	"m50": {
 		"display": "M50 Interceptor",
-		"class": null,
-		"mfg": "origin",
-		"limited": true,
 		"price": {
-			"usd": 100,
-			"rec": null
+			"usd": 100
 		},
 		"connects_to": [
 			{ "350": 25 },
@@ -322,9 +250,6 @@ module.exports = {
 	},
 	"avenger": {
 		"display": "Avenger",
-		"class": null,
-		"mfg": "aegis",
-		"limited": false,
 		"price": {
 			"usd": 60,
 			"rec": 6000
@@ -336,12 +261,8 @@ module.exports = {
 	},
 	"gladius": {
 		"display": "Gladius",
-		"class": null,
-		"mfg": "aegis",
-		"limited": false,
 		"price": {
-			"usd": 90,
-			"rec": null
+			"usd": 90
 		},
 		"connects_to": [
 			{ "cutlass_black": 10 }
@@ -350,8 +271,6 @@ module.exports = {
 	"hornet": {
 		"display": "F7C Hornet",
 		"class": "hornet",
-		"mfg": "anvil",
-		"limited": false,
 		"price": {
 			"usd": 110,
 			"rec": 11000
@@ -366,8 +285,6 @@ module.exports = {
 	"hornet_ghost": {
 		"display": "F7C-S Hornet Ghost",
 		"class": "hornet",
-		"mfg": "anvil",
-		"limited": false,
 		"price": {
 			"usd": 125,
 			"rec": 12500
@@ -379,8 +296,6 @@ module.exports = {
 	"hornet_tracker": {
 		"display": "F7C-R Hornet Tracker",
 		"class": "hornet",
-		"mfg": "anvil",
-		"limited": false,
 		"price": {
 			"usd": 140,
 			"rec": 14000
@@ -392,30 +307,19 @@ module.exports = {
 	"hornet_super": {
 		"display": "F7C-M Super Hornet",
 		"class": "hornet",
-		"mfg": "anvil",
 		"limited": true,
 		"price": {
-			"usd": 165,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 165
+		}
 	},
 	"hornet_uee": {
 		"display": "F7A Hornet",
 		"class": "hornet",
-		"mfg": "anvil",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"cutlass_black": {
 		"display": "Cutlass Black",
 		"class": "cutlass",
-		"mfg": "drake",
-		"limited": false,
 		"price": {
 			"usd": 100,
 			"rec": 10000
@@ -429,11 +333,8 @@ module.exports = {
 	"cutlass_red": {
 		"display": "Cutlass Red",
 		"class": "cutlass",
-		"mfg": "drake",
-		"limited": false,
 		"price": {
-			"usd": 120,
-			"rec": null
+			"usd": 120
 		},
 		"connects_to": [
 			{ "hornet_ghost": 5 },
@@ -443,11 +344,9 @@ module.exports = {
 	"cutlass_blue": {
 		"display": "Cutlass Blue",
 		"class": "cutlass",
-		"mfg": "drake",
 		"limited": true,
 		"price": {
-			"usd": 150,
-			"rec": null
+			"usd": 150
 		},
 		"connects_to": [
 			{ "hornet_super": -1 }
@@ -455,178 +354,82 @@ module.exports = {
 	},
 	"retaliator": {
 		"display": "Retaliator",
-		"class": null,
-		"mfg": "aegis",
 		"limited": true,
 		"price": {
-			"usd": 275,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 275
+		}
 	},
 	"redeemer": {
 		"display": "Redeemer",
-		"class": null,
-		"mfg": "aegis",
-		"limited": false,
 		"price": {
-			"usd": 250,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 250
+		}
 	},
 	"carrack": {
 		"display": "Carrack",
-		"class": null,
-		"mfg": "anvil",
 		"limited": true,
 		"price": {
-			"usd": 350,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 350
+		}
 	},
 	"orion": {
 		"display": "Orion",
-		"class": null,
-		"mfg": "rsi",
 		"limited": true,
 		"price": {
-			"usd": 350,
-			"rec": null
-		},
-		"connects_to": []
+			"usd": 350
+		}
 	},
 	"hull_c": {
 		"display": "Hull C",
-		"class": null,
-		"mfg": "misc",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"reclaimer": {
 		"display": "Reclaimer",
-		"class": null,
-		"mfg": "aegis",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"890": {
 		"display": "890 Jump",
-		"class": null,
-		"mfg": "origin",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"merchantman": {
 		"display": "Merchantman",
-		"class": null,
-		"mfg": "banu",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"karthu_al": {
 		"display": "Karthu-Al",
-		"class": null,
-		"mfg": "xian",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"idris_p": {
 		"display": "Idris-P",
 		"class": "idris",
-		"mfg": "aegis",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"idris_m": {
 		"display": "Idris-M",
 		"class": "idris",
-		"mfg": "aegis",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"scythe": {
-		"display": "Scythe",
-		"class": null,
-		"mfg": "vanduul",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"display": "Vanduul Scythe",
+		"limited": true
 	},
 	"caterpillar": {
 		"display": "Caterpillar",
-		"class": null,
-		"mfg": "drake",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"starfarer": {
 		"display": "Starfarer",
-		"class": null,
-		"mfg": "misc",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"herald": {
 		"display": "Herald",
-		"class": null,
-		"mfg": "drake",
-		"limited": true,
-		"price": {
-			"usd": null,
-			"rec": null
-		},
-		"connects_to": []
+		"limited": true
 	},
 	"javelin": {
 		"display": "Javelin Destroyer",
-		"class": null,
-		"mfg": "aegis",
 		"limited": true,
 		"price": {
-			"usd": 2500,
-			"rec": null
-		},
-		"connects_to": []
-	}
-};
+			"usd": 2500
+		}
+	},
+}

@@ -1,46 +1,23 @@
 /** @jsx React.DOM */
 
-var React = require('react');
-var db = require('./rsi_db.json');
+global.React = require('react');
+global.db = require('./rsi_db.json');
 var _ = require('lodash');
-
-var Ship = React.createClass({
-	render: function () {
-		var data = db[this.props.shipid]
-		var priceusd = (data.price.usd) ? "$" + data.price.usd : 'Not purchasable';
-		var pricerec = (data.price.rec) ? '¤' + data.price.rec : "Not rentable";
-		return (
-			<div className="ship" onClick={this.update}>
-				<h1>{data.display}</h1>
-				<p>{priceusd} | {pricerec}</p>
-			</div>
-		);
-	},
-	update: function () {
-		this.props.onUpdate(this.props.shipid);
-	}
-});
-
-var ShipList = React.createClass({
-	render: function () {
-		var ships = Object.keys(db).map(function (shipid) {
-			return <Ship shipid={shipid} onUpdate={this.props.onUpdate} />
-		}.bind(this));
-		return (
-			<div className="shipList">
-				{ships}
-			</div>
-		);
-	}
-});
+var ShipList = require('./shipList');
 
 var Details = React.createClass({
 	render: function () {
 		var options = "Select a ship to peruse.";
-		if (this.props.data) {
-			options = Object.keys(this.props.data).map(function (option) {
-				return <ShipDetail id={option} data={this.props.data[option]} />
-			}.bind(this));
+		if (this.props.shipPaths) {
+			var shipIDs =  Object.keys(this.props.shipPaths);
+			shipIDs = _.chain(shipIDs)
+				.sortBy(function (shipID) { return shipID; })
+				.sortBy(function (shipID) { return db[shipID].mfg })
+				.value();
+
+			options = shipIDs.map(function (shipid) {
+				return <ShipDetail key={shipid} id={shipid} data={this.props.shipPaths[shipid]} />
+			}, this);
 		}
 		return (
 			<div className="detail">{options}</div>
@@ -50,14 +27,22 @@ var Details = React.createClass({
 });
 
 var ShipDetail = React.createClass({
+	getInitialState: function () {
+		return ({
+			showJSON: 'none'
+		});
+	},
 	render: function () {
 		var paths = this.props.data;
 		return (
 			<div className="shipDetail">
-				<h1>{db[this.props.id].display}</h1>
-				<pre>{JSON.stringify(paths, null, '  ')}</pre>
+				<h1 onClick={this.toggle}>{db[this.props.id].display}</h1>
+				<pre style={{display: this.state.showJSON}}>{JSON.stringify(paths, null, '  ')}</pre>
 			</div>
 		);
+	},
+	toggle: function () {
+		this.state.showJSON == 'none' ? this.setState({showJSON: 'block'}) : this.setState({showJSON: 'none'});
 	}
 });
 
@@ -71,14 +56,14 @@ var App = React.createClass({
 		return (
 			<div>
 				<ShipList onUpdate={this.getOptions} />
-				<Details data={this.state.data} />
+				<Details shipPaths={this.state.data} />
 			</div>
 		);
 	},
 	getOptions: function (shipid) {
 		var result = {};
 		var iterate = function (fromID, currentPath, limits, totalCost) {
-			if (!totalCost) { totalCost = 0; }
+			if (typeof totalCost == 'undefined') { totalCost = 0; }
 			if (currentPath) { currentPath = currentPath.slice(); } // make sure we're getting values, not references
 			if (limits) { limits = limits.slice(); }
 			var connections = db[fromID].connects_to;
@@ -90,12 +75,12 @@ var App = React.createClass({
 
 						var cost = connection[toID];
 						var currentCost;
-						if (cost < 0) {
+						if (typeof cost == 'number' && cost >= 0) {
+							currentCost = totalCost + cost;
+						} else {
 							currentCost = "Unknown"
-						} else if (totalCost != "Unknown") {
-							currentCost = 0 + totalCost + cost;
 						}
-
+						
 						var currentLimits = limits || [];
 						currentLimits = currentLimits.slice();
 
@@ -135,21 +120,68 @@ var App = React.createClass({
 		iterate(shipid);
 		console.log(result);
 
-		/*for (ship in result) {
-			result[ship].paths = _.reject(result[ship].paths, function (path) {
-				var isCheaper = _.any(result[ship].paths, function (versus) {return (versus.totalCost < path.totalCost)})
-				console.log(isCheaper);
-				return isCheaper;
+		var paredResult = {};
+
+		function findCheapestShortest (paths) {
+			// find lowest price
+			var lowestPrice = _.min(paths, function (pathContainer) {
+				return pathContainer.totalCost;
+			}).totalCost;
+
+			// find paths that are the lowest price
+			var cheapestPaths = _.filter(paths, function (pathContainer) {
+				return pathContainer.totalCost == lowestPrice;
 			});
-			result[ship].paths = _.reject(result[ship].paths, function (path) {
-				var isShorter = _.any(result[ship].paths, function (versus) {return (versus.path.length < path.path.length)})
-				console.log(isShorter);
-				return isShorter;
+
+			//find lowest price path with shortest route
+			var shortestPath = _.min(cheapestPaths, function (pathContainer) {
+				return pathContainer.path.length;
 			});
-		}*/
+			return shortestPath;
+		}
+
+		_.each(result, function (ship, shipid) {
+
+			paredResult[shipid] = {};
+
+			/*// find lowest price
+			var paths = ship.paths;
+			var lowestPrice = _.min(ship.paths, function (pathContainer) {
+				return pathContainer.totalCost;
+			}).totalCost;
+
+			// find paths that are the lowest price
+			var cheapestPaths = _.filter(ship.paths, function (pathContainer) {
+				return pathContainer.totalCost == lowestPrice;
+			});
+
+			//find lowest price path with shortest route
+			var shortestPath = _.min(cheapestPaths, function (pathContainer) {
+				return pathContainer.path.length;
+			});*/
+
+			bestPath = findCheapestShortest(ship.paths);
+			paredResult[shipid].paths = [bestPath];
+
+			// if limited, see if there are paths with less limits
+			if (bestPath.limits.length > +db[shipid].limited) { // unary operator (+) turns bool into 1 or 0;
+				//console.log("limited yay", shipid);
+				var lessLimitedPaths = _.filter(ship.paths, function (pathContainer) {
+					return pathContainer.limits.length < bestPath.limits.length
+				});
+				var groupedByLimits = _.groupBy(lessLimitedPaths, function (pathContainer) {
+					return pathContainer.limits.length;
+				});
+				_.each(groupedByLimits, function (paths) {
+					paredResult[shipid].paths.push(findCheapestShortest(paths));
+				});
+			}
+
+			
+		});
 
 		this.setState({
-			data: result
+			data: paredResult
 		});
 	}
 })
@@ -158,3 +190,5 @@ React.render(
   <App db={db} />,
   document.getElementById('mount')
 );
+
+module.exports = App;
