@@ -104,8 +104,6 @@ var App = React.createClass({
 							path: newPath
 						});
 
-						_.sortBy(result[toID].paths, function (path) { return totalCost; });
-
 						var nextPath = newPath.slice();
 						var nextLimits = currentLimits.slice();
 						 // failsafe for loops; i.e. mustang alpha <-> aurora mr
@@ -144,28 +142,11 @@ var App = React.createClass({
 
 			paredResult[shipid] = {};
 
-			/*// find lowest price
-			var paths = ship.paths;
-			var lowestPrice = _.min(ship.paths, function (pathContainer) {
-				return pathContainer.totalCost;
-			}).totalCost;
-
-			// find paths that are the lowest price
-			var cheapestPaths = _.filter(ship.paths, function (pathContainer) {
-				return pathContainer.totalCost == lowestPrice;
-			});
-
-			//find lowest price path with shortest route
-			var shortestPath = _.min(cheapestPaths, function (pathContainer) {
-				return pathContainer.path.length;
-			});*/
-
 			bestPath = findCheapestShortest(ship.paths);
 			paredResult[shipid].paths = [bestPath];
 
 			// if limited, see if there are paths with less limits
 			if (bestPath.limits.length > +db[shipid].limited) { // unary operator (+) turns bool into 1 or 0;
-				//console.log("limited yay", shipid);
 				var lessLimitedPaths = _.filter(ship.paths, function (pathContainer) {
 					return pathContainer.limits.length < bestPath.limits.length
 				});
