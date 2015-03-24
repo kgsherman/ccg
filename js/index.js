@@ -14,34 +14,40 @@ var Ship = React.createClass({
 			if (connections.length > 0) {
 				connections.forEach(function (connection) {
 					var toID = Object.keys(connection).pop();
-					var cost = connection[toID];
-					var currentLimits = limits || [];
-					currentLimits = currentLimits.slice();
+					var copies = _.where(currentPath, { from: fromID, to: toID });
+					if (copies == 0) {
+						var cost = connection[toID];
+						var currentLimits = limits || [];
+						currentLimits = currentLimits.slice();
 
-					var toLimited = db[toID].limited;
-					if (toLimited) { currentLimits.push(toID); }
-
-
-					var newPath = currentPath || []
-					newPath = newPath.slice();
-					newPath.push({
-						from: fromID,
-						to: toID,
-						cost: cost,
-						limited: toLimited
-					});
-
-					result[toID] = result[toID] || {};
-					result[toID].paths = result[toID].paths || [];
-					result[toID].paths.push({
-						limits: currentLimits,
-						path: newPath
-					});
+						var toLimited = db[toID].limited;
+						if (toLimited) { currentLimits.push(toID); }
 
 
-					var nextPath = newPath.slice();
-					var nextLimits = currentLimits.slice();
-					iterate(toID, nextPath, nextLimits);
+						var newPath = currentPath || []
+						newPath = newPath.slice();
+						newPath.push({
+							from: fromID,
+							to: toID,
+							cost: cost,
+							limited: toLimited
+						});
+
+						result[toID] = result[toID] || {};
+						result[toID].paths = result[toID].paths || [];
+						result[toID].paths.push({
+							limits: currentLimits,
+							path: newPath
+						});
+
+
+						var nextPath = newPath.slice();
+						var nextLimits = currentLimits.slice();
+						 // failsafe for loops. i.e. mustang alpha <-> aurora mr
+						if (nextPath.length < 20) {
+							iterate(toID, nextPath, nextLimits);
+						}
+					}
 				});
 			}
 		}
