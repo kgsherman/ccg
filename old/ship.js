@@ -1,6 +1,6 @@
 var Ship = React.createClass({
 	render: function () {
-		var data = db[this.props.data]
+		var data = db[this.props.shipid]
 		var priceusd = (data.price.usd) ? "$" + data.price.usd : 'Not purchasable';
 		var pricerec = (data.price.rec) ? '¤' + data.price.rec : "Not rentable";
 		return (
@@ -11,7 +11,7 @@ var Ship = React.createClass({
 		);
 	},
 	update: function () {
-		this.props.onUpdate(this.props.data);
+		this.props.onUpdate(this.props.shipid);
 	}
 });
 

@@ -1,8 +1,11 @@
-.shipList {
+.startList {
 	float: left;
 	width: 25%;
 }
-.detail {
+.detailList {
 	float: left;
 	width: 75%;
+}
+.hidden {
+	display: none;
 }
