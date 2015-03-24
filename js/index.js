@@ -1,5 +1,5 @@
 global.React = require('react');
-global.db = require('./rsi_db.json');
+global.db = require('./db/ships.json');
 global._ = require('lodash');
 
 var App = require('./app');

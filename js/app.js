@@ -29,7 +29,7 @@ var App = React.createClass({
 
 			if (bestPath.limits.length > +db[shipKey].limited) {
 				var lessLimitedPaths = _.filter(ship.paths, function (path) {
-					return path.limits.length < bestPath.limits.length
+					return path.limits.length < bestPath.limits.length && typeof path.totalCost == 'number'
 				});
 				var groupedByLimits = _.groupBy(lessLimitedPaths, function (path) {
 					return path.limits.length;
@@ -59,10 +59,11 @@ var App = React.createClass({
 					return;
 
 				var cost = connection[childID];
+				var _totalCost = totalCost;
 				if (typeof cost === 'number' && cost >= 0) {
-					totalCost += cost;
+					_totalCost += cost;
 				} else {
-					totalCost = 'unknown'
+					_totalCost = 'unknown'
 				}
 
 				var _limits = limits.slice();
@@ -80,12 +81,12 @@ var App = React.createClass({
 				shipPaths[childID] = shipPaths[childID] || {};
 				shipPaths[childID].paths = shipPaths[childID].paths || [];
 				shipPaths[childID].paths.push({
-					totalCost: totalCost,
+					totalCost: _totalCost,
 					limits: _limits,
 					steps: _steps
 				});
 
-				iterate(childID, _steps, _limits, totalCost);
+				iterate(childID, _steps, _limits, _totalCost);
 			});
 		}
 
@@ -94,12 +95,22 @@ var App = React.createClass({
 			var lowestPrice = _.min(paths, 'totalCost').totalCost;
 
 			// find all paths with the lowest price
-			var cheapestPaths = _.filter(paths, function (path) { return path.totalCost == lowestPrice; });
+			var cheapestPaths = _.filter(paths, function (path) { return path.totalCost === lowestPrice; }); 
 
-			// get the cheapest path with the shortest route
-			var shortestPath = _.min(cheapestPaths, function (path) { return path.steps.length; });
+			// find the length of the shortest route of any cheapest path
+			var shortestSteps = _.min(cheapestPaths, function (path) { return path.steps.length; }).steps.length; 
 
-			return shortestPath;
+			// find all of the paths that are as cheap and short as possible
+			var cheapShortPaths = _.filter(cheapestPaths, function (path) { return path.steps.length == shortestSteps; });
+
+			// get the best path with the fewest limits
+			var bestPath = _.min(cheapShortPaths, function (path) { return path.limits.length; });
+
+
+
+			//var shortestPath = _.min(cheapestPaths, function (path) { return path.steps.length; });
+
+			return bestPath;
 		}
 	}
 });
