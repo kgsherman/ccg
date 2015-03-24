@@ -1,0 +1,8 @@
+.shipList {
+	float: left;
+	width: 25%;
+}
+.detail {
+	float: left;
+	width: 75%;
+}
