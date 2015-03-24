@@ -7,119 +7,48 @@ var _ = require('lodash');
 var Ship = React.createClass({
 	getOptions: function () {
 		var result = {};
-		var iterate = function (shipid, currentpath, limits) {
-			if (currentpath) { currentpath = currentpath.slice(); }
-			var connections = db[shipid].connects_to;
+		var iterate = function (fromID, currentPath, limits) {
+			if (currentPath) { currentPath = currentPath.slice(); } // make sure we're getting values, not references
+			if (limits) { limits = limits.slice(); }
+			var connections = db[fromID].connects_to;
 			if (connections.length > 0) {
 				connections.forEach(function (connection) {
-					var id = Object.keys(connection).pop();
+					var toID = Object.keys(connection).pop();
+					var cost = connection[toID];
+					var currentLimits = limits || [];
+					currentLimits = currentLimits.slice();
 
-					//if (!result[id]) {
-						result[id] = {};
-						result[id].path = currentpath || [];
-						result[id].path = result[id].path.slice();
-						result[id].path.push({
-							from: shipid,
-							to: id,
-							cost: connection[id]
-						});
-						var nextPath = result[id].path.slice();
-						iterate(id, nextPath);
-					//}
+					var toLimited = db[toID].limited;
+					if (toLimited) { currentLimits.push(toID); }
+
+
+					var newPath = currentPath || []
+					newPath = newPath.slice();
+					newPath.push({
+						from: fromID,
+						to: toID,
+						cost: cost,
+						limited: toLimited
+					});
+
+					result[toID] = result[toID] || {};
+					result[toID].paths = result[toID].paths || [];
+					result[toID].paths.push({
+						limits: currentLimits,
+						path: newPath
+					});
+
+
+					var nextPath = newPath.slice();
+					var nextLimits = currentLimits.slice();
+					iterate(toID, nextPath, nextLimits);
 				});
-				/*_.forEach(connections, function (connection) {
-					var connectid = Object.keys(connection).pop();
-					if (!result[connectid]) {
-						result[connectid] = {};
-						result[connectid].path = currentpath || [];
-						result[connectid].path.push({
-							from: shipid,
-							to: connectid,
-							price: connection[connectid]
-						});
-						var nextPath = result[connectid].path.slice();
-						iterate(connectid, nextPath);
-					}
-				});*/
 			}
 		}
+
 		iterate(this.props.shipid);
 		console.log(result);
 
-
-
-		/*var iterate = function (shipid, endpoints, pth) {
-			//if (pth) result[shipid] = pth;
-			//console.log(shipid, pth);
-			if (pth) pth = pth.slice();
-			var connections = db[shipid].connects_to;
-			if (connections.length > 0) {
-				_.forEach(connections, function (connection) {
-					var ep = endpoints || {};
-					var connectid = _.keys(connection)[0];
-					if (!ep[connectid]) {
-						ep[connectid] = {};
-						ep[connectid].path = pth || [];
-						ep[connectid].path.push({
-							from: shipid,
-							to: connectid,
-							price: connection[connectid]
-						});
-						result[connectid] = ep[connectid].path.slice();
-						//console.log(result[connectid]);
-						iterate(connectid, ep, ep[connectid].path.slice());
-					}
-				});
-			}			
-		}
-		iterate(this.props.shipid)
-		console.log(result)*/
-
-
-		/*var iterateOptions = function (data, ep, pth) {
-			var endPoints = ep || {};
-			var connections = data.connects_to;
-			if (connections.length > 0) {
-				_.forEach(connections, function (connection) {
-					var shipid = _.keys(connection)[0];
-					//path.push(connection);
-					if (!endPoints[shipid]) {
-						endPoints[shipid] = {};
-						if (!endPoints[shipid].path) {endPoints[shipid].path = [];}
-						endPoints[shipid].path.push({
-							to: shipid,
-							price: connection[shipid]
-						});
-						var shipData = db[shipid];
-						iterateOptions(shipData, endPoints);
-					}
-				});
-			}
-			return endPoints;
-		}
-
-		console.log(iterateOptions(this.props.data));*/
-
-
-		/*var endPoints = ep || [];
-		console.log(endPoints);
-		if (this.props.data.connects_to.length > 0) {
-			_.forEach(this.props.data.connects_to, function (connection) {
-				var path = [];
-				console.log("found a connection");
-				var shipid = _.keys(connection)[0];
-				path.push(connection);
-				newEnd = {};
-				newEnd[shipid] = path;
-				if (!endPoints[shipid]) {
-
-					endPoints.push(newEnd);
-					getOptions(endPoints);
-					//this.getOptions(endPoints);
-				}
-			});
-		}
-		console.log("endpoints:", endPoints);*/
 	},
 	render: function () {
 		var data = db[this.props.shipid]
