@@ -15,110 +15,92 @@ var App = React.createClass({
 			</div>
 		);
 	},
-	getPaths: function (shipid) {
-		var result = {};
-		var iterate = function (fromID, currentPath, limits, totalCost) {
-			if (typeof totalCost == 'undefined') { totalCost = 0; }
-			if (currentPath) { currentPath = currentPath.slice(); } // make sure we're getting values, not references
-			if (limits) { limits = limits.slice(); }
-			var connections = db[fromID].connects_to;
-			if (connections.length > 0) {
-				connections.forEach(function (connection) {
-					var toID = Object.keys(connection).pop();
-					var copies = _.where(currentPath, { from: fromID, to: toID });
-					if (copies == 0) {
+	getPaths: function (id) {
+		var shipPaths = {};
+		iterate(id);
 
-						var cost = connection[toID];
-						var currentCost;
-						if (typeof cost == 'number' && cost >= 0) {
-							currentCost = totalCost + cost;
-						} else {
-							currentCost = "Unknown"
-						}
-						
-						var currentLimits = limits || [];
-						currentLimits = currentLimits.slice();
+		var bestShipPaths = {};
+		_.each(shipPaths, function (ship, shipKey) {
 
-						var toLimited = db[toID].limited;
-						if (toLimited) { currentLimits.push(toID); }
+			bestShipPaths[shipKey] = {};
 
-						var newPath = currentPath || []
-						newPath = newPath.slice();
-						newPath.push({
-							from: fromID,
-							to: toID,
-							cost: cost,
-							limited: toLimited
-						});
+			var bestPath = findCheapestShortest(ship.paths);
+			bestShipPaths[shipKey].paths = [bestPath];
 
-						result[toID] = result[toID] || {};
-						result[toID].paths = result[toID].paths || [];
-						result[toID].paths.push({
-							limits: currentLimits,
-							totalCost: currentCost,
-							path: newPath
-						});
-
-						var nextPath = newPath.slice();
-						var nextLimits = currentLimits.slice();
-						 // failsafe for loops; i.e. mustang alpha <-> aurora mr
-						if (nextPath.length < 20) {
-							iterate(toID, nextPath, nextLimits, currentCost);
-						}
-					}
+			if (bestPath.limits.length > +db[shipKey].limited) {
+				var lessLimitedPaths = _.filter(ship.paths, function (path) {
+					return path.limits.length < bestPath.limits.length
+				});
+				var groupedByLimits = _.groupBy(lessLimitedPaths, function (path) {
+					return path.limits.length;
+				});
+				_.each(groupedByLimits, function (paths) {
+					bestShipPaths[shipKey].paths.push(findCheapestShortest(paths));
 				});
 			}
+		});
+
+		this.setState({ paths: bestShipPaths });
+
+
+		function iterate (parentID, steps, limits, totalCost) {
+			totalCost = totalCost || 0;
+			steps = steps || [];
+			limits = limits || [];
+
+			var connections = db[parentID].connects_to;
+			if (connections.length === 0)
+				return;
+
+			connections.forEach(function (connection) {
+				var childID = Object.keys(connection).pop();
+
+				if (_.any(steps, {from: childID})) // if we're trying to return to a ship we've already gone over, skip. (prevents loops like aurora MR <-> mustang alpha)
+					return;
+
+				var cost = connection[childID];
+				if (typeof cost === 'number' && cost >= 0) {
+					totalCost += cost;
+				} else {
+					totalCost = 'unknown'
+				}
+
+				var _limits = limits.slice();
+				var isLimited = db[childID].limited;
+				if (isLimited) { _limits.push(childID); }
+
+				var _steps = steps.slice();
+				_steps.push({
+					from: parentID,
+					to: childID,
+					cost: cost,
+					limited: isLimited
+				});
+
+				shipPaths[childID] = shipPaths[childID] || {};
+				shipPaths[childID].paths = shipPaths[childID].paths || [];
+				shipPaths[childID].paths.push({
+					totalCost: totalCost,
+					limits: _limits,
+					steps: _steps
+				});
+
+				iterate(childID, _steps, _limits, totalCost);
+			});
 		}
-
-		iterate(shipid);
-		console.log(result);
-
-		var paredResult = {};
 
 		function findCheapestShortest (paths) {
 			// find lowest price
-			var lowestPrice = _.min(paths, function (pathContainer) {
-				return pathContainer.totalCost;
-			}).totalCost;
+			var lowestPrice = _.min(paths, 'totalCost').totalCost;
 
-			// find paths that are the lowest price
-			var cheapestPaths = _.filter(paths, function (pathContainer) {
-				return pathContainer.totalCost == lowestPrice;
-			});
+			// find all paths with the lowest price
+			var cheapestPaths = _.filter(paths, function (path) { return path.totalCost == lowestPrice; });
 
-			//find lowest price path with shortest route
-			var shortestPath = _.min(cheapestPaths, function (pathContainer) {
-				return pathContainer.path.length;
-			});
+			// get the cheapest path with the shortest route
+			var shortestPath = _.min(cheapestPaths, function (path) { return path.steps.length; });
+
 			return shortestPath;
 		}
-
-		_.each(result, function (ship, shipid) {
-
-			paredResult[shipid] = {};
-
-			bestPath = findCheapestShortest(ship.paths);
-			paredResult[shipid].paths = [bestPath];
-
-			// if limited, see if there are paths with less limits
-			if (bestPath.limits.length > +db[shipid].limited) { // unary operator (+) turns bool into 1 or 0;
-				var lessLimitedPaths = _.filter(ship.paths, function (pathContainer) {
-					return pathContainer.limits.length < bestPath.limits.length
-				});
-				var groupedByLimits = _.groupBy(lessLimitedPaths, function (pathContainer) {
-					return pathContainer.limits.length;
-				});
-				_.each(groupedByLimits, function (paths) {
-					paredResult[shipid].paths.push(findCheapestShortest(paths));
-				});
-			}
-
-			
-		});
-
-		this.setState({
-			paths: paredResult
-		});
 	}
 });
 
