@@ -11,12 +11,18 @@ var DetailList = React.createClass({
 				.value();
 
 			ships = ids.map(function (id, index) {
-				return <DetailShip key={index} id={id} paths={this.props.paths[id]} />
+				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} />
 			}, this);
 		}
 
+		var detailListStyle = {
+			padding: '1em',
+			zIndex: 1,
+			backgroundColor: 'rgb(0, 11, 17)'
+		}
+
 		return (
-			<div className="detailList">
+			<div className="detailList" style={detailListStyle}>
 				{ships}
 			</div>
 		);

@@ -7,11 +7,7 @@ var Step = React.createClass({
 		return (
 			<div className="step" style={style}>
 				<div className="step-price">${step.cost}</div>
-				<div className="step-ships">
-					<div className="step-from">{db[step.from].display}</div>
-					<div className="step-to">{db[step.to].display}</div>
-				</div>
-				<div style={{clear: 'both'}}></div>
+				<div className="step-ship">{db[step.to].display}</div>
 			</div>
 		);
 	}

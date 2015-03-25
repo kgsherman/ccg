@@ -8,7 +8,8 @@ var Path = React.createClass({
 		});
 	},
 	render: function () {
-		var parentLimited = +db[this.props.parentID].limited
+		var parent = db[this.props.parentID]
+		var parentLimited = +parent.limited
 		var cx = React.addons.classSet;
 		var classes = cx({
 			'path': true,
@@ -19,9 +20,18 @@ var Path = React.createClass({
 			return <Step data={step} show={this.state.showSteps} />
 		}, this);
 
+		var limits = this.props.data.limits.length > +parent.limited ? <span>Limited by: {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
+
 		return (
 			<div className={classes}>
-				<p onClick={this.toggle}>Total cost: {this.props.data.totalCost}</p>
+				<div className="path-header" onClick={this.toggle}>
+					<p>Total cost: {this.props.data.totalCost}</p>
+					<p>Conversions: {this.props.data.steps.length}</p>
+					{limits}
+				</div>
+				<div className="step" style={{display: this.state.showSteps ? 'block' : 'none'}}>
+					<div className="step-ship">{db[this.props.selected].display}</div>
+				</div>
 				{steps}
 			</div>
 		);

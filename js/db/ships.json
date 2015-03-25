@@ -541,8 +541,8 @@ module.exports = {
 		},
 		"connects_to": []
 	},
-	"karthu_al": {
-		"display": "Karthu-Al",
+	"khartu_al": {
+		"display": "Khartu-Al",
 		"class": null,
 		"mfg": "xian",
 		"limited": true,
@@ -619,7 +619,7 @@ module.exports = {
 		"connects_to": []
 	},
 	"javelin": {
-		"display": "Javelin Destroyer",
+		"display": "Javelin",
 		"class": null,
 		"mfg": "aegis",
 		"limited": true,

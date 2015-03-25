@@ -4,14 +4,15 @@ var DetailList = require('./detailList');
 var App = React.createClass({
 	getInitialState: function () {
 		return ({
-			paths: null
+			paths: null,
+			selected: null
 		});
 	},
 	render: function () {
 		return (
 			<div id="app">
-				<ShipList onSelect={this.getPaths} />
-				<DetailList paths={this.state.paths} />
+				<ShipList onSelect={this.getPaths} selected={this.state.selected} />
+				<DetailList paths={this.state.paths} selected={this.state.selected} />
 			</div>
 		);
 	},
@@ -40,7 +41,10 @@ var App = React.createClass({
 			}
 		});
 
-		this.setState({ paths: bestShipPaths });
+		this.setState({ 
+			paths: bestShipPaths,
+			selected: id
+		});
 
 
 		function iterate (parentID, steps, limits, totalCost) {

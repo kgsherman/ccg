@@ -8,7 +8,7 @@ var StartList = React.createClass({
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
 		var startShips = ids.map(function (id, index) {
-			return <StartShip key={index} id={id} onSelect={this.props.onSelect} />
+			return <StartShip key={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
 		}, this);
 
 		return (
