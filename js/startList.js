@@ -13,12 +13,12 @@ var StartList = React.createClass({
 		}, this);
 
 		var startListStyle = {
-			position: 'relative',
-			top: '10%',
-			height: '80%',
+			position: 'absolute',
+			top: 141,
+			bottom: 0,
 			width: '317px',
 			overflowX: 'hidden',
-			overflowY: 'hidden',
+			overflowY: 'scroll',
 			textAlign: 'center'
 		};
 

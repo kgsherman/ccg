@@ -6,7 +6,7 @@ var DetailShip = React.createClass({
 		var paths = this.props.paths.paths;
 
 		var pathNodes = _.map(paths, function (path) {
-			return <Path parentID={this.props.id} data={path} selected={this.props.selected} />
+			return <Path key={this.props.id} parentID={this.props.id} data={path} selected={this.props.selected} />
 		}, this);
 
 		var baseStyle = _.extend({}, {

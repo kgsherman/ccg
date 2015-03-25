@@ -4,7 +4,7 @@
   "description": "A database view for RSI ships.",
   "main": "js/index.js",
   "dependencies": {
-    "react": "^0.13.0"
+    "react": "^0.12.0"
   },
   "devDependencies": {
     "browserify": "^6.2.0",

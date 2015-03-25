@@ -41,8 +41,8 @@ var StartShip = React.createClass({
 			right: 0,
 			transform: 'translateY(-50%)',
 			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
-			borderTop: this.props.selected ? 'thin solid rgb(32, 76, 122)' : 'none',
-			borderBottom: this.props.selected ? 'thin solid rgb(32, 76, 122)' : 'none'
+			borderTop: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
+			borderBottom: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
 		}, gs.linebg);
 
 		var h1Style = {
@@ -52,20 +52,28 @@ var StartShip = React.createClass({
 		};
 
 		var h4Style = {
-			color: 'white',
+			opacity: this.props.selected ? 1 : 0.7,
+			fontWeight: 'normal'
+		};
+
+		var priceStyle = _.extend({}, gs.linebg, {
+			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
+			borderTop: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
 			position: 'absolute',
 			bottom: 0,
 			padding: '0.5em',
 			margin: 0
-		};
+		});
 
 		var usdStyle = _.extend({
+			borderRight: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
 			left: 0
-		}, h4Style);
+		}, priceStyle);
 
 		var recStyle = _.extend({
+			borderLeft: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
 			right: 0
-		}, h4Style);
+		}, priceStyle);
 
 		return (
 			<div className={classes} onClick={this.select} style={baseStyle}>
@@ -75,8 +83,8 @@ var StartShip = React.createClass({
 						<h1 style={h1Style}>{name}</h1>
 					</div>
 				</div>
-				<h4 className={usdclass} style={usdStyle}>${priceUSD}</h4>
-				<h4 className="rec" style={recStyle}>¤{priceREC}</h4>
+				<span className={usdclass} style={usdStyle}><h4 style={h4Style}>${priceUSD}</h4></span>
+				<span className="rec" style={recStyle}><h4 style={h4Style}>¤{priceREC}</h4></span>
 			</div>
 		);
 	},

@@ -28,18 +28,14 @@ var Step = React.createClass({
 			padding: '.5em 1em',
 			display: 'inline-block',
 			borderRight: '1px solid',
-			borderColor: step.limited ? 'red' : '#00e6ff',
-			borderRadius: '2px'
+			borderColor: step.limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		};
 
 		var shipStyle = {
 			height: '100%',
 			textAlign: 'center',
 			padding: '.5em 1em',
-			display: 'inline-block',
-			borderLeft: '1px solid',
-			borderColor: step.limited ? 'red' : '#00e6ff',
-			borderRadius: '2px'
+			display: 'inline-block'
 		};
 
 		return (
