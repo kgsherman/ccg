@@ -15,20 +15,30 @@ var App = React.createClass({
 			width: '1366px',
 			margin: '0 auto'
 		};
-		var appHeader = {
+		var headerStyle = {
+			width: 1337, // this was not intentional.
+			padding: '32px 0 16px 0',
+			marginBottom: 16,
+			borderBottom: '1px solid rgba(29, 63, 98, 0.9)',
+			background: 'url("public/noise.png") repeat'
+		};
+		var h1Style = {
+			display: 'inline-block',
 			fontFamily: '"Electrolize", Arial, Helvetica, ans-serif',
-			fontSize: 64,
+			fontSize: 32,
 			fontWeight: 'bold',
 			color: '#00EBFF',
-			textShadow: '0 0 50px #0074C2',
-			padding: '32px 0 16px 12px',
-			marginBottom: 16,
-			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
+			textShadow: '0 0 50px #0074C2'
+		};
+		var subheaderStyle = {
+			marginLeft: '1em',
+			color: '#618d96'
 		};
 		return (
 			<div id="app" style={appStyle}>
-				<div style={appHeader}>
-					RSI_DB
+				<div style={headerStyle}>
+					<h1 style={h1Style}>RSI_DB</h1>
+					<span style={subheaderStyle}>Discover the best upgrades for your Star Citizen ships</span>
 				</div>
 				<ShipList onSelect={this.getPaths} selected={this.state.selected} />
 				<DetailList paths={this.state.paths} selected={this.state.selected} />

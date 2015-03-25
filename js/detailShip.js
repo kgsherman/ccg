@@ -11,6 +11,7 @@ var DetailShip = React.createClass({
 
 		var baseStyle = _.extend({}, {
 			position: 'relative',
+			width: 1020,
 			border: 'thin solid rgb(32, 76, 122)',
 			backgroundColor: 'rgba(0, 0, 0, 0.5)',
 			marginBottom: '1em'

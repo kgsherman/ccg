@@ -15,27 +15,43 @@ var DetailList = React.createClass({
 			}, this);
 		}
 
-		var detailListStyle = {
+		var baseStyle = {
 			position: 'absolute',
 			left: 307,
 			right: 0,
 			bottom: 0,
-			top: 141,
-			padding: '1em',
-			overflowY: 'scroll'
+			top: 100
+		};
+
+		var headerStyle = {
+			height: 50
+		};
+
+		var detailListStyle = {
+			position: 'absolute',
+			left: 0,
+			right: 0,
+			bottom: 0,
+			top: 50,
+			padding: '0 1em',
+			overflow: 'auto'
 		};
 
 		var h1Style = {
-			marginBottom: '1em',
-			padding: '0.5em',
-			textAlign: 'center',
+			margin: '0 0 1em 12px',
+			padding: '0.5em 0',
+			width: 1020,
 			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
 		}
 
 		return (
-			<div className="detailList" style={detailListStyle}>
-				<h1 style={h1Style}>Possible conversions</h1>
-				{ships}
+			<div style={baseStyle}>
+				<div style={headerStyle}>
+					<h1 style={h1Style}>Possible conversions</h1>
+				</div>
+				<div className="detailList" style={detailListStyle}>
+					{ships}
+				</div>
 			</div>
 		);
 	}

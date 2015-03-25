@@ -9,6 +9,7 @@ var StartList = React.createClass({
 	render: function () {
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
+			.filter(function (id) { return db[id].connects_to.length > 0 })
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
@@ -30,7 +31,7 @@ var StartList = React.createClass({
 
 		var startListStyle = {
 			position: 'absolute',
-			top: 141,
+			top: 100,
 			bottom: 0,
 			width: '307px',
 			overflowX: 'hidden',
