@@ -20,7 +20,7 @@ var Path = React.createClass({
 			return <Step data={step} show={this.state.showSteps} />
 		}, this);
 
-		var limits = this.props.data.limits.length > +parent.limited ? <span>Limited by: {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
+		var limits = this.props.data.limits.length > 0 ? <span>Limited by: {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
 
 		var baseStyle = {
 			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
