@@ -3,21 +3,47 @@
   <head>
     <title>RSI-DB</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="base.css">
+    <!--<link rel="stylesheet" href="base.css">-->
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
     <script type="text/javascript">
-  WebFontConfig = {
-    google: { families: [ 'Electrolize::latin' ] }
-  };
-  (function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-  })(); </script>
+	  WebFontConfig = {
+	    google: { families: [ 'Electrolize::latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); 
+  	</script>
+  	<style>
+		html, body, #mount {
+			position: relative;
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: rgb(0, 11, 17);
+			color: white;
+			font-family: Tahoma, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+		}
+
+		div {
+			box-sizing: border-box;
+		}
+
+		h1, h2, h3, h4 {
+			font-family: 'Electrolize', Arial, Helvetica, sans-serif;
+			text-transform: uppercase;
+			color: rgb(111, 216, 255);
+			text-shadow: rgb(0, 132, 255) 0px 0px 20px;
+			font-weight: bold;
+		}
+  	</style>
   </head>
   <body>
     <section id="mount">If you see this then something is wrong.</section>

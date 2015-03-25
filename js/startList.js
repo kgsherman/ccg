@@ -7,12 +7,21 @@ var StartList = React.createClass({
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
+
 		var startShips = ids.map(function (id, index) {
 			return <StartShip key={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
 		}, this);
 
+		var startListStyle = {
+			height: '100%',
+			width: '317px',
+			overflowX: 'hidden',
+			overflowY: 'scroll',
+			textAlign: 'center'
+		};
+
 		return (
-			<div className="startList">
+			<div className="startList" style={startListStyle}>
 				{startShips}
 			</div>
 		);

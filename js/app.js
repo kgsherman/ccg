@@ -9,8 +9,14 @@ var App = React.createClass({
 		});
 	},
 	render: function () {
+		var appStyle = {
+			height: '100%',
+			position: 'relative',
+			width: '1366px',
+			margin: '0 auto'
+		}
 		return (
-			<div id="app">
+			<div id="app" style={appStyle}>
 				<ShipList onSelect={this.getPaths} selected={this.state.selected} />
 				<DetailList paths={this.state.paths} selected={this.state.selected} />
 			</div>
