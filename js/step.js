@@ -6,7 +6,7 @@ var Step = React.createClass({
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none'
 		};
-		var arrowStyle = _.merge(gs.arrowRight, {
+		var arrowStyle = _.extend({}, gs.arrowRight, {
 			verticalAlign: 'middle',
 			height: 36,
 			display: 'inline-block'

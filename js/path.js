@@ -27,10 +27,11 @@ var Path = React.createClass({
 		}
 
 		var headerStyle = _.extend({}, gs.linebg, {
-			padding: '1em 0'
+			borderBottom: '1px solid rgba(29, 63, 98, 0.6)'
 		});
 
-		var costStyle = {
+		var countStyle = {
+			float: 'left',
 			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
 			border: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRadius: 5,
@@ -38,37 +39,47 @@ var Path = React.createClass({
 			margin: '0.5em 1em'
 		};
 
-		var countStyle = _.extend({
+		var costStyle = _.extend({
+			float: 'left',
 			padding: '0.5em 1em',
 			margin: '0.5em 1em'
 		}, gs.boxGreen);
 
 		var limitsStyle = _.extend({
+			float: 'right',
 			padding: '0.5em 1em',
 			margin: '0.5em 1em'
 		}, gs.boxRed);
 
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
-			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
 			padding: '0.5em 0',
 		};
-		var fromStyle = _.merge(costStyle, gs.linebg, {
+		var fromStyle = _.extend({}, gs.linebg, {
+			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
+			border: '1px solid rgba(29, 63, 98, 0.9)',
+			borderRadius: 5,
+			padding: '0.5em 1em',
+			margin: '0.5em 1em',
 			verticalAlign: 'middle',
 			marginRight: '0'
 		});
+		var limitsSoft = {
+			color: '#b00'
+		};
 
-		var limits = this.props.data.limits.length > 0 ? <span style={limitsStyle}>Limited by {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
+		var limits = this.props.data.limits.length > 0 ? <div style={limitsStyle}><span style={limitsSoft}>Limited by</span> {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</div> : '';
 
 		return (
-			<div style={baseStyle}>
-				<div style={headerStyle} onClick={this.toggle}>
-					<span style={costStyle}>${this.props.data.totalCost}</span>
-					<span style={countStyle}>{this.props.data.steps.length} step(s)</span>
+			<div style={baseStyle} className="path-base">
+				<div style={headerStyle} onClick={this.toggle} className="path-header">
+					<div style={costStyle}>${this.props.data.totalCost}</div>
+					<div style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</div>
 					{limits}
+					<div style={{clear: 'both'}}></div>
 				</div>
-				<div style={stepsStyle}>
+				<div style={stepsStyle} className="path-steps-container">
 					<span style={fromStyle}>{db[this.props.selected].display}</span>
 					{steps}
 				</div>
