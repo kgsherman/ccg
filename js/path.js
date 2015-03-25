@@ -1,5 +1,5 @@
 var Step = require('./step');
-//var addons = require('react-addons');
+var gs = require('./globalStyles');
 
 var Path = React.createClass({
 	getInitialState: function () {
@@ -20,7 +20,6 @@ var Path = React.createClass({
 			return <Step data={step} show={this.state.showSteps} />
 		}, this);
 
-		var limits = this.props.data.limits.length > 0 ? <span>Limited by: {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
 
 		var baseStyle = {
 			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
@@ -39,7 +38,16 @@ var Path = React.createClass({
 			margin: '0.5em 1em'
 		};
 
-		var countStyle = {};
+		var countStyle = _.extend({
+			padding: '0.5em 1em',
+			margin: '0.5em 1em'
+		}, gs.boxGreen);
+
+		var limitsStyle = _.extend({
+			padding: '0.5em 1em',
+			margin: '0.5em 1em'
+		}, gs.boxRed);
+
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
 			padding: '0.5em'
@@ -47,6 +55,8 @@ var Path = React.createClass({
 		var fromStyle = {
 
 		};
+		
+		var limits = this.props.data.limits.length > 0 ? <span style={limitsStyle}>Limited by {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
 
 		return (
 			<div style={baseStyle} onClick={this.toggle}>
