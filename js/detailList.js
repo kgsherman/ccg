@@ -17,11 +17,11 @@ var DetailList = React.createClass({
 
 		var detailListStyle = {
 			position: 'absolute',
-			top: 0,
+			top: '10%',
 			left: '317px',
 			right: 0,
 			bottom: 0,
-			height: '100%',
+			height: '80%',
 			padding: '1em',
 			overflowY: 'scroll'
 		};

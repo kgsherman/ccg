@@ -13,15 +13,17 @@ var StartList = React.createClass({
 		}, this);
 
 		var startListStyle = {
-			height: '100%',
+			position: 'relative',
+			top: '10%',
+			height: '80%',
 			width: '317px',
 			overflowX: 'hidden',
-			overflowY: 'scroll',
+			overflowY: 'hidden',
 			textAlign: 'center'
 		};
 
 		return (
-			<div className="startList" style={startListStyle}>
+			<div className="startList customScroll" style={startListStyle}>
 				{startShips}
 			</div>
 		);
