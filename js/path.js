@@ -22,17 +22,43 @@ var Path = React.createClass({
 
 		var limits = this.props.data.limits.length > +parent.limited ? <span>Limited by: {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
 
+		var baseStyle = {
+			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
+			padding: '0'
+		}
+
+		var headerStyle = {
+			margin: '1em 0'
+		};
+
+		var costStyle = {
+			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
+			//boxShadow: '0 0 5px rgba(159, 227, 246, 0.5), inset 0 0 8px rgba(159, 227, 246, 0.4)',
+			border: '1px solid rgba(29, 63, 98, 0.9)',
+			padding: '0.5em 1em',
+			margin: '0.5em 1em'
+		};
+
+		var countStyle = {};
+		var stepsStyle = {
+			display: this.state.showSteps ? 'block' : 'none',
+			padding: '0.5em'
+		};
+		var fromStyle = {
+
+		};
+
 		return (
-			<div className={classes}>
-				<div className="path-header" onClick={this.toggle}>
-					<p>Total cost: {this.props.data.totalCost}</p>
-					<p>Conversions: {this.props.data.steps.length}</p>
+			<div style={baseStyle} onClick={this.toggle}>
+				<div style={headerStyle}>
+					<span style={costStyle}>${this.props.data.totalCost}</span>
+					<span style={countStyle}>{this.props.data.steps.length} step(s)</span>
 					{limits}
 				</div>
-				<div className="step" style={{display: this.state.showSteps ? 'block' : 'none'}}>
-					<div className="step-ship">{db[this.props.selected].display}</div>
+				<div style={stepsStyle}>
+					<div style={fromStyle}>Convert from {db[this.props.selected].display} to:</div>
+					{steps}
 				</div>
-				{steps}
 			</div>
 		);
 	},

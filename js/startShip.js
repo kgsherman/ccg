@@ -34,7 +34,7 @@ var StartShip = React.createClass({
 			right: 0
 		};
 
-		var headerStyle = {
+		var headerStyle = _.extend({
 			position: 'absolute',
 			top: '50%',
 			left: 0,
@@ -43,8 +43,7 @@ var StartShip = React.createClass({
 			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
 			borderTop: this.props.selected ? 'thin solid rgb(32, 76, 122)' : 'none',
 			borderBottom: this.props.selected ? 'thin solid rgb(32, 76, 122)' : 'none'
-		};
-		_.extend(headerStyle, gs.linebg);
+		}, gs.linebg);
 
 		var h1Style = {
 			opacity: this.props.selected ? 1 : 0.7,

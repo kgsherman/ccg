@@ -1,4 +1,5 @@
 var Path = require('./path');
+var gs = require('./globalStyles');
 
 var DetailShip = React.createClass({
 	render: function () {
@@ -8,15 +9,22 @@ var DetailShip = React.createClass({
 			return <Path parentID={this.props.id} data={path} selected={this.props.selected} />
 		}, this);
 
-		var headerStyle = {
-			width: '250px',
+		var baseStyle = _.extend({
+			position: 'relative',
+			border: 'thin solid rgb(32, 76, 122)',
+			backgroundColor: 'rgba(0, 0, 0, 0.5)',
+			marginBottom: '1em'
+		}, gs.linebg);
+
+		var headerStyle = _.extend({
+			width: '100%',
 			backgroundColor: 'rgba(30, 60, 100, 0.3)',
 			padding: '1em',
-			margin: '0 1em'
-		};
+			margin: '0'
+		}, gs.linebg);
 
 		return (
-			<div className="detailShip">
+			<div className="detailShip" style={baseStyle}>
 				<h3 className="line-bg" style={headerStyle}>{db[this.props.id].display}</h3>
 				{pathNodes}
 			</div>
