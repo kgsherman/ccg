@@ -6,15 +6,49 @@ var Step = React.createClass({
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none'
 		};
-		var priceContainerStyle = _.merge({
-			
-		}, gs.arrowRight);
+		var arrowStyle = _.merge(gs.arrowRight, {
+			verticalAlign: 'middle',
+			height: 36,
+			display: 'inline-block'
+		});
+
+		var upgradeStyle = {
+			display: 'inline-block',
+			verticalAlign: 'middle',
+			backgroundColor: 'rgba(30, 60, 100, 0.3)',
+			border: '1px solid rgba(29, 63, 98, 0.9)',
+			borderRadius: '5px'
+		};
+
+		var limitedStyle = _.extend({}, upgradeStyle, gs.boxRed);
+
+		var priceStyle = {
+			height: '100%',
+			textAlign: 'center',
+			padding: '.5em 1em',
+			display: 'inline-block',
+			borderRight: '1px solid',
+			borderColor: step.limited ? 'red' : '#00e6ff',
+			borderRadius: '2px'
+		};
+
+		var shipStyle = {
+			height: '100%',
+			textAlign: 'center',
+			padding: '.5em 1em',
+			display: 'inline-block',
+			borderLeft: '1px solid',
+			borderColor: step.limited ? 'red' : '#00e6ff',
+			borderRadius: '2px'
+		};
+
 		return (
 			<div className="step" style={style}>
-				<span className="step-price" style={priceContainerStyle}>
-					<span style={gs.linebg}>${step.cost}</span>
-				</span>
-				<span className="step-ship">{db[step.to].display}</span>
+				<div style={arrowStyle}></div>
+				<div style={step.limited ? limitedStyle : upgradeStyle} className={step.limited}>
+					<span style={priceStyle}>${step.cost}</span>
+					<span className="step-ship" style={shipStyle}>{db[step.to].display}</span>
+				</div>
 			</div>
 		);
 	}

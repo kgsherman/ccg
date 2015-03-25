@@ -22,18 +22,18 @@ var Path = React.createClass({
 
 
 		var baseStyle = {
-			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
+			borderTop: 'rgb(32, 76, 122)',
 			padding: '0'
 		}
 
-		var headerStyle = {
-			margin: '1em 0'
-		};
+		var headerStyle = _.extend({}, gs.linebg, {
+			padding: '1em 0'
+		});
 
 		var costStyle = {
 			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
-			//boxShadow: '0 0 5px rgba(159, 227, 246, 0.5), inset 0 0 8px rgba(159, 227, 246, 0.4)',
 			border: '1px solid rgba(29, 63, 98, 0.9)',
+			borderRadius: 5,
 			padding: '0.5em 1em',
 			margin: '0.5em 1em'
 		};
@@ -50,23 +50,26 @@ var Path = React.createClass({
 
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
-			padding: '0.5em'
+			borderTop: '1px solid rgba(29, 63, 98, 0.6)',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
+			padding: '0.5em 0',
 		};
-		var fromStyle = {
+		var fromStyle = _.merge(costStyle, gs.linebg, {
+			verticalAlign: 'middle',
+			marginRight: '0'
+		});
 
-		};
-		
 		var limits = this.props.data.limits.length > 0 ? <span style={limitsStyle}>Limited by {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</span> : '';
 
 		return (
-			<div style={baseStyle} onClick={this.toggle}>
-				<div style={headerStyle}>
+			<div style={baseStyle}>
+				<div style={headerStyle} onClick={this.toggle}>
 					<span style={costStyle}>${this.props.data.totalCost}</span>
 					<span style={countStyle}>{this.props.data.steps.length} step(s)</span>
 					{limits}
 				</div>
 				<div style={stepsStyle}>
-					<div style={fromStyle}>Convert from {db[this.props.selected].display} to:</div>
+					<span style={fromStyle}>{db[this.props.selected].display}</span>
 					{steps}
 				</div>
 			</div>
