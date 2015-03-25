@@ -14,7 +14,8 @@ var StartShip = React.createClass({
 			position: 'relative',
 			width: '266px',
 			height: '159px',
-			margin: '1em'
+			margin: '0 1em 1em 0',
+			cursor: 'pointer'
 		};
 
 		var imgStyle = {

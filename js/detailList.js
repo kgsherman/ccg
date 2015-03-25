@@ -17,7 +17,7 @@ var DetailList = React.createClass({
 
 		var detailListStyle = {
 			position: 'absolute',
-			left: 317,
+			left: 307,
 			right: 0,
 			bottom: 0,
 			top: 141,
@@ -25,8 +25,16 @@ var DetailList = React.createClass({
 			overflowY: 'scroll'
 		};
 
+		var h1Style = {
+			marginBottom: '1em',
+			padding: '0.5em',
+			textAlign: 'center',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
+		}
+
 		return (
 			<div className="detailList" style={detailListStyle}>
+				<h1 style={h1Style}>Possible conversions</h1>
 				{ships}
 			</div>
 		);

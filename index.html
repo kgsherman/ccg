@@ -3,7 +3,6 @@
   <head>
     <title>RSI-DB</title>
     <meta charset="UTF-8">
-    <link src="node_modules/react-gemini-scrollbar/node_modules/gemini-scrollbar/gemini-scrollbar.css">
     <script type="text/javascript">
 	  WebFontConfig = {
 	    google: { families: [ 'Electrolize::latin' ] }
@@ -47,11 +46,16 @@
 			margin: 0;
 			padding: 0;
 		}
+		/* Kludge because react doesnt support pseudoelements yet */
+		input[type=text]:focus {
+			border: 1px solid #00b7ca !important;
+  			color: #42C6E7 !important;
+  			box-shadow: inset 0 0 20px rgba(0,112,200,0.3) !important;
+		}
   	</style>
   </head>
   <body>
     <section id="mount">If you see this then something is wrong.</section>
     <script src="bundle.js"></script>
-    <script>//console.log(React);</script>
   </body>
 </html>
