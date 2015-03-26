@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "watchify -r react js/ -o bundle.js -d -v .",
-    "build": "SET NODE_ENV=production browserify . | uglifyjs -cm > bundle.min.js"
+    "build": "browserify js/ | uglifyjs -cm > dist/bundle.min.js"
   },
   "author": "Kevin Sherman",
   "license": "MIT",
