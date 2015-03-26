@@ -4,6 +4,7 @@ var DetailList = React.createClass({
 	render: function () {
 		var ships = "Select a ship.";
 		if (this.props.paths) {
+			console.log(this.props.selected, this.props.paths)
 			var ids = Object.keys(this.props.paths);
 			ids = _.chain(ids)
 				.sortBy(function (id) { return id; })
