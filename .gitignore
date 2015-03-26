@@ -4,3 +4,4 @@ browser-bundle.min.js
 npm-debug.log
 *~
 old
+bundle*
