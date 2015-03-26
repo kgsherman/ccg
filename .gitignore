@@ -1,8 +1,5 @@
-node_modules
-browser-bundle.js
-browser-bundle.min.js
-npm-debug.log
 *~
-old
+node_modules
+npm-debug.log
 bundle.js
 bundle.min.js
