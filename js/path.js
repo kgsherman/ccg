@@ -4,17 +4,16 @@ var gs = require('./globalStyles');
 var Path = React.createClass({
 	getInitialState: function () {
 		return ({
-			showSteps: false
+			showSteps: this.props.showAtStart
+		});
+	},
+	componentWillReceiveProps: function (nextProps) {
+		if (nextProps.showAll == this.props.showAll) return;
+		this.setState({
+			showSteps: true
 		});
 	},
 	render: function () {
-		var parent = db[this.props.parentID]
-		var parentLimited = +parent.limited
-		var cx = React.addons.classSet;
-		var classes = cx({
-			'path': true,
-			'path-limited': this.props.data.limits.length > parentLimited
-		});
 
 		var steps = this.props.data.steps.map(function (step, index) {
 			return <Step key={index} data={step} show={this.state.showSteps} />
