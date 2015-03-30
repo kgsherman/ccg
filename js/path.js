@@ -54,7 +54,7 @@ var Path = React.createClass({
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
-			padding: '0.5em 0 0.5em 2em'
+			padding: '0.5em 0'
 		};
 		var fromStyle = _.extend({}, gs.linebg, {
 			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
