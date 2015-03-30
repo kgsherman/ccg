@@ -16,39 +16,42 @@ var Path = React.createClass({
 	render: function () {
 
 		var steps = this.props.data.steps.map(function (step, index) {
-			return <Step key={index} data={step} show={this.state.showSteps} />
+			return <Step key={index} data={step} show={true} />
 		}, this);
 
 
 		var baseStyle = {
+			display: 'table',
+			width: '100%',
 			borderTop: 'rgb(32, 76, 122)',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
 			padding: '0'
-		}
+		};
 
 		var headerStyle = _.extend({}, gs.linebg, {
+			display: 'table-row',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
 			cursor: 'pointer'
 		});
 
 		var countStyle = {
-			float: 'left',
 			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
 			border: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRadius: 5,
 			padding: '0.5em 1em',
-			margin: '0.5em 1em'
+			margin: '0.5em 1em 0.5em 0',
+			whiteSpace: 'nowrap'
 		};
 
 		var costStyle = _.extend({
-			float: 'left',
 			padding: '0.5em 1em',
 			margin: '0.5em 1em'
 		}, gs.boxGreen);
 
 		var limitsStyle = _.extend({
-			float: 'right',
 			padding: '0.5em 1em',
-			margin: '0.5em 1em'
+			margin: '0.5em 1em',
+			whiteSpace: 'nowrap'
 		}, gs.boxRed);
 
 		var stepsStyle = {
@@ -62,7 +65,6 @@ var Path = React.createClass({
 			borderRadius: 5,
 			padding: '0.5em 1em',
 			margin: '0.5em 1em',
-			verticalAlign: 'middle',
 			marginRight: '0'
 		});
 		var limitsSoft = {
@@ -70,25 +72,41 @@ var Path = React.createClass({
 		};
 		var expanderStyle = {
 			fontFamily: 'monospace',
-			float: 'right',
-			margin: '0.5em 0.5em 0.5em 0',
-			padding: '0.5em 0.5em 0.5em 0'
+			margin: '0.5em',
+			padding: '0.5em',
 		};
 
-		var limits = this.props.data.limits.length > 0 ? <div style={limitsStyle}><span style={limitsSoft}>Limited by</span> {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}</div> : '';
+		var stepsNewStyle = {
+			display: 'table-cell',
+			borderLeft: '1px solid rgba(29, 63, 98, 0.9)',
+			borderRight: '1px solid rgba(29, 63, 98, 0.9)'
+		};
+
+		var limits = this.props.data.limits.length > 0 ?
+			<div style={{display: 'table-cell', width: 1, borderRight: '1px solid rgba(29, 63, 98, 0.9)'}}>
+				<div style={limitsStyle}>
+					<span style={limitsSoft}>Limited by</span> {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}
+				</div> 
+			</div> 
+			: false;
 
 		return (
 			<div style={baseStyle} className="path-base">
 				<div style={headerStyle} onClick={this.toggle} className="path-header">
-					<div style={costStyle}>${this.props.data.totalCost} | {this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</div>
-
-					<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
+					<div style={{display: 'table-cell', width: 1}}>
+						<div style={costStyle}>${this.props.data.totalCost}</div>
+					</div>
+					<div style={{display: 'table-cell', width: 1}}>
+						<div style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</div>
+					</div>
+					<div style={stepsNewStyle}>
+						<span style={fromStyle}>{db[this.props.selected].display}</span>
+						{steps}
+					</div>
 					{limits}
-					<div style={{clear: 'both'}}></div>
-				</div>
-				<div style={stepsStyle} className="path-steps-container">
-					<span style={fromStyle}>{db[this.props.selected].display}</span>
-					{steps}
+					<div style={{display: 'table-cell', width: 1}}>
+						<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
+					</div>
 				</div>
 			</div>
 		);
@@ -96,6 +114,12 @@ var Path = React.createClass({
 	toggle: function (e) {
 		e.preventDefault();
 		this.setState({ showSteps: !this.state.showSteps });
+	},
+	keepold: function () {
+		return 				<div style={stepsStyle} className="path-steps-container">
+					<span style={fromStyle}>{db[this.props.selected].display}</span>
+					{steps}
+				</div>
 	}
 });
 

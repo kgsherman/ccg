@@ -14,7 +14,6 @@ var Step = React.createClass({
 
 		var upgradeStyle = {
 			display: 'inline-block',
-			verticalAlign: 'middle',
 			backgroundColor: 'rgba(30, 60, 100, 0.3)',
 			border: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRadius: '5px'
