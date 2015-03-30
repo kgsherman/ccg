@@ -6,11 +6,20 @@ var Step = React.createClass({
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none'
 		};
-		var arrowStyle = _.extend({}, gs.arrowRight, {
+		/*var arrowStyle = _.extend({}, gs.arrowRight, {
 			verticalAlign: 'middle',
 			height: 36,
 			display: 'inline-block'
-		});
+		});*/
+		var arrowStyle = {
+			display: 'inline-block',
+			verticalAlign: 'middle',
+			background: 'url("public/little-arrow-right.png")',
+			width: 7,
+			height: 8,
+			opacity: '0.4',
+			margin: '0.5em'
+		};
 
 		var upgradeStyle = {
 			display: 'inline-block',
