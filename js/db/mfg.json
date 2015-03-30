@@ -1,0 +1,46 @@
+module.exports = {
+	"co": {
+		"name": "Consolidated Outland",
+		"shortName": "CO"
+	},
+	"egis": {
+		"name": "Aegis Dynamics",
+		"shortName": "Aegis"
+	},
+	"anvil": {
+		"name": "Anvil Aerospace",
+		"shortName": "Anvil"
+	},
+	"banu": {
+		"name": "Banu",
+		"shortName": "Banu"
+	},
+	"drake": {
+		"name": "Drake Interplanetary",
+		"shortName": "Drake"
+	},
+	"kruger": {
+		"name": "Kruger Intergalactic",
+		"shortName": "Kruger"
+	},
+	"misc": {
+		"name": "Musashi Industrial & Starflight Concern",
+		"shortName": "MISC"
+	},
+	"origin": {
+		"name": "Origin Jumpworks GmbH",
+		"shortName": "Origin"
+	},
+	"rsi": {
+		"name": "Roberts Space Industries",
+		"shortName": "RSI"
+	},
+	"vanduul": {
+		"name": "Vanduul",
+		"shortName": "Vanduul"
+	},
+	"xian": {
+		"name": "Xi'An",
+		"shortName": "Xi'An"
+	},
+};
