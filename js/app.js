@@ -71,7 +71,7 @@ var App = React.createClass({
 			}
 		});
 
-		console.log(bestShipPaths);
+		//console.log(bestShipPaths);
 
 		this.setState({ 
 			paths: bestShipPaths,

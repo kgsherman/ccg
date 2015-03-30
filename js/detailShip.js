@@ -13,7 +13,6 @@ var DetailShip = React.createClass({
 		var paths = this.props.paths.paths;
 		var pathsCount = paths.length;
 		var shipInfo = db[this.props.id];
-		console.log(shipInfo.limited);
 
 		var pathNodes = _.map(paths, function (path, index) {
 			var key = this.props.selected + '_' + this.props.id + index; // generate unique and descriptive key
@@ -53,9 +52,7 @@ var DetailShip = React.createClass({
 
 		var h3Style = {
 			display: 'inline-block',
-			marginRight: '1em',
-			color: shipInfo.limited ? '#f00' : false,
-			textShadow: shipInfo.limited ? '#b00 0px 0px 20px' : false
+			marginRight: '1em'
 		};
 
 		var multiplePathsStyle = {
@@ -75,6 +72,13 @@ var DetailShip = React.createClass({
 			textDecoration: this.state.hover ? 'underline' : 'none',
 		};
 
+		var limitedTagStyle = _.extend({}, gs.boxRed, {
+			color: '#b00',
+			padding: '0.25em 0.5em',
+			margin: '0.5em 1em',
+			verticalAlign: 'baseline'
+		});
+
 		var multiplePaths = pathsCount > 1 ?
 			<div className="multiplePaths" style={multiplePathsStyle}>
 				<h4 className="optimalPathCount" style={h4Style}>
@@ -86,6 +90,13 @@ var DetailShip = React.createClass({
 			</div>
 			: false;
 
+		var limitedTag = shipInfo.limited ?
+			<span style={limitedTagStyle}>
+				Not currently for sale
+			</span>
+			: false;
+
+
 		return (
 			<div className="detailShip" style={baseStyle}>
 				<div style={headerStyle} onClick={pathsCount > 1 ? this.showAll : false} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
@@ -95,6 +106,7 @@ var DetailShip = React.createClass({
 					<h4 style={mfgStyle}>
 						{mfgDB[db[this.props.id].mfg].name}
 					</h4>
+					{limitedTag}
 					{multiplePaths}
 				</div>
 				{pathNodes}

@@ -1,13 +1,20 @@
 var DetailShip = require('./detailShip');
+var gs = require('./globalStyles');
 
 var DetailList = React.createClass({
+	getInitialState: function () {
+		return {
+			showLimited: false
+		}
+	},
 	render: function () {
 		if (this.props.paths) {
-			console.log(this.props.selected, this.props.paths)
 			var ids = Object.keys(this.props.paths);
 			ids = _.chain(ids)
 				.sortBy(function (id) { return id; })
 				.sortBy(function (id) { return db[id].mfg })
+				.filter(function (id) { return db[id].limited <= this.state.showLimited }.bind(this))
+				//.sortBy(function (id) { return db[id].limited })
 				.value();
 
 			var ships = ids.map(function (id, index) {
@@ -24,7 +31,10 @@ var DetailList = React.createClass({
 		};
 
 		var headerStyle = {
-			height: 50
+			width: 1020,
+			margin: '0 0 1em 12px',
+			padding: '0.5em 0',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
 		};
 
 		var detailListStyle = {
@@ -38,22 +48,32 @@ var DetailList = React.createClass({
 		};
 
 		var h1Style = {
-			margin: '0 0 1em 12px',
-			padding: '0.5em 0',
-			width: 1020,
-			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
-		}
+			display: 'inline-block'
+		};
+
+		var showLimitedStyle = _.extend({}, gs.headerFont, {
+			float: 'right'
+		});
 
 		return (
 			<div style={baseStyle}>
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions {this.props.paths ? 'from ' + db[this.props.selected].display : ''}</h1>
+					<span style={showLimitedStyle}>
+						<label for="showLimited">Show limited ships:</label>
+						<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
+					</span>
 				</div>
 				<div className="detailList" style={detailListStyle}>
 					{this.props.paths ? ships : 'Select a ship'}
 				</div>
 			</div>
 		);
+	},
+	toggleShowLimited: function () {
+		this.setState({
+			showLimited: !this.state.showLimited
+		})
 	}
 });
 

@@ -23,6 +23,12 @@ var Style = {
 		height: '58px',
 		backgroundImage: 'url("public/arrow-right.png")',
 		backgroundPosition: 'center center'
+	},
+	headerFont: {
+		fontFamily: '"Electrolize", Arial, Helvetica, sans-serif',
+		textTransform: 'uppercase',
+		color: 'rgb(111, 216, 255)',
+		textShadow: 'rgb(0, 132, 255) 0px 0px 20px'
 	}
 }
 
