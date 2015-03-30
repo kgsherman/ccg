@@ -9,7 +9,15 @@ var StartList = React.createClass({
 	render: function () {
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
-			.filter(function (id) { return db[id].connects_to.length > 0 })
+			.filter(function (id) { 
+				// filter out ships without connections, or with only connections without known prices
+				var connections = db[id].connects_to;
+				var hasConnections = (connections.length > 0);
+				var hasPrices = _.any(connections, function (connection) {
+					return (connection[Object.keys(connection)[0]] >= 0); // there's gotta be a better way to check this...
+				});
+				return (hasConnections && hasPrices); 
+			})
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
