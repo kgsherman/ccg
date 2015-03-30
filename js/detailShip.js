@@ -13,9 +13,10 @@ var DetailShip = React.createClass({
 		var paths = this.props.paths.paths;
 		var pathsCount = paths.length;
 		var shipInfo = db[this.props.id];
+		console.log(shipInfo.limited);
 
 		var pathNodes = _.map(paths, function (path, index) {
-			var key = this.props.id + '_' + this.props.id + index; // generate unique and descriptive key
+			var key = this.props.selected + '_' + this.props.id + index; // generate unique and descriptive key
 			return (
 				<Path 
 					key={key} 
@@ -46,12 +47,15 @@ var DetailShip = React.createClass({
 
 		var mfgStyle = {
 			display: 'inline-block',
-			fontWeight: 'normal'
+			fontWeight: 'normal',
+			opacity: '0.7'
 		};
 
 		var h3Style = {
 			display: 'inline-block',
-			marginRight: '1em'
+			marginRight: '1em',
+			color: shipInfo.limited ? '#f00' : false,
+			textShadow: shipInfo.limited ? '#b00 0px 0px 20px' : false
 		};
 
 		var multiplePathsStyle = {
@@ -61,8 +65,7 @@ var DetailShip = React.createClass({
 		var h4Style = {
 			display: 'inline-block',
 			fontWeight: 'normal',
-			marginRight: '1em',
-			color: shipInfo.limited ? '#b00' : false
+			marginRight: '1em'
 		};
 
 		var expanderStyle = {
