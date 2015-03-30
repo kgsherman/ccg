@@ -40,7 +40,8 @@ var Path = React.createClass({
 			borderRadius: 5,
 			padding: '0.5em 1em',
 			margin: '0.5em 1em 0.5em 0',
-			whiteSpace: 'nowrap'
+			whiteSpace: 'nowrap',
+			color: 'white'
 		};
 
 		var costStyle = _.extend({
@@ -51,15 +52,14 @@ var Path = React.createClass({
 		var limitsStyle = _.extend({
 			padding: '0.5em 1em',
 			margin: '0.5em 1em',
-			whiteSpace: 'nowrap'
+			whiteSpace: 'pre'
 		}, gs.boxRed);
 
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)'
 		};
-		var fromStyle = _.extend({}, gs.linebg, {
-			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
+		var fromStyle = _.extend({}, gs.headerFont, gs.brightBlueFont, {
 			border: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRadius: 5,
 			padding: '0.5em 1em'
@@ -83,7 +83,7 @@ var Path = React.createClass({
 		var limits = this.props.data.limits.length > 0 ?
 			<div style={{display: 'table-cell', width: 1, borderRight: '1px solid rgba(29, 63, 98, 0.9)'}}>
 				<div style={limitsStyle}>
-					<span style={limitsSoft}>Limited by</span> {this.props.data.limits.map(function (limit) {return db[limit].display}).join(', ')}
+					<span style={limitsSoft}>Limited by</span> {this.props.data.limits.map(function (limit) {return db[limit].display}).join(',\r\n')}
 				</div> 
 			</div> 
 			: false;
@@ -102,9 +102,7 @@ var Path = React.createClass({
 						{steps}
 					</div>
 					{limits}
-					<div style={{display: 'table-cell', width: 1}}>
-						<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
-					</div>
+
 				</div>
 			</div>
 		);
@@ -114,9 +112,17 @@ var Path = React.createClass({
 		this.setState({ showSteps: !this.state.showSteps });
 	},
 	keepold: function () {
-		return 				<div style={stepsStyle} className="path-steps-container">
+		return
+		<div>
+		 				<div style={stepsStyle} className="path-steps-container">
 					<span style={fromStyle}>{db[this.props.selected].display}</span>
 					{steps}
+				</div>
+
+
+									<div style={{display: 'table-cell', width: 1}}>
+						<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
+					</div>
 				</div>
 	}
 });

@@ -18,7 +18,8 @@ var Step = React.createClass({
 			background: 'url("public/little-arrow-right.png")',
 			width: 7,
 			height: 8,
-			opacity: '0.4'
+			opacity: '0.4',
+			margin: '0.25em'
 		};
 
 		var upgradeStyle = {
@@ -38,7 +39,7 @@ var Step = React.createClass({
 			display: 'inline-block'
 		};
 
-		var shipStyle = {
+		var shipStyle = _.extend({}, gs.headerFont, step.limited ? gs.brightRedFont : gs.brightBlueFont, {
 			height: '100%',
 			textAlign: 'center',
 			padding: '.5em 1em',
@@ -46,7 +47,7 @@ var Step = React.createClass({
 			backgroundColor: step.limited ? 'rgba(178,34,34,0.2)' : 'rgba(30, 60, 100, 0.3)',
 			borderRight: '1px solid',
 			borderColor: step.limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
-		};
+		});
 
 		return (
 			<div className="step" style={style}>

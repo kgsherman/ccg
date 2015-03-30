@@ -33,7 +33,7 @@ var DetailShip = React.createClass({
 			width: 1020,
 			border: 'thin solid rgb(32, 76, 122)',
 			backgroundColor: 'rgba(0, 0, 0, 0.5)',
-			marginBottom: '1em'
+			marginBottom: '2em'
 		});
 
 		var headerStyle = _.extend({}, gs.linebg, {
