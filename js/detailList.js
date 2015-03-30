@@ -2,7 +2,6 @@ var DetailShip = require('./detailShip');
 
 var DetailList = React.createClass({
 	render: function () {
-		var ships = "Select a ship.";
 		if (this.props.paths) {
 			console.log(this.props.selected, this.props.paths)
 			var ids = Object.keys(this.props.paths);
@@ -11,7 +10,7 @@ var DetailList = React.createClass({
 				.sortBy(function (id) { return db[id].mfg })
 				.value();
 
-			ships = ids.map(function (id, index) {
+			var ships = ids.map(function (id, index) {
 				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} />
 			}, this);
 		}
@@ -48,10 +47,10 @@ var DetailList = React.createClass({
 		return (
 			<div style={baseStyle}>
 				<div style={headerStyle}>
-					<h1 style={h1Style}>Possible conversions</h1>
+					<h1 style={h1Style}>Possible conversions {this.props.paths ? 'from ' + db[this.props.selected].display : ''}</h1>
 				</div>
 				<div className="detailList" style={detailListStyle}>
-					{ships}
+					{this.props.paths ? ships : 'Select a ship'}
 				</div>
 			</div>
 		);

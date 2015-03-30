@@ -54,7 +54,7 @@ var Path = React.createClass({
 		var stepsStyle = {
 			display: this.state.showSteps ? 'block' : 'none',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
-			padding: '0.5em 0',
+			padding: '0.5em 0 0.5em 2em'
 		};
 		var fromStyle = _.extend({}, gs.linebg, {
 			textShadow: 'rgb(0, 132, 255) 0px 0px 20px',
@@ -80,8 +80,8 @@ var Path = React.createClass({
 		return (
 			<div style={baseStyle} className="path-base">
 				<div style={headerStyle} onClick={this.toggle} className="path-header">
-					<div style={costStyle}>${this.props.data.totalCost}</div>
-					<div style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</div>
+					<div style={costStyle}>${this.props.data.totalCost} | {this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</div>
+
 					<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
 					{limits}
 					<div style={{clear: 'both'}}></div>

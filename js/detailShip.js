@@ -1,5 +1,6 @@
 var Path = require('./path');
 var gs = require('./globalStyles');
+var mfgDB = require('./db/mfg.json');
 
 var DetailShip = React.createClass({
 	getInitialState: function () {
@@ -11,6 +12,7 @@ var DetailShip = React.createClass({
 	render: function () {
 		var paths = this.props.paths.paths;
 		var pathsCount = paths.length;
+		var shipInfo = db[this.props.id];
 
 		var pathNodes = _.map(paths, function (path, index) {
 			var key = this.props.id + '_' + this.props.id + index; // generate unique and descriptive key
@@ -42,6 +44,11 @@ var DetailShip = React.createClass({
 			cursor: 'pointer'
 		});
 
+		var mfgStyle = {
+			display: 'inline-block',
+			fontWeight: 'normal'
+		};
+
 		var h3Style = {
 			display: 'inline-block',
 			marginRight: '1em'
@@ -54,7 +61,8 @@ var DetailShip = React.createClass({
 		var h4Style = {
 			display: 'inline-block',
 			fontWeight: 'normal',
-			marginRight: '1em'
+			marginRight: '1em',
+			color: shipInfo.limited ? '#b00' : false
 		};
 
 		var expanderStyle = {
@@ -79,8 +87,11 @@ var DetailShip = React.createClass({
 			<div className="detailShip" style={baseStyle}>
 				<div style={headerStyle} onClick={pathsCount > 1 ? this.showAll : false} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
 					<h3 style={h3Style}>
-					{db[this.props.id].display}
+						{db[this.props.id].display}
 					</h3>
+					<h4 style={mfgStyle}>
+						{mfgDB[db[this.props.id].mfg].name}
+					</h4>
 					{multiplePaths}
 				</div>
 				{pathNodes}

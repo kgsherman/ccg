@@ -3,7 +3,7 @@ module.exports = {
 		"name": "Consolidated Outland",
 		"shortName": "CO"
 	},
-	"egis": {
+	"aegis": {
 		"name": "Aegis Dynamics",
 		"shortName": "Aegis"
 	},
