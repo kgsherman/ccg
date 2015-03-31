@@ -23,7 +23,7 @@ var style = {
 		top: '33%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		width: 480,
+		width: 500,
 		background: 'rgba(0, 11, 24, 0.8)',
 		border: '1px solid #0c67a1'
 	},
@@ -36,7 +36,8 @@ var style = {
 		bottom: '100%'
 	},
 	h1: {
-
+		paddingBottom: '0.25em',
+		borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
 	}
 }
 
@@ -64,7 +65,7 @@ var About = React.createClass({
 							RSI_DB is a fan-made tool 100% unaffiliated with Star Citizen, Roberts Space Industries, or Cloud Imperium Games. All styles and assets that are originally from robertsspaceindustries.com have been reused without permission.
 						</p>
 						<p>
-							To get in touch, post on <a target="_blank" href="https://github.com/kgsherman/rsidb" style={style.link}>Github</a> or <a target="_blank" href="http://www.reddit.com/message/compose/?to=snoee" style={style.link}>send a message to /u/snoee on reddit</a>.
+							To get in touch, post on <a target="_blank" href="https://github.com/kgsherman/rsidb" style={style.link}>Github</a> or <a target="_blank" href="http://www.reddit.com/message/compose/?to=snoee" style={style.link}>send a message to /u/snoee</a> on reddit.
 						</p>
 					</div>
 				</div>
