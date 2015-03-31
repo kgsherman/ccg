@@ -106,10 +106,10 @@ var DetailShip = React.createClass({
 			height: 42
 		};
 
-		var toolTip = function (text, align, showCondition) {
+		var toolTip = function (text, align, showCondition, hideFunction) {
 			if (!showCondition) return false;
 			return (
-				<ToolTip align={align} x={this.state.toolTipX} y={this.state.toolTipY}>
+				<ToolTip align={align} x={this.state.toolTipX} y={this.state.toolTipY} onClick={hideFunction}>
 					{text}
 				</ToolTip> 
 			);
@@ -117,15 +117,15 @@ var DetailShip = React.createClass({
 
 		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
 			<div style={iconContainerRight}>
-				<img src='public/warning_icon.png' style={iconStyle} onMouseOver={this.showPathToolTip} onMouseOut={this.hidePathToolTip} onMouseMove={this.updateToolTip} />
-				{toolTip('Note: A cheaper path is available, but includes limited ships.', 'right', this.state.showPathToolTip)}
+				<img src='public/warning_icon.png' style={iconStyle} onMouseClick={this.showPathToolTip} onMouseOver={this.showPathToolTip} onMouseOut={this.hidePathToolTip} onMouseMove={this.updateToolTip} />
+				{toolTip('Note: A cheaper path is available, but includes limited ships.', 'right', this.state.showPathToolTip, this.hidePathToolTip)}
 			</div>
 			: false;
 
 		var limitedTag = shipInfo.limited ?
 			<div style={iconContainerLeft}>
 				<img src='public/error_icon.png' style={iconStyle} onMouseOver={this.showLimitedToolTip} onMouseOut={this.hideLimitedToolTip} onMouseMove={this.updateToolTip} />
-				{toolTip('This ship is not currently for sale', 'left', this.state.showLimitedToolTip)}
+				{toolTip('This ship is not currently for sale', 'left', this.state.showLimitedToolTip, this.hideLimitedToolTip)}
 			</div>
 			: false;
 
@@ -151,7 +151,7 @@ var DetailShip = React.createClass({
 			</div>
 		);
 	},
-	showPathToolTip: function () {
+	showPathToolTip: function (e) {
 		this.setState({ showPathToolTip: true });
 	},
 	hidePathToolTip: function () {
