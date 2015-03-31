@@ -1,15 +1,18 @@
 var StartShip = require('./startShip');
+var gs = require('./globalStyles');
 
 var StartList = React.createClass({
 	getInitialState: function () {
 		return ({
-			filter: null
+			filter: null,
+			showAll: false
 		});
 	},
 	render: function () {
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
 			.filter(function (id) { 
+				if (this.state.showAll) return true;
 				// filter out ships without connections, or with only connections without known prices
 				var connections = db[id].connects_to;
 				var hasConnections = (connections.length > 0);
@@ -17,7 +20,7 @@ var StartList = React.createClass({
 					return (connection[Object.keys(connection)[0]] >= 0); // there's gotta be a better way to check this...
 				});
 				return (hasConnections && hasPrices); 
-			})
+			}, this)
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
@@ -51,7 +54,7 @@ var StartList = React.createClass({
 			width: '307px',
 			overflowY: 'scroll',
 			position: 'absolute',
-			top: 100,
+			top: 120,
 			bottom: 0
 		};
 
@@ -72,12 +75,18 @@ var StartList = React.createClass({
 			textAlign: 'left'
 		};
 
+		var showAllStyle = _.extend({}, gs.headerFont, {
+
+		});
+
 		return (
 			<div style={baseStyle}>
 				<div style={headerStyle}>
 					<h1>Your ship</h1>
 				</div>
 				<div className="startFilter" style={startFilterStyle}>
+					<label htmlFor="showAll" style={showAllStyle}>Include non-upgradeable ships: </label>
+					<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />
 					<input type="text" id="filter" name="filter" style={filterTextStyle} placeholder="Search..." onInput={this.filter} />
 				</div>
 				<div className="startList" style={shipsStyle}>
@@ -85,6 +94,11 @@ var StartList = React.createClass({
 				</div>
 			</div>
 		);
+	},
+	toggleShowAll: function () {
+		this.setState({
+			showAll: !this.state.showAll
+		});
 	},
 	filter: function (e) {
 		this.setState({filter: e.target.value});

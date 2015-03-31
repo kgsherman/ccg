@@ -76,7 +76,7 @@ var DetailList = React.createClass({
 
 		});
 
-		var controlIcon = _.extend({}, gs.brightBlueFont, {
+		var controlIcon = _.extend({}, {
 			display: this.state.showSettings ? 'none' : 'block',
 			cursor: 'default',
 			float: 'right'
