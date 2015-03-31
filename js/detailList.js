@@ -53,7 +53,8 @@ var DetailList = React.createClass({
 		};
 
 		var showLimitedStyle = _.extend({}, gs.headerFont, {
-			float: 'right'
+			float: 'right',
+			marginLeft: '0.5em'
 		});
 
 		var fromShip = this.props.paths ?
