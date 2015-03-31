@@ -5,18 +5,36 @@ var DetailList = React.createClass({
 	getInitialState: function () {
 		return {
 			showLimited: false,
-			showPathLimited: false
+			showPathLimited: false,
+			sortBy: 'cost'
 		}
 	},
 	render: function () {
 		var ships = [];
 		if (this.props.paths) {
 			var ids = Object.keys(this.props.paths);
-			ids = _.chain(ids)
-				.sortBy(function (id) { return id; })
-				.sortBy(function (id) { return db[id].mfg })
-				.filter(function (id) { return db[id].limited <= this.state.showLimited }.bind(this))
-				.value();
+			ids = _.filter(ids, function (id) {
+				return db[id].limited <= this.state.showLimited
+			}.bind(this));
+			switch (this.state.sortBy) {
+				case 'alphabet':
+					ids = _.sortBy(ids, function (id) { return db[id].display });
+					break;
+				case 'mfg':
+					ids = _.chain(ids)
+						.sortBy(function (id) { return db[id].display })
+						.sortBy(function (id) { return db[id].mfg })
+						.value();
+					break;
+				case 'cost':
+					ids = _.sortBy(ids, function (id) {
+						return _.chain(this.props.paths[id].paths)
+							.map('totalCost')
+							.min()
+							.value();
+					}, this);
+					break;
+			}
 
 			ships = ids.map(function (id, index) {
 				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
@@ -43,7 +61,7 @@ var DetailList = React.createClass({
 			left: 0,
 			right: 0,
 			bottom: 0,
-			top: 50,
+			top: 90,
 			padding: '0 1em',
 			overflow: 'auto'
 		};
@@ -53,8 +71,20 @@ var DetailList = React.createClass({
 		};
 
 		var showLimitedStyle = _.extend({}, gs.headerFont, {
+
+		});
+
+		var controlsStyle = {
 			float: 'right',
-			marginLeft: '0.5em'
+			textAlign: 'right'
+		};
+
+		var sortByStyle = _.extend({}, gs.headerFont, {
+			background: 'black',
+			border: '1px solid #1f5b84',
+			padding: '0.5em',
+  			fontSize: '12px',
+  			lineHeight: '16px'
 		});
 
 		var fromShip = this.props.paths ?
@@ -74,20 +104,36 @@ var DetailList = React.createClass({
 			<div style={baseStyle}>
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
-					<span style={showLimitedStyle}>
-						<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
-						<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
-					</span>
-					<span style={showLimitedStyle}>
-						<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
-						<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
-					</span>
+					<div style={controlsStyle}>
+						<div>
+							<label htmlFor="sortBy" style={showLimitedStyle}>Sort by: </label>
+							<select id="sortBy" style={sortByStyle} onChange={this.resort}>
+								<option value="alphabet">Alphabetical [A-Z]</option>
+								<option value="mfg">Manufacturer</option>
+								<option value="cost" selected="selected">Total cost</option>
+							</select>
+						</div>
+						<div style={showLimitedStyle}>
+							<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
+							<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
+						</div>
+						<div style={showLimitedStyle}>
+							<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
+							<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
+						</div>
+					</div>
+					<div style={{clear: 'both'}}></div>
 				</div>
 				<div className="detailList" style={detailListStyle}>
 					{onEmpty}
 				</div>
 			</div>
 		);
+	},
+	resort: function (e) {
+		this.setState({
+			sortBy: e.target.value
+		});
 	},
 	toggleShowLimited: function () {
 		this.setState({
