@@ -51,7 +51,7 @@ var StartList = React.createClass({
 			width: '307px',
 			overflowY: 'scroll',
 			position: 'absolute',
-			top: 50,
+			top: 100,
 			bottom: 0
 		};
 
@@ -64,8 +64,19 @@ var StartList = React.createClass({
 			padding: '10px 15px',
 		};
 
+		var headerStyle = {
+			width: 266,
+			margin: '0 0 1em 0',
+			padding: '0.5em 0',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.9)',
+			textAlign: 'left'
+		};
+
 		return (
 			<div style={baseStyle}>
+				<div style={headerStyle}>
+					<h1>Your ship</h1>
+				</div>
 				<div className="startFilter" style={startFilterStyle}>
 					<input type="text" id="filter" name="filter" style={filterTextStyle} placeholder="Search..." onInput={this.filter} />
 				</div>
