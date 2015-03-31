@@ -102,7 +102,7 @@ var DetailShip = React.createClass({
 
 		var toolTip = (this.state.showToolTip) ? 
 			<ToolTip align='right' x={this.state.toolTipX} y={this.state.toolTipY}>
-				There is a cheaper path, but it includes a limited ship.
+				Note: A cheaper path is available, but includes limited ships.
 			</ToolTip> 
 			: false;
 		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
