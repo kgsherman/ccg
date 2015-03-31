@@ -4,6 +4,7 @@ var gs = require('./globalStyles');
 var DetailList = React.createClass({
 	getInitialState: function () {
 		return {
+			showSettings: false,
 			showLimited: false,
 			showPathLimited: false,
 			sortBy: 'cost'
@@ -50,6 +51,7 @@ var DetailList = React.createClass({
 		};
 
 		var headerStyle = {
+			position: 'relative',
 			width: 1020,
 			margin: '0 0 1em 12px',
 			padding: '0.5em 0',
@@ -61,7 +63,7 @@ var DetailList = React.createClass({
 			left: 0,
 			right: 0,
 			bottom: 0,
-			top: 90,
+			top: 50,
 			padding: '0 1em',
 			overflow: 'auto'
 		};
@@ -74,8 +76,30 @@ var DetailList = React.createClass({
 
 		});
 
+		var controlIcon = _.extend({}, gs.brightBlueFont, {
+			display: this.state.showSettings ? 'none' : 'block',
+			float: 'right'
+		});
+
+		var closeControlsArea = {
+			position: 'fixed',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			background: 'transparent',
+			zIndex: 1
+		};
+
 		var controlsStyle = {
-			float: 'right',
+			display: this.state.showSettings ? 'block' : 'none',
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			zIndex: 2,
+			background: 'rgba(0, 11, 24, 0.8)',
+			border: '1px solid #0c67a1',
+			padding: '1em',
 			textAlign: 'right'
 		};
 
@@ -84,7 +108,8 @@ var DetailList = React.createClass({
 			border: '1px solid #1f5b84',
 			padding: '0.5em',
   			fontSize: '12px',
-  			lineHeight: '16px'
+  			lineHeight: '16px',
+  			marginBottom: '0.5em'
 		});
 
 		var fromShip = this.props.paths ?
@@ -104,6 +129,10 @@ var DetailList = React.createClass({
 			<div style={baseStyle}>
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
+					<div style={controlIcon} onMouseOver={this.showSettings}>
+						<i className="fa fa-cogs fa-2x"></i>
+					</div>
+					{this.state.showSettings ? <div style={closeControlsArea} onMouseOver={this.hideSettings}></div> : false}
 					<div style={controlsStyle}>
 						<div>
 							<label htmlFor="sortBy" style={showLimitedStyle}>Sort by: </label>
@@ -115,11 +144,11 @@ var DetailList = React.createClass({
 						</div>
 						<div style={showLimitedStyle}>
 							<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
-							<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
+							<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
 						</div>
 						<div style={showLimitedStyle}>
 							<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
-							<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
+							<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
 						</div>
 					</div>
 					<div style={{clear: 'both'}}></div>
@@ -134,6 +163,16 @@ var DetailList = React.createClass({
 		this.setState({
 			sortBy: e.target.value
 		});
+	},
+	showSettings: function () {
+		this.setState({
+			showSettings: true
+		})
+	},
+	hideSettings: function () {
+		this.setState({
+			showSettings: false
+		})
 	},
 	toggleShowLimited: function () {
 		this.setState({
