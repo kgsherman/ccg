@@ -101,7 +101,7 @@ var Path = React.createClass({
 						<span style={costStyle}>${this.props.data.totalCost}</span>
 						<span style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</span>
 					</div>
-					{limits}
+					{/* limits */}
 				</div>
 				<div style={stepsNewStyle}>
 					<span style={fromStyle}>{db[this.props.selected].display}</span>
