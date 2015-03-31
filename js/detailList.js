@@ -78,6 +78,7 @@ var DetailList = React.createClass({
 
 		var controlIcon = _.extend({}, gs.brightBlueFont, {
 			display: this.state.showSettings ? 'none' : 'block',
+			cursor: 'default',
 			float: 'right'
 		});
 
@@ -129,10 +130,10 @@ var DetailList = React.createClass({
 			<div style={baseStyle}>
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
-					<div style={controlIcon} onMouseOver={this.showSettings}>
-						<i className="fa fa-cogs fa-2x"></i>
-					</div>
-					{this.state.showSettings ? <div style={closeControlsArea} onMouseOver={this.hideSettings}></div> : false}
+					<h3 style={controlIcon} onMouseOver={this.showSettings} onClick={this.showSettings}> // duplicate events for mobile
+						[ <i className="fa fa-cogs"></i> Options ]
+					</h3>
+					{this.state.showSettings ? <div style={closeControlsArea} onMouseOver={this.hideSettings} onClick={this.hideSettings}></div> : false} // duplicate events for mobile
 					<div style={controlsStyle}>
 						<div>
 							<label htmlFor="sortBy" style={showLimitedStyle}>Sort by: </label>
