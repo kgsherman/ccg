@@ -1,12 +1,16 @@
 var Path = require('./path');
 var gs = require('./globalStyles');
 var mfgDB = require('./db/mfg.json');
+var ToolTip = require('./toolTip');
 
 var DetailShip = React.createClass({
 	getInitialState: function () {
 		return { 
 			showAll: false,
-			hover: false
+			hover: false,
+			showToolTip: false,
+			toolTipX: 0,
+			toolTipY: 0
 		};
 	},
 	render: function () {
@@ -61,7 +65,9 @@ var DetailShip = React.createClass({
 		};
 
 		var multiplePathsStyle = {
-			float: 'right'
+			position: 'absolute',
+			top: 0,
+			right: 0
 		}
 
 		var h4Style = {
@@ -89,11 +95,20 @@ var DetailShip = React.createClass({
 			width: '100%'
 		};
 
-		var multiplePaths = pathsCount > 1 ?
+		var errorIconStyle = {
+			width: 45,
+			height: 45
+		};
+
+		var toolTip = (this.state.showToolTip) ? 
+			<ToolTip align='right' x={this.state.toolTipX} y={this.state.toolTipY}>
+				There is a cheaper path, but it includes a limited ship.
+			</ToolTip> 
+			: false;
+		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
 			<div className="multiplePaths" style={multiplePathsStyle}>
-				<h4 className="optimalPathCount" style={h4Style}>
-					[optimal path includes limited ship]
-				</h4>
+				<img src='public/error_icon.png' style={errorIconStyle} onMouseOver={this.showToolTip} onMouseOut={this.hideToolTip} onMouseMove={this.updateToolTip} />
+				{toolTip}
 			</div>
 			: false;
 
@@ -132,6 +147,15 @@ var DetailShip = React.createClass({
 		this.setState({
 			showAll: this.state.showAll + 1 // use incremental so that children can check to see if the incoming props are different than current
 		})
+	},
+	showToolTip: function () {
+		this.setState({ showToolTip: true });
+	},
+	hideToolTip: function () {
+		this.setState({ showToolTip: false });
+	},
+	updateToolTip: function (e) {
+		this.setState({ toolTipX: e.clientX, toolTipY: e.clientY });
 	}
 });
 

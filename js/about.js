@@ -1,4 +1,5 @@
 var gs = require('./globalStyles');
+var ToolTip = require('./toolTip');
 
 var style = {
 	base: {
