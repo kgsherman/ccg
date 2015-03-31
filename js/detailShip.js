@@ -8,7 +8,8 @@ var DetailShip = React.createClass({
 		return { 
 			showAll: false,
 			hover: false,
-			showToolTip: false,
+			showPathToolTip: false,
+			showLimitedToolTip: false,
 			toolTipX: 0,
 			toolTipY: 0
 		};
@@ -49,9 +50,13 @@ var DetailShip = React.createClass({
 		var headerStyle = _.extend({}, gs.linebg, {
 			width: '100%',
 			backgroundColor: 'rgba(30, 60, 100, 0.3)',
-			padding: '1em',
 			margin: '0'
 		});
+
+		var nameStyle = {
+			padding: '1em',
+			float: 'left'
+		};
 
 		var mfgStyle = {
 			display: 'inline-block',
@@ -64,11 +69,12 @@ var DetailShip = React.createClass({
 			marginRight: '0.5em'
 		};
 
-		var multiplePathsStyle = {
-			position: 'absolute',
-			top: 0,
-			right: 0
-		}
+		var iconContainerRight = {
+			float: 'right'
+		};
+		var iconContainerLeft = {
+			float: 'left'
+		};
 
 		var h4Style = {
 			display: 'inline-block',
@@ -95,41 +101,49 @@ var DetailShip = React.createClass({
 			width: '100%'
 		};
 
-		var errorIconStyle = {
+		var iconStyle = {
 			width: 42,
 			height: 42
 		};
 
-		var toolTip = (this.state.showToolTip) ? 
-			<ToolTip align='right' x={this.state.toolTipX} y={this.state.toolTipY}>
-				Note: A cheaper path is available, but includes limited ships.
-			</ToolTip> 
-			: false;
+		var toolTip = function (text, align, showCondition) {
+			if (!showCondition) return false;
+			return (
+				<ToolTip align={align} x={this.state.toolTipX} y={this.state.toolTipY}>
+					{text}
+				</ToolTip> 
+			);
+		}.bind(this);
+
 		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
-			<div className="multiplePaths" style={multiplePathsStyle}>
-				<img src='public/warning_icon.png' style={errorIconStyle} onMouseOver={this.showToolTip} onMouseOut={this.hideToolTip} onMouseMove={this.updateToolTip} />
-				{toolTip}
+			<div style={iconContainerRight}>
+				<img src='public/warning_icon.png' style={iconStyle} onMouseOver={this.showPathToolTip} onMouseOut={this.hidePathToolTip} onMouseMove={this.updateToolTip} />
+				{toolTip('Note: A cheaper path is available, but includes limited ships.', 'right', this.state.showPathToolTip)}
 			</div>
 			: false;
 
 		var limitedTag = shipInfo.limited ?
-			<span style={limitedTagStyle}>
-				Not currently for sale
-			</span>
+			<div style={iconContainerLeft}>
+				<img src='public/error_icon.png' style={iconStyle} onMouseOver={this.showLimitedToolTip} onMouseOut={this.hideLimitedToolTip} onMouseMove={this.updateToolTip} />
+				{toolTip('This ship is not currently for sale', 'left', this.state.showLimitedToolTip)}
+			</div>
 			: false;
 
 
 		return (
 			<div className="detailShip" style={baseStyle}>
-				<div style={headerStyle} onClick={pathsCount > 1 ? this.showAll : false} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-					<h2 style={h2Style}>
-						{db[this.props.id].display}
-					</h2>
-					<h4 style={mfgStyle}>
-						{mfgDB[db[this.props.id].mfg].name}
-					</h4>
+				<div style={headerStyle}>
 					{limitedTag}
+					<div style={nameStyle}>
+						<h2 style={h2Style}>
+							{db[this.props.id].display}
+						</h2>
+						<h4 style={mfgStyle}>
+							{mfgDB[db[this.props.id].mfg].name}
+						</h4>
+					</div>
 					{multiplePaths}
+					<div style={{clear: 'both'}}></div>
 				</div>
 				<div style={pathContainerStyle}>
 					{pathNodes}
@@ -137,22 +151,17 @@ var DetailShip = React.createClass({
 			</div>
 		);
 	},
-	mouseOver: function () {
-		this.setState({ hover: true });
+	showPathToolTip: function () {
+		this.setState({ showPathToolTip: true });
 	},
-	mouseOut: function () {
-		this.setState({ hover: false });
+	hidePathToolTip: function () {
+		this.setState({ showPathToolTip: false });
 	},
-	showAll: function () {
-		this.setState({
-			showAll: this.state.showAll + 1 // use incremental so that children can check to see if the incoming props are different than current
-		})
+	showLimitedToolTip: function () {
+		this.setState({ showLimitedToolTip: true });
 	},
-	showToolTip: function () {
-		this.setState({ showToolTip: true });
-	},
-	hideToolTip: function () {
-		this.setState({ showToolTip: false });
+	hideLimitedToolTip: function () {
+		this.setState({ showLimitedToolTip: false });
 	},
 	updateToolTip: function (e) {
 		this.setState({ toolTipX: e.clientX, toolTipY: e.clientY });

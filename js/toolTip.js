@@ -1,16 +1,18 @@
 var ToolTip = React.createClass({
 	render: function () {
-		var trueX = window.innerWidth - this.props.x;
 		var style = {
 			position: 'fixed',
 			top: this.props.y + 2,
-			right: trueX,
 			width: this.props.width || 'auto',
 			height: this.props.height || 'auto',
+			transform: 'translateY(-50%)',
 			background: 'rgba(0, 0, 0, 0.9)',
 			padding: '0.5em'
 		};
-		//this.props.align == 'right' ? style.right = 'calc(100% - ' + this.props.x + ')' :  style.left = this.props.x + 2;
+		this.props.align == 'right' ? 
+			style.right = window.innerWidth - this.props.x + 15
+			: style.left = this.props.x + 10;
+
 
 		return (
 			<div style={style}>

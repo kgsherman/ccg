@@ -54,7 +54,7 @@ var About = React.createClass({
 					<div style={style.content}>
 						<h1 style={style.h1}>About RSI_DB</h1>
 						<p>
-							Given your current ship, RSI_DB discovers which ships are available via cross- and intra-chassis upgrade chains. It then computes the optimal path from your current ship to your final upgrade, getting you the best deal possible.
+							Given your current ship, RSI_DB discovers which ships are available via cross- and intra-chassis upgrade chains. It then computes the cheapest path from your current ship to your final upgrade, getting you the best deal possible.
 						</p>
 						<p>
 							In some cases, the cheapest paths include converting to ships that aren't currently on sale. These paths are filtered out by default, but can be shown using the checkbox at the top of the result list.
