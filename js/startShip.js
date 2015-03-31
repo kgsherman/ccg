@@ -18,8 +18,7 @@ var StartShip = React.createClass({
 		};
 
 		var backgroundStyle = {
-			opacity: this.props.selected ? '1' : '0.6',
-			WebkitFilter: this.props.selected ? false : 'blur(1px)',
+			opacity: this.props.selected ? '1' : '0.5',
 			backgroundImage: 'url("' + pic + '")',
 			backgroundSize: '266px 159px',
 			backgroundPosition: 'center center',

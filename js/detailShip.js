@@ -46,8 +46,7 @@ var DetailShip = React.createClass({
 			width: '100%',
 			backgroundColor: 'rgba(30, 60, 100, 0.3)',
 			padding: '1em',
-			margin: '0',
-			cursor: 'pointer'
+			margin: '0'
 		});
 
 		var mfgStyle = {
@@ -85,6 +84,11 @@ var DetailShip = React.createClass({
 			verticalAlign: 'baseline'
 		});
 
+		var pathContainerStyle = {
+			display: 'table',
+			width: '100%'
+		};
+
 		var multiplePaths = pathsCount > 1 ?
 			<div className="multiplePaths" style={multiplePathsStyle}>
 				<h4 className="optimalPathCount" style={h4Style}>
@@ -112,7 +116,9 @@ var DetailShip = React.createClass({
 					{limitedTag}
 					{multiplePaths}
 				</div>
-				{pathNodes}
+				<div style={pathContainerStyle}>
+					{pathNodes}
+				</div>
 			</div>
 		);
 	},

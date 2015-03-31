@@ -74,7 +74,7 @@ var DetailList = React.createClass({
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
 					<span style={showLimitedStyle}>
-						<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include paths using limited ships:</label>
+						<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
 						<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
 					</span>
 					<span style={showLimitedStyle}>
