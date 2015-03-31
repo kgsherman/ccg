@@ -137,10 +137,10 @@ var DetailList = React.createClass({
 					<div style={controlsStyle}>
 						<div>
 							<label htmlFor="sortBy" style={showLimitedStyle}>Sort by: </label>
-							<select id="sortBy" style={sortByStyle} onChange={this.resort}>
+							<select id="sortBy" defaultValue="cost" style={sortByStyle} onChange={this.resort}>
 								<option value="alphabet">Alphabetical [A-Z]</option>
 								<option value="mfg">Manufacturer</option>
-								<option value="cost" selected="selected">Total cost</option>
+								<option value="cost">Total cost</option>
 							</select>
 						</div>
 						<div style={showLimitedStyle}>
