@@ -96,8 +96,8 @@ var DetailShip = React.createClass({
 		};
 
 		var errorIconStyle = {
-			width: 45,
-			height: 45
+			width: 42,
+			height: 42
 		};
 
 		var toolTip = (this.state.showToolTip) ? 
@@ -107,7 +107,7 @@ var DetailShip = React.createClass({
 			: false;
 		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
 			<div className="multiplePaths" style={multiplePathsStyle}>
-				<img src='public/error_icon.png' style={errorIconStyle} onMouseOver={this.showToolTip} onMouseOut={this.hideToolTip} onMouseMove={this.updateToolTip} />
+				<img src='public/warning_icon.png' style={errorIconStyle} onMouseOver={this.showToolTip} onMouseOut={this.hideToolTip} onMouseMove={this.updateToolTip} />
 				{toolTip}
 			</div>
 			: false;
