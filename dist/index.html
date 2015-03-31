@@ -1,26 +1,14 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>RSI-DB</title>
+    <title>RSI_DB</title>
     <meta charset="UTF-8">
-    <script type="text/javascript">
-	  WebFontConfig = {
-	    google: { families: [ 'Electrolize::latin' ] }
-	  };
-	  (function() {
-	    var wf = document.createElement('script');
-	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-	    wf.type = 'text/javascript';
-	    wf.async = 'true';
-	    var s = document.getElementsByTagName('script')[0];
-	    s.parentNode.insertBefore(wf, s);
-	  })(); 
-  	</script>
+    <link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
   	<style>
   		body {
   			background-color: rgb(0, 11, 17);
   			background: url("public/gridbg.png") repeat center top rgb(0, 11, 17);
+
   		}
 		html, body, #mount {
 			position: relative;
@@ -28,7 +16,7 @@
 			width: 100%;
 			margin: 0;
 			padding: 0;
-			color: white;
+			color: #73b1cb;
 			font-family: Tahoma, Arial, Helvetica, sans-serif;
 			font-size: 12px;
 		}
@@ -55,7 +43,10 @@
   	</style>
   </head>
   <body>
-    <section id="mount">LOADING</section>
+    <div id="mount">
+    	<br />
+    	<center><h1>LOADING...</h1></center>
+    </div>
     <script src="bundle.min.js"></script>
   </body>
 </html>

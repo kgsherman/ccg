@@ -4,7 +4,8 @@ var gs = require('./globalStyles');
 var DetailList = React.createClass({
 	getInitialState: function () {
 		return {
-			showLimited: false
+			showLimited: false,
+			showPathLimited: false
 		}
 	},
 	render: function () {
@@ -14,7 +15,6 @@ var DetailList = React.createClass({
 				.sortBy(function (id) { return id; })
 				.sortBy(function (id) { return db[id].mfg })
 				.filter(function (id) { return db[id].limited <= this.state.showLimited }.bind(this))
-				//.sortBy(function (id) { return db[id].limited })
 				.value();
 
 			var ships = ids.map(function (id, index) {
@@ -27,7 +27,7 @@ var DetailList = React.createClass({
 			left: 307,
 			right: 0,
 			bottom: 50,
-			top: 100
+			top: 80
 		};
 
 		var headerStyle = {
@@ -67,8 +67,12 @@ var DetailList = React.createClass({
 				<div style={headerStyle}>
 					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
 					<span style={showLimitedStyle}>
-						<label for="showLimited">Show limited ships:</label>
-						<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
+						<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include paths using limited ships:</label>
+						<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
+					</span>
+					<span style={showLimitedStyle}>
+						<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
+						<input type="checkbox" id="showLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
 					</span>
 				</div>
 				<div className="detailList" style={detailListStyle}>
@@ -80,7 +84,12 @@ var DetailList = React.createClass({
 	toggleShowLimited: function () {
 		this.setState({
 			showLimited: !this.state.showLimited
-		})
+		});
+	},
+	toggleShowPathLimited: function () {
+		this.setState({
+			showPathLimited: !this.state.showPathLimited
+		});
 	}
 });
 

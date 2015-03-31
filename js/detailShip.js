@@ -84,9 +84,6 @@ var DetailShip = React.createClass({
 				<h4 className="optimalPathCount" style={h4Style}>
 					{pathsCount} optimal paths
 				</h4>
-				<span className="expandAll" style={expanderStyle}>
-					[ Click to expand all ]
-				</span>
 			</div>
 			: false;
 

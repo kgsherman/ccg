@@ -39,7 +39,7 @@ var StartList = React.createClass({
 
 		var baseStyle = {
 			position: 'absolute',
-			top: 100,
+			top: 80,
 			bottom: 50,
 			width: '307px',
 			overflowX: 'hidden',
