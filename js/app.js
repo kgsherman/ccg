@@ -49,13 +49,15 @@ var App = React.createClass({
 			cursor: 'pointer'
 		});
 
+		var bright = _.extend({}, gs.headerFont, gs.brightBlueFont);
+
 		var about = this.state.showAbout ? <About onKill={this.hideAbout} /> : false;
 
 		return (
 			<div id="app" style={appStyle}>
 				<div style={headerStyle}>
-					<h1 style={h1Style}>RSI_DB</h1>
-					<span style={subheaderStyle}>Discover the best upgrades for your Star Citizen ships</span>
+					<h1 style={h1Style}>CCG</h1>
+					<span style={subheaderStyle}>Discover the best upgrades for your Star Citizen ships with the <span style={bright}>Citizen's Conversion Guide</span></span>
 					<div style={showAboutStyle} onClick={this.showAbout}>
 						About this page
 					</div>

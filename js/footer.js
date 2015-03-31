@@ -22,7 +22,7 @@ var Footer = React.createClass({
 		return (
 			<div style={style.base}>
 				<p style={{padding: 0, margin: 0}}>
-					RSI_DB is a fan-made tool 100% unaffiliated with Star Citizen, Roberts Space Industries, or Cloud Imperium Games.<br />
+					The Citizen's Conversion Guide (CCG) is a fan-made tool 100% unaffiliated with Star Citizen, Roberts Space Industries, or Cloud Imperium Games.<br />
 					All styles and assets that are originally from robertsspaceindustries.com have been reused without permission.
 				</p>
 			</div>
