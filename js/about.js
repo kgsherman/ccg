@@ -60,7 +60,7 @@ var About = React.createClass({
 							Community contribution is welcome, and pull requests on Github are encouraged!
 						</p>
 						<p>
-							RSI_DB is a fan-made tool 100% unaffiliated with Star Citizen, Roberts Space Industries, or Clould Imperium Games. All styles and assets that are originally from robertsspaceindustries.com have been reused without permission.
+							RSI_DB is a fan-made tool 100% unaffiliated with Star Citizen, Roberts Space Industries, or Cloud Imperium Games. All styles and assets that are originally from robertsspaceindustries.com have been reused without permission.
 						</p>
 						<p>
 							To get in touch, post on <a target="_blank" href="https://github.com/kgsherman/rsidb" style={style.link}>Github</a> or <a target="_blank" href="http://www.reddit.com/message/compose/?to=snoee" style={style.link}>send a message to /u/snoee on reddit</a>.
