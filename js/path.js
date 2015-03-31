@@ -20,13 +20,13 @@ var Path = React.createClass({
 		}, this);
 
 
-		var baseStyle = {
-			display: 'table',
+		var baseStyle = _.extend({}, gs.linebg, {
+			display: 'table-row',
 			width: '100%',
 			borderTop: 'rgb(32, 76, 122)',
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)',
 			padding: '0'
-		};
+		});
 
 		var headerStyle = _.extend({}, gs.linebg, {
 			display: 'table-row',
@@ -73,12 +73,20 @@ var Path = React.createClass({
 			padding: '0.5em',
 		};
 
-		var stepsNewStyle = {
+		var cellStyle = {
 			display: 'table-cell',
+			borderBottom: '1px solid rgba(29, 63, 98, 0.6)'
+		};
+
+		var fitCellStyle = _.extend({}, cellStyle, {
+			width: 1
+		});
+
+		var stepsNewStyle = _.extend({}, cellStyle, {
 			borderLeft: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRight: '1px solid rgba(29, 63, 98, 0.9)',
-			padding: '0.5em'
-		};
+			padding: '0.5em 1em'
+		});
 
 		var limits = this.props.data.limits.length > 0 ?
 			<div style={limitsStyle}>
@@ -88,18 +96,16 @@ var Path = React.createClass({
 
 		return (
 			<div style={baseStyle} className="path-base">
-				<div style={headerStyle} onClick={this.toggle} className="path-header">
-					<div style={{display: 'table-cell', width: 1, textAlign: 'center'}}>
-						<div>
-							<span style={costStyle}>${this.props.data.totalCost}</span>
-							<span style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</span>
-						</div>
-						{limits}
+				<div style={fitCellStyle}>
+					<div style={{textAlign: 'center'}}>
+						<span style={costStyle}>${this.props.data.totalCost}</span>
+						<span style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</span>
 					</div>
-					<div style={stepsNewStyle}>
-						<span style={fromStyle}>{db[this.props.selected].display}</span>
-						{steps}
-					</div>
+					{limits}
+				</div>
+				<div style={stepsNewStyle}>
+					<span style={fromStyle}>{db[this.props.selected].display}</span>
+					{steps}
 				</div>
 			</div>
 		);
