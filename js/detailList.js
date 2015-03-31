@@ -18,7 +18,7 @@ var DetailList = React.createClass({
 				.value();
 
 			var ships = ids.map(function (id, index) {
-				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} />
+				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
 			}, this);
 		}
 
@@ -72,7 +72,7 @@ var DetailList = React.createClass({
 					</span>
 					<span style={showLimitedStyle}>
 						<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
-						<input type="checkbox" id="showLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle'}} />
+						<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />
 					</span>
 				</div>
 				<div className="detailList" style={detailListStyle}>

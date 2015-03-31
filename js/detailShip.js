@@ -14,19 +14,25 @@ var DetailShip = React.createClass({
 		var pathsCount = paths.length;
 		var shipInfo = db[this.props.id];
 
-		var pathNodes = _.map(paths, function (path, index) {
-			var key = this.props.selected + '_' + this.props.id + index; // generate unique and descriptive key
-			return (
-				<Path 
-					key={key} 
-					parentID={this.props.id} 
-					data={path} 
-					selected={this.props.selected}
-					showAtStart={pathsCount == 1}
-					showAll={this.state.showAll} 
-				/>
-			);
-		}, this);
+		var pathNodes = _.chain(paths)
+			.filter(function (path) {
+				if (!this.props.includeLimited && path.limits.length > 0 && !(db[this.props.id].limited && path.limits.length == 1)) return false;
+				else return true;
+			}, this)
+			.map(function (path, index) {
+				var key = this.props.selected + '_' + this.props.id + index; // generate unique and descriptive key
+				return (
+					<Path 
+						key={key} 
+						parentID={this.props.id} 
+						data={path} 
+						selected={this.props.selected}
+						showAtStart={pathsCount == 1}
+						showAll={this.state.showAll} 
+					/>
+				);
+			}, this)
+			.value();
 
 		var baseStyle = _.extend({}, {
 			position: 'relative',
@@ -82,7 +88,7 @@ var DetailShip = React.createClass({
 		var multiplePaths = pathsCount > 1 ?
 			<div className="multiplePaths" style={multiplePathsStyle}>
 				<h4 className="optimalPathCount" style={h4Style}>
-					{pathsCount} optimal paths
+					[optimal path includes limited ship]
 				</h4>
 			</div>
 			: false;
