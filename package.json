@@ -22,7 +22,7 @@
   "scripts": {
     "start": "watchify -r react js/ -o bundle.js -d -v .",
     "build": "browserify js/ | uglifyjs -cm > dist/bundle.min.js",
-    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages"
+    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "author": "Kevin Sherman",
   "license": "MIT",
