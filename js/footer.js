@@ -20,7 +20,7 @@ var Footer = React.createClass({
 			<div style={style.base}>
 				<p>
 					RSI_DB is a fan-made tool completely unaffiliated with Star Citizen, Roberts Space Industries, or Clould Imperium Games.<br />
-					All styles and assets from robertsspaceindustries.com have been reused without permission.
+					All styles and assets that are originally from robertsspaceindustries.com have been reused without permission.
 				</p>
 			</div>
 		);

@@ -7,15 +7,28 @@ var StartShip = React.createClass({
 		var priceUSD = (data.price.usd) ? data.price.usd : '---';
 		var priceREC = (data.price.rec) ? data.price.rec : "---";
 		var pic = 'public/' + this.props.id + '.jpg';
-		var classes = 'startShip' + (this.props.selected ? ' startShip-selected' : '');
 		var usdclass = data.limited ? 'usd limited' : 'usd';
 
 		var baseStyle = {
 			position: 'relative',
 			width: '266px',
-			height: '159px',
+			height: this.props.selected ? 159 : 100,
 			margin: '0 1em 1em 0',
-			cursor: 'pointer'
+			cursor: 'pointer',
+		};
+
+		var backgroundStyle = {
+			opacity: this.props.selected ? '1' : '0.6',
+			WebkitFilter: this.props.selected ? false : 'blur(1px)',
+			backgroundImage: 'url("' + pic + '")',
+			backgroundSize: '266px 159px',
+			backgroundPosition: 'center center',
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			zIndex: '-1'
 		};
 
 		var imgStyle = {
@@ -77,8 +90,8 @@ var StartShip = React.createClass({
 		}, priceStyle);
 
 		return (
-			<div className={classes} onClick={this.select} style={baseStyle}>
-				<img src={pic} style={imgStyle} />
+			<div onClick={this.select} style={baseStyle}>
+				<div style={backgroundStyle}></div>
 				<div className="startShip-info" style={infoStyle}>
 					<div className="startShip-header line-bg" style={headerStyle}>
 						<h2 style={h1Style}>{name}</h2>
