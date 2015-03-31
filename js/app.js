@@ -1,12 +1,15 @@
 var ShipList = require('./startList');
 var DetailList = require('./detailList');
 var Footer = require('./footer');
+var About = require('./about');
+var gs = require('./globalStyles');
 
 var App = React.createClass({
 	getInitialState: function () {
 		return ({
 			paths: null,
-			selected: null
+			selected: null,
+			showAbout: false
 		});
 	},
 	render: function () {
@@ -17,6 +20,7 @@ var App = React.createClass({
 			margin: '0 auto'
 		};
 		var headerStyle = {
+			position: 'relative',
 			width: 1337, // this was not intentional.
 			padding: '16px 0',
 			marginBottom: 16,
@@ -35,18 +39,44 @@ var App = React.createClass({
 			marginLeft: '1em',
 			color: '#618d96'
 		};
+
+		var showAboutStyle = _.extend({}, gs.headerFont, gs.brightBlueFont, {
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			padding: '0.5em 1em',
+			border: '1px solid #0c67a1',
+			cursor: 'pointer'
+		});
+
+		var about = this.state.showAbout ? <About onKill={this.hideAbout} /> : false;
+
 		return (
 			<div id="app" style={appStyle}>
 				<div style={headerStyle}>
 					<h1 style={h1Style}>RSI_DB</h1>
 					<span style={subheaderStyle}>Discover the best upgrades for your Star Citizen ships</span>
+					<div style={showAboutStyle} onClick={this.showAbout}>
+						About this page
+					</div>
 				</div>
 				<ShipList onSelect={this.getPaths} selected={this.state.selected} />
 				<DetailList paths={this.state.paths} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
 				<Footer />
+				{about}
 			</div>
 		);
+	},
+	showAbout: function () {
+		this.setState({
+			showAbout: true
+		});
+	},
+	hideAbout: function () {
+		this.setState({
+			showAbout: false
+		});
 	},
 	getPaths: function (id) {
 		var shipPaths = {};
