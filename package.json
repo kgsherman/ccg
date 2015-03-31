@@ -17,7 +17,8 @@
     "uglify-js": "~2.4.15",
     "watchify": "^3.0.0",
     "underscore": "^1.8.0",
-    "lodash": "^3.5.0"
+    "lodash": "^3.5.0",
+    "font-awesome":  "^4.3.0"
   },
   "scripts": {
     "start": "watchify -r react js/ -o bundle.js -d -v .",
