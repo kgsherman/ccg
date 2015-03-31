@@ -628,5 +628,16 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": []
+	},
+	"vanguard": {
+		"display": "Vanguard",
+		"class": null,
+		"mfg": "aegis",
+		"limited": true,
+		"price": {
+			"usd": 250,
+			"rec": null
+		},
+		"connects_to": []
 	}
 };
