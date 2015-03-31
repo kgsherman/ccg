@@ -9,6 +9,7 @@ var DetailList = React.createClass({
 		}
 	},
 	render: function () {
+		var ships = [];
 		if (this.props.paths) {
 			var ids = Object.keys(this.props.paths);
 			ids = _.chain(ids)
@@ -17,7 +18,7 @@ var DetailList = React.createClass({
 				.filter(function (id) { return db[id].limited <= this.state.showLimited }.bind(this))
 				.value();
 
-			var ships = ids.map(function (id, index) {
+			ships = ids.map(function (id, index) {
 				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
 			}, this);
 		}
@@ -62,6 +63,12 @@ var DetailList = React.createClass({
 			</span>
 			: false;
 
+		var onEmpty = this.props.paths ?
+			ships.length > 0 ?
+				ships
+				: 'No conversions match your criteria. Try changing the filter using the checkboxes above.'
+			: 'Select a ship on the left to begin.'
+
 		return (
 			<div style={baseStyle}>
 				<div style={headerStyle}>
@@ -76,7 +83,7 @@ var DetailList = React.createClass({
 					</span>
 				</div>
 				<div className="detailList" style={detailListStyle}>
-					{this.props.paths ? ships : 'Select a ship'}
+					{onEmpty}
 				</div>
 			</div>
 		);
