@@ -30,11 +30,11 @@ var Style = {
 	},
 	brightBlueFont: {
 		color: '#42edf8',
-		textShadow: '0px 0px 30px #42a9f8, 0px 0px 30px #42a9f8'
+		textShadow: '0px 0px 30px #42a9f8'
 	},
 	brightRedFont: {
 		color: '#f00',
-		textShadow: '0px 0px 30px #b00, 0px 0px 30px #b00'
+		textShadow: '0px 0px 30px #b00'
 	}
 }
 

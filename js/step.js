@@ -5,7 +5,7 @@ var Step = React.createClass({
 		var step = this.props.data;
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none',
-			marginBottom: '0.5em'
+			margin: '0.5em 0'
 		};
 		/*var arrowStyle = _.extend({}, gs.arrowRight, {
 			verticalAlign: 'middle',

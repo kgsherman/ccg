@@ -50,9 +50,9 @@ var DetailShip = React.createClass({
 			opacity: '0.7'
 		};
 
-		var h3Style = {
+		var h2Style = {
 			display: 'inline-block',
-			marginRight: '1em'
+			marginRight: '0.5em'
 		};
 
 		var multiplePathsStyle = {
@@ -62,7 +62,7 @@ var DetailShip = React.createClass({
 		var h4Style = {
 			display: 'inline-block',
 			fontWeight: 'normal',
-			marginRight: '1em'
+			marginRight: '0.5em'
 		};
 
 		var expanderStyle = {
@@ -100,9 +100,9 @@ var DetailShip = React.createClass({
 		return (
 			<div className="detailShip" style={baseStyle}>
 				<div style={headerStyle} onClick={pathsCount > 1 ? this.showAll : false} onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-					<h3 style={h3Style}>
+					<h2 style={h2Style}>
 						{db[this.props.id].display}
-					</h3>
+					</h2>
 					<h4 style={mfgStyle}>
 						{mfgDB[db[this.props.id].mfg].name}
 					</h4>

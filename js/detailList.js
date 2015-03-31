@@ -26,7 +26,7 @@ var DetailList = React.createClass({
 			position: 'absolute',
 			left: 307,
 			right: 0,
-			bottom: 0,
+			bottom: 50,
 			top: 100
 		};
 
@@ -55,10 +55,17 @@ var DetailList = React.createClass({
 			float: 'right'
 		});
 
+		var fromShip = this.props.paths ?
+			<span>
+				<span> from </span>
+				<h1 style={h1Style}>{db[this.props.selected].display}</h1>
+			</span>
+			: false;
+
 		return (
 			<div style={baseStyle}>
 				<div style={headerStyle}>
-					<h1 style={h1Style}>Possible conversions {this.props.paths ? 'from ' + db[this.props.selected].display : ''}</h1>
+					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
 					<span style={showLimitedStyle}>
 						<label for="showLimited">Show limited ships:</label>
 						<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle'}} />

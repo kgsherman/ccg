@@ -37,10 +37,10 @@ var StartList = React.createClass({
 			textAlign: 'left'
 		}
 
-		var startListStyle = {
+		var baseStyle = {
 			position: 'absolute',
 			top: 100,
-			bottom: 0,
+			bottom: 50,
 			width: '307px',
 			overflowX: 'hidden',
 			
@@ -65,7 +65,7 @@ var StartList = React.createClass({
 		};
 
 		return (
-			<div style={startListStyle}>
+			<div style={baseStyle}>
 				<div className="startFilter" style={startFilterStyle}>
 					<input type="text" id="filter" name="filter" style={filterTextStyle} placeholder="Search..." onInput={this.filter} />
 				</div>

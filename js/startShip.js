@@ -81,7 +81,7 @@ var StartShip = React.createClass({
 				<img src={pic} style={imgStyle} />
 				<div className="startShip-info" style={infoStyle}>
 					<div className="startShip-header line-bg" style={headerStyle}>
-						<h1 style={h1Style}>{name}</h1>
+						<h2 style={h1Style}>{name}</h2>
 					</div>
 				</div>
 				<span className={usdclass} style={usdStyle}><h4 style={h4Style}>${priceUSD}</h4></span>

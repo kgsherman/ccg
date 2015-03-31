@@ -1,5 +1,6 @@
 var ShipList = require('./startList');
 var DetailList = require('./detailList');
+var Footer = require('./footer');
 
 var App = React.createClass({
 	getInitialState: function () {
@@ -17,7 +18,7 @@ var App = React.createClass({
 		};
 		var headerStyle = {
 			width: 1337, // this was not intentional.
-			padding: '32px 0 16px 0',
+			padding: '16px 0',
 			marginBottom: 16,
 			borderBottom: '1px solid rgba(29, 63, 98, 0.9)',
 			background: 'url("public/noise.png") repeat'
@@ -43,6 +44,7 @@ var App = React.createClass({
 				<ShipList onSelect={this.getPaths} selected={this.state.selected} />
 				<DetailList paths={this.state.paths} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
+				<Footer />
 			</div>
 		);
 	},
