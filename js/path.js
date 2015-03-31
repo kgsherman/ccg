@@ -60,6 +60,8 @@ var Path = React.createClass({
 			borderBottom: '1px solid rgba(29, 63, 98, 0.6)'
 		};
 		var fromStyle = _.extend({}, gs.headerFont, gs.brightBlueFont, {
+			display: 'inline-block',
+			backgroundColor: 'rgba(30, 60, 100, 0.3)',
 			border: '1px solid rgba(29, 63, 98, 0.9)',
 			borderRadius: 5,
 			padding: '0.5em 1em'
@@ -104,7 +106,7 @@ var Path = React.createClass({
 					{/* limits */}
 				</div>
 				<div style={stepsNewStyle}>
-					<span style={fromStyle}>{db[this.props.selected].display}</span>
+					<div style={fromStyle}>{db[this.props.selected].display}</div>
 					{steps}
 				</div>
 			</div>
