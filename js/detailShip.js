@@ -118,7 +118,7 @@ var DetailShip = React.createClass({
 		var multiplePaths = pathsCount > 1 && !this.props.includeLimited ?
 			<div style={iconContainerRight}>
 				<img src='public/warning_icon.png' style={iconStyle} onMouseClick={this.showPathToolTip} onMouseOver={this.showPathToolTip} onMouseOut={this.hidePathToolTip} onMouseMove={this.updateToolTip} />
-				{toolTip('Note: A cheaper path is available, but includes limited ships.', 'right', this.state.showPathToolTip, this.hidePathToolTip)}
+				{toolTip('Note: A cheaper path is available, but includes limited ships.\nEnable INCLUDE LIMITED PATHS in options to view.', 'right', this.state.showPathToolTip, this.hidePathToolTip)}
 			</div>
 			: false;
 

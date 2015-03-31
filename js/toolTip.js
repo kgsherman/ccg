@@ -8,7 +8,9 @@ var ToolTip = React.createClass({
 			transform: 'translateY(-50%)',
 			background: 'rgba(0, 0, 0, 0.9)',
 			padding: '0.5em',
-			zIndex: '100'
+			zIndex: '100',
+			whiteSpace: 'pre',
+			textAlign: this.props.align
 		};
 		this.props.align == 'right' ? 
 			style.right = window.innerWidth - this.props.x + 15

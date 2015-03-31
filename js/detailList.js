@@ -51,6 +51,7 @@ var DetailList = React.createClass({
 		};
 
 		var headerStyle = {
+			display: this.props.paths ? 'block' : 'none',
 			position: 'relative',
 			width: 1020,
 			margin: '0 0 1em 12px',
@@ -113,6 +114,12 @@ var DetailList = React.createClass({
   			marginBottom: '0.5em'
 		});
 
+		var emptyStyle = {
+			position: 'absolute',
+			top: '50%',
+			transform: 'translateY(-50%)'
+		};
+
 		var fromShip = this.props.paths ?
 			<span>
 				<span> from </span>
@@ -120,11 +127,20 @@ var DetailList = React.createClass({
 			</span>
 			: false;
 
-		var onEmpty = this.props.paths ?
-			ships.length > 0 ?
-				ships
-				: 'No conversions match your criteria. Try changing the filter using the checkboxes above.'
-			: 'Select a ship on the left to begin.'
+		var onEmpty;
+		if (this.props.paths) {
+			if (ships.length > 0) {
+				onEmpty = ships;
+			} else {
+				onEmpty = 'No conversions match your criteria. Try changing the filter using the checkboxes above.';
+			}
+		} else {
+			onEmpty = (
+				<div style={emptyStyle}>
+					<h1><i className="fa fa-caret-left"></i> Select a ship to get started</h1>
+				</div>
+			);
+		}
 
 		return (
 			<div style={baseStyle}>
