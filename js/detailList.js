@@ -1,4 +1,5 @@
 var DetailShip = require('./detailShip');
+var Scroller = require('./scroller');
 var gs = require('./globalStyles');
 
 var DetailList = React.createClass({
@@ -62,7 +63,7 @@ var DetailList = React.createClass({
 			position: 'absolute',
 			top: 50,
 			bottom: 0,
-			width: 'calc(100% + 2em + 18px)',
+			width: '100%',
 			overflow: 'auto'
 		};
 		style.convertContainer = {
@@ -159,11 +160,9 @@ var DetailList = React.createClass({
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>
-				<div style={style.convertList}>
-					<div style={style.convertContainer}>
+				<Scroller style={style.convertList} margin={'2em'}>
 						{onEmpty}
-					</div>
-				</div>
+				</Scroller>
 			</div>
 		);
 	},

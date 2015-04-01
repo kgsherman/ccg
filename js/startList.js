@@ -1,4 +1,5 @@
 var StartShip = require('./startShip');
+var Scroller = require('./scroller');
 var gs = require('./globalStyles');
 
 var StartList = React.createClass({
@@ -42,7 +43,7 @@ var StartList = React.createClass({
 			position: 'absolute',
 			top: 80,
 			bottom: 50,
-			width: 'calc(266px + 1em)'
+			width: 266
 		};
 		style.header = {
 			width: 266,
@@ -64,7 +65,7 @@ var StartList = React.createClass({
 		});
 		style.shipList = {
 			position: 'absolute',
-			width: 'calc(100% + 18px)', // 18px to account for scroll bar
+			width: '100%',
 			top: 120,
 			bottom: 0,
 			overflowY: 'scroll'
@@ -80,9 +81,9 @@ var StartList = React.createClass({
 					<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />
 					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
 				</div>
-				<div className="startList" style={style.shipList}>
+				<Scroller style={style.shipList} margin={'1em'}>
 					{startShips}
-				</div>
+				</Scroller>
 			</div>
 		);
 	},
