@@ -94,14 +94,14 @@ var DetailList = React.createClass({
 			left: 0,
 			zIndex: 1			
 		};
-		style.sortBy = {
+		style.sortBy = _.extend({}, gs.headerFont, {
   			marginBottom: '0.5em',
 			background: 'black',
 			border: '1px solid #1f5b84',
 			padding: '0.5em',
   			fontSize: '12px',
   			lineHeight: '16px'
-		};
+		});
 		style.starter = {
 			position: 'absolute',
 			top: '50%',

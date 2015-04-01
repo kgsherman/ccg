@@ -39,7 +39,7 @@ var Style = {
 	dimBorder: '1px solid rgba(29, 63, 98, 0.9)',
 	xdimBorder: '1px solid rgba(22 , 42, 63, 0.8)',
 	blueFont: {
-		color: 'color: rgb(111, 216, 255)'
+		color: 'rgb(111, 216, 255)'
 	}
 }
 
