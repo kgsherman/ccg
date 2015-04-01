@@ -124,14 +124,7 @@ var Scroller = React.createClass({
 		this.updateCoordinates();
 
 		var position = (this.content.scrollTop / (this.contentScrollHeight - this.contentClientHeight)) * 100;
-		this.setState({ 
-			position: position,
-			glow: true
-		});
-		
-		setTimeout(function () {
-			this.setState({ glow: false });
-		}.bind(this), 200);
+		this.setState({ position: position });
 	},
 	startScroll: function (e) {
 		e.preventDefault();
