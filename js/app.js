@@ -13,52 +13,51 @@ var App = React.createClass({
 		});
 	},
 	render: function () {
-		var appStyle = {
-			height: '100%',
+		var style = {};
+		style.app = {
 			position: 'relative',
 			width: '1366px',
-			margin: '0 auto'
+			height: '100%',
+			margin: '0 auto'			
 		};
-		var headerStyle = {
+		style.header = {
 			position: 'relative',
-			width: 1337, // this was not intentional.
+			width: '100%',
 			padding: '16px 0',
 			marginBottom: 16,
 			borderBottom: '1px solid rgba(29, 63, 98, 0.9)',
-			background: 'url("public/noise.png") repeat'
+			background: 'url("public/noise.png") repeat'			
 		};
-		var h1Style = {
+		style.title = {
 			display: 'inline-block',
-			fontFamily: '"Electrolize", Arial, Helvetica, ans-serif',
+			color: '#00EBFF',
+			fontFamily: '"Electrolize", Arial, Helvetica, sans-serif',
 			fontSize: 32,
 			fontWeight: 'bold',
-			color: '#00EBFF',
-			textShadow: '0 0 50px #0074C2'
+			textShadow: '0 0 50px #0074C2'			
 		};
-		var subheaderStyle = {
+		style.substitle = {
 			marginLeft: '1em',
-			color: '#618d96'
+			color: '#618d96'			
 		};
-
-		var showAboutStyle = _.extend({}, gs.headerFont, gs.brightBlueFont, {
+		style.aboutLink = _.extend({}, gs.headerFont, {
 			position: 'absolute',
 			top: 0,
 			right: 0,
 			padding: '0.5em 1em',
 			border: '1px solid #0c67a1',
-			cursor: 'pointer'
+			cursor: 'pointer'			
 		});
-
-		var bright = _.extend({}, gs.headerFont, gs.brightBlueFont);
+		style.bright = _.extend({}, gs.headerFont, gs.brightBlueFont);
 
 		var about = this.state.showAbout ? <About onKill={this.hideAbout} /> : false;
 
 		return (
-			<div id="app" style={appStyle}>
-				<div style={headerStyle}>
-					<h1 style={h1Style}>CCG</h1>
-					<span style={subheaderStyle}>Discover the best upgrades for your Star Citizen ships with the <span style={bright}>Citizen's Conversion Guide</span></span>
-					<div style={showAboutStyle} onClick={this.showAbout}>
+			<div id="app" style={style.app}>
+				<div style={style.header}>
+					<h1 style={style.title}>CCG</h1>
+					<span style={style.substitle}>Discover the best upgrades for your Star Citizen ships with the <span style={style.bright}>Citizen's Conversion Guide</span></span>
+					<div style={style.aboutLink} onClick={this.showAbout}>
 						About this page
 					</div>
 				</div>
@@ -105,7 +104,6 @@ var App = React.createClass({
 			}
 		});
 
-		//console.log(bestShipPaths);
 
 		this.setState({ 
 			paths: bestShipPaths,

@@ -12,7 +12,8 @@ var StartList = React.createClass({
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
 			.filter(function (id) { 
-				if (this.state.showAll) return true;
+				if (this.state.showAll) return true; // dont bother if we're showing all ships
+
 				// filter out ships without connections, or with only connections without known prices
 				var connections = db[id].connects_to;
 				var hasConnections = (connections.length > 0);
@@ -35,61 +36,51 @@ var StartList = React.createClass({
 			return <StartShip key={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
 		}, this);
 
-		var startFilterStyle = {
-			height: 50,
-			textAlign: 'left'
-		}
 
-		var baseStyle = {
+		var style = {};
+		style.base = {
 			position: 'absolute',
 			top: 80,
 			bottom: 50,
-			width: '307px',
-			overflowX: 'hidden',
+			width: 307
+		};
+		style.header = {
+			width: 266,
+			marginBottom: '1em',
+			padding: '0.5em 0',
+			borderBottom: gs.dimBorder,
+			textAlign: 'left'			
+		};
+		style.controls = {
 			
-			textAlign: 'center'
 		};
-
-		var shipsStyle = {
-			width: '307px',
-			overflowY: 'scroll',
-			position: 'absolute',
-			top: 120,
-			bottom: 0
-		};
-
-		var filterTextStyle = {
+		style.showAll = gs.headerFont;
+		style.filter = _.extend({}, gs.blueFont, {
 			boxSizing: 'border-box',
-			background: 'rgba(0,0,0,0.4)',
-			border: '1px solid rgba(22,42,63,0.8)',
-			color: '#355e78',
 			width: 266,
 			padding: '10px 15px',
-		};
-
-		var headerStyle = {
-			width: 266,
-			margin: '0 0 1em 0',
-			padding: '0.5em 0',
-			borderBottom: '1px solid rgba(29, 63, 98, 0.9)',
-			textAlign: 'left'
-		};
-
-		var showAllStyle = _.extend({}, gs.headerFont, {
-
+			background: 'rgba(0,0,0,0.4)',
+			border: gs.xdimBorder,
 		});
+		style.shipList = {
+			position: 'absolute',
+			width: 307,
+			top: 120,
+			bottom: 0,
+			overflowY: 'scroll'
+		};
 
 		return (
-			<div style={baseStyle}>
-				<div style={headerStyle}>
+			<div style={style.base}>
+				<div style={style.header}>
 					<h1>Your ship</h1>
 				</div>
-				<div className="startFilter" style={startFilterStyle}>
-					<label htmlFor="showAll" style={showAllStyle}>Include non-upgradeable ships: </label>
+				<div style={style.controls}>
+					<label htmlFor="showAll" style={style.showAll}>Include non-upgradeable ships: </label>
 					<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />
-					<input type="text" id="filter" name="filter" style={filterTextStyle} placeholder="Search..." onInput={this.filter} />
+					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
 				</div>
-				<div className="startList" style={shipsStyle}>
+				<div className="startList" style={style.shipList}>
 					{startShips}
 				</div>
 			</div>

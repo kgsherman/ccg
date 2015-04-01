@@ -42,35 +42,70 @@ var DetailList = React.createClass({
 			}, this);
 		}
 
-		var baseStyle = {
+		var style = {};
+
+		style.base = {
 			position: 'absolute',
-			left: 307,
+			top: 80,
 			right: 0,
 			bottom: 50,
-			top: 80
+			left: 325
 		};
-
-		var headerStyle = {
+		style.header = {
 			display: this.props.paths ? 'block' : 'none',
 			position: 'relative',
 			width: 1020,
-			margin: '0 0 1em 12px',
+			marginBottom: '1em',
 			padding: '0.5em 0',
-			borderBottom: '1px solid rgba(29, 63, 98, 0.9)'
+			borderBottom: gs.dimBorder
 		};
-
-		var detailListStyle = {
+		style.convertList = {
 			position: 'absolute',
-			left: 0,
+			top: 50,
 			right: 0,
 			bottom: 0,
-			top: 50,
-			padding: '0 1em',
+			left: 0,
 			overflow: 'auto'
 		};
-
-		var h1Style = {
+		style.h1 =  {
 			display: 'inline-block'
+		};
+		style.controls = _.extend({}, gs.headerFont, {
+			display: this.state.showSettings ? 'block' : 'none',
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			zIndex: 2,
+			padding: '1em',
+			background: 'rgba(0, 11, 24, 0.8)',
+			border: '1px solid #0c67a1',
+			textAlign: 'right'			
+		});
+		style.controlIcon = {
+			display: this.state.showSettings ? 'none' : 'block',
+			cursor: 'default',
+			float: 'right'			
+		};
+		style.closeControlsArea = {
+			position: 'fixed',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			zIndex: 1			
+		};
+		style.sortBy = {
+  			marginBottom: '0.5em',
+			background: 'black',
+			border: '1px solid #1f5b84',
+			padding: '0.5em',
+  			fontSize: '12px',
+  			lineHeight: '16px'
+		};
+		style.starter = {
+			position: 'absolute',
+			top: '50%',
+			transform: 'translateY(-50%)'			
 		};
 
 		var showLimitedStyle = _.extend({}, gs.headerFont, {
@@ -123,7 +158,7 @@ var DetailList = React.createClass({
 		var fromShip = this.props.paths ?
 			<span>
 				<span> from </span>
-				<h1 style={h1Style}>{db[this.props.selected].display}</h1>
+				<h1 style={style.h1}>{db[this.props.selected].display}</h1>
 			</span>
 			: false;
 
@@ -136,41 +171,41 @@ var DetailList = React.createClass({
 			}
 		} else {
 			onEmpty = (
-				<div style={emptyStyle}>
+				<div style={style.starter}>
 					<h1><i className="fa fa-caret-left"></i> Select a ship to get started</h1>
 				</div>
 			);
 		}
 
 		return (
-			<div style={baseStyle}>
-				<div style={headerStyle}>
-					<h1 style={h1Style}>Possible conversions</h1>{fromShip}
-					<h3 style={controlIcon} onMouseOver={this.showSettings} onClick={this.showSettings}> {/*duplicate events for mobile*/}
+			<div style={style.base}>
+				<div style={style.header}>
+					<h1 style={style.h1}>Possible conversions</h1>{fromShip}
+					<h3 style={style.controlIcon} onMouseOver={this.showSettings} onClick={this.showSettings}> {/*duplicate events for mobile*/}
 						[ <i className="fa fa-cogs"></i> Options ]
 					</h3>
 					{this.state.showSettings ? <div style={closeControlsArea} onMouseOver={this.hideSettings} onClick={this.hideSettings}></div> : false} {/*duplicate events for mobile*/}
-					<div style={controlsStyle}>
+					<div style={style.controls}>
 						<div>
-							<label htmlFor="sortBy" style={showLimitedStyle}>Sort by: </label>
-							<select id="sortBy" defaultValue="cost" style={sortByStyle} onChange={this.resort}>
+							<label htmlFor="sortBy">Sort by: </label>
+							<select id="sortBy" defaultValue="cost" style={style.sortBy} onChange={this.resort}>
 								<option value="alphabet">Alphabetical [A-Z]</option>
 								<option value="mfg">Manufacturer</option>
 								<option value="cost">Total cost</option>
 							</select>
 						</div>
-						<div style={showLimitedStyle}>
+						<div>
 							<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
 							<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
 						</div>
-						<div style={showLimitedStyle}>
+						<div>
 							<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
 							<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
 						</div>
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>
-				<div className="detailList" style={detailListStyle}>
+				<div className="detailList" style={style.convertList}>
 					{onEmpty}
 				</div>
 			</div>

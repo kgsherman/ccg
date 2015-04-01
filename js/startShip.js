@@ -7,97 +7,82 @@ var StartShip = React.createClass({
 		var priceUSD = (data.price.usd) ? data.price.usd : '---';
 		var priceREC = (data.price.rec) ? data.price.rec : "---";
 		var pic = 'public/' + this.props.id + '.jpg';
-		var usdclass = data.limited ? 'usd limited' : 'usd';
 
-		var baseStyle = {
+		var style = {}
+
+		style.base = {
 			position: 'relative',
-			width: '266px',
+			width: 266,
 			height: this.props.selected ? 159 : 100,
-			margin: '0 1em 1em 0',
-			cursor: 'pointer',
+			marginBottom: '1em',
+			textAlign: 'center',
+			cursor: 'pointer'
 		};
-
-		var backgroundStyle = {
-			opacity: this.props.selected ? '1' : '0.5',
+		style.background = {
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			zIndex: '-1',
 			backgroundImage: 'url("' + pic + '")',
 			backgroundSize: '266px 159px',
 			backgroundPosition: 'center center',
+			opacity: this.props.selected ? '1' : '0.5'
+		};
+		style.info = {
 			position: 'absolute',
 			top: 0,
 			right: 0,
 			bottom: 0,
-			left: 0,
-			zIndex: '-1'
+			left: 0
 		};
-
-		var imgStyle = {
-			position: 'absolute',
-			top: 0,
-			left: 0,
-			width: '266px',
-			height: '159px',
-			opacity: 0.7
-		};
-
-		var infoStyle = {
-			position: 'absolute',
-			top: 0,
-			bottom: 0,
-			left: 0,
-			right: 0
-		};
-
-		var headerStyle = _.extend({
+		style.header = _.extend({}, gs.linebg, {
 			position: 'absolute',
 			top: '50%',
-			left: 0,
 			right: 0,
+			left: 0,
 			transform: 'translateY(-50%)',
 			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
 			borderTop: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
 			borderBottom: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
-		}, gs.linebg);
-
-		var h1Style = {
+		});
+		style.h1 = {
 			opacity: this.props.selected ? 1 : 0.7,
 			margin: '0 auto',
 			padding: '0.5em'
 		};
-
-		var h4Style = {
+		style.h4 = {
 			opacity: this.props.selected ? 1 : 0.7,
 			fontWeight: 'normal'
 		};
-
-		var priceStyle = _.extend({}, gs.linebg, {
-			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
-			borderTop: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
+		style.price = _.extend({}, gs.linebg, {
 			position: 'absolute',
 			bottom: 0,
+			margin: 0,
 			padding: '0.5em',
-			margin: 0
+			backgroundColor: this.props.selected ? 'rgba(30, 60, 100, 0.3)' : 'rgba(0, 0, 0, 0.5)',
+			borderTop: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
+		});
+		style.usd = _.extend({}, style.price, {
+			left: 0,
+			borderRight: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
+		});
+		style.rec = _.extend({}, style.price, {
+			right: 0,
+			borderLeft: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
 		});
 
-		var usdStyle = _.extend({
-			borderRight: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
-			left: 0
-		}, priceStyle);
-
-		var recStyle = _.extend({
-			borderLeft: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none',
-			right: 0
-		}, priceStyle);
-
 		return (
-			<div onClick={this.select} style={baseStyle}>
-				<div style={backgroundStyle}></div>
-				<div className="startShip-info" style={infoStyle}>
-					<div className="startShip-header line-bg" style={headerStyle}>
-						<h2 style={h1Style}>{name}</h2>
+			<div style={style.base} onClick={this.select}>
+				<div style={style.background}></div>
+				<div style={style.info}>
+					<div style={style.header}>
+						<h2 style={style.h1}>{name}</h2>
 					</div>
 				</div>
-				<span className={usdclass} style={usdStyle}><h4 style={h4Style}>${priceUSD}</h4></span>
-				<span className="rec" style={recStyle}><h4 style={h4Style}>¤{priceREC}</h4></span>
+				<span style={style.usd}><h4 style={style.h4}>${priceUSD}</h4></span>
+				<span style={style.rec}><h4 style={style.h4}>¤{priceREC}</h4></span>
 			</div>
 		);
 	},
