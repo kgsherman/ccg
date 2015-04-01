@@ -67,8 +67,7 @@ var StartList = React.createClass({
 			position: 'absolute',
 			width: '100%',
 			top: 120,
-			bottom: 0,
-			overflowY: 'scroll'
+			bottom: 0
 		};
 
 		return (
