@@ -11,8 +11,10 @@ var Scroller = React.createClass({
 		if (this.checkShowScroller()) { this.syncScroller(); }
 		window.addEventListener('resize', this.checkShowScroller);
 	},
-	componentDidUpdate: function () {
-		this.checkShowScroller();
+	componentDidUpdate: function (prevProps, prevState) {
+		if (React.Children.count(prevProps.children) !== React.Children.count(this.props.children)) {
+			if (this.checkShowScroller()) { this.content.scrollTop = 0; }
+		}
 	},
 	render: function () {
 		var inherit = this.props.style;
