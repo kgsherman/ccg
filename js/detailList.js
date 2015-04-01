@@ -138,7 +138,7 @@ var DetailList = React.createClass({
 					<h3 style={style.controlIcon} onMouseOver={this.showSettings} onClick={this.showSettings}> {/*duplicate events for mobile*/}
 						[ <i className="fa fa-cogs"></i> Options ]
 					</h3>
-					{this.state.showSettings ? <div style={closeControlsArea} onMouseOver={this.hideSettings} onClick={this.hideSettings}></div> : false} {/*duplicate events for mobile*/}
+					{this.state.showSettings ? <div style={style.closeControlsArea} onMouseOver={this.hideSettings} onClick={this.hideSettings}></div> : false} {/*duplicate events for mobile*/}
 					<div style={style.controls}>
 						<div>
 							<label htmlFor="sortBy">Sort by: </label>
