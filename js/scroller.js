@@ -45,7 +45,7 @@ var Scroller = React.createClass({
 			transition: '0.5s'
 		});
 		style.scroller = {
-			display: this.state.showScroller ? 'block' : 'none',
+			opacity: +this.state.showScroller,
 			position: 'absolute',
 			top: this.state.position + '%',
 			right: 4,
@@ -55,7 +55,8 @@ var Scroller = React.createClass({
 			margin: -30,
 			backgroundImage: 'url("public/arrow-left-dull.png")',
 			backgroundPosition: 'center center',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			transition: 'opacity 0.2s'
 		};
 		style.scrollerBright = {
 			position: 'absolute',
@@ -123,7 +124,14 @@ var Scroller = React.createClass({
 		this.updateCoordinates();
 
 		var position = (this.content.scrollTop / (this.contentScrollHeight - this.contentClientHeight)) * 100;
-		this.setState({ position: position });
+		this.setState({ 
+			position: position,
+			glow: true
+		});
+		
+		setTimeout(function () {
+			this.setState({ glow: false });
+		}.bind(this), 200);
 	},
 	startScroll: function (e) {
 		e.preventDefault();
