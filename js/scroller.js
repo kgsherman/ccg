@@ -2,7 +2,8 @@ var Scroller = React.createClass({
 	getInitialState: function () {
 		return {
 			position: 0,
-			showScroller: true
+			showScroller: true,
+			glow: false
 		};
 	},
 	componentDidMount: function () {
@@ -50,10 +51,22 @@ var Scroller = React.createClass({
 			width: 60,
 			height: 60,
 			margin: -30,
-			backgroundImage: 'url("public/arrow-left.png")',
+			backgroundImage: 'url("public/arrow-left-dull.png")',
 			backgroundPosition: 'center center',
 			cursor: 'pointer'
 		};
+		style.scrollerBright = {
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			backgroundImage: 'url("public/arrow-left.png")',
+			backgroundPosition: 'center center',
+			opacity: +this.state.glow,
+			transition: '1s'
+		};
+
 
 		return (
 			<div>
@@ -63,10 +76,18 @@ var Scroller = React.createClass({
 					</div>
 				</div>
 				<div style={style.scrollContainer} ref="scrollContainer">
-					<div style={style.scroller} onMouseDown={this.startScroll}></div>
+					<div style={style.scroller} onMouseOver={this.startGlow} onMouseOut={this.isScrolling ? false : this.endGlow} onMouseDown={this.startScroll}>
+						<div style={style.scrollerBright}></div>
+					</div>
 				</div>
 			</div>
 		);
+	},
+	startGlow: function () {
+		this.setState({ glow: true });
+	},
+	endGlow: function () {
+		this.setState({ glow: false });
 	},
 	checkShowScroller: function () {
 		this.updateCoordinates();
@@ -114,6 +135,7 @@ var Scroller = React.createClass({
 		window.addEventListener('mousemove', sendUpdate);
 		window.addEventListener('mouseup', function (event) {
 			this.isScrolling = false;
+			this.setState({ glow: false });
 			window.removeEventListener('mousemove', sendUpdate);
 		}.bind(this));
 	}
