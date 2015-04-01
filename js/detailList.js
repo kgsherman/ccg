@@ -50,7 +50,7 @@ var DetailList = React.createClass({
 			top: 80,
 			right: 0,
 			bottom: 50,
-			left: 325
+			left: 340
 		};
 		style.header = {
 			display: this.props.paths ? 'block' : 'none',

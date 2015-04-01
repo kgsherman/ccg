@@ -15,7 +15,7 @@ var Scroller = React.createClass({
 	},
 	render: function () {
 		var inherit = this.props.style;
-		var hideWidth = 20;
+		var hideWidth = 37;
 		var style = {};
 
 		style.wrapper = _.extend({}, inherit, {
@@ -38,13 +38,14 @@ var Scroller = React.createClass({
 			overflowX: 'visible',
 			overflowY: 'visible',
 			backgroundImage: 'url("public/ruler.png")',
-			backgroundRepeat: 'repeat-y'
+			backgroundRepeat: 'repeat-y',
+			borderRight: '3px solid rgba(13,117,177,0.5)'
 		});
 		style.scroller = {
 			display: this.state.showScroller ? 'block' : 'none',
 			position: 'absolute',
 			top: this.state.position + '%',
-			left: '50%',
+			right: 4,
 			zIndex: 1,
 			width: 60,
 			height: 60,
