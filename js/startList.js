@@ -33,7 +33,7 @@ var StartList = React.createClass({
 		}
 
 		var startShips = ids.map(function (id, index) {
-			return <StartShip key={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
+			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
 		}, this);
 
 
@@ -42,7 +42,7 @@ var StartList = React.createClass({
 			position: 'absolute',
 			top: 80,
 			bottom: 50,
-			width: 307
+			width: 'calc(266px + 1em)'
 		};
 		style.header = {
 			width: 266,
@@ -64,7 +64,7 @@ var StartList = React.createClass({
 		});
 		style.shipList = {
 			position: 'absolute',
-			width: 307,
+			width: 'calc(100% + 18px)', // 18px to account for scroll bar
 			top: 120,
 			bottom: 0,
 			overflowY: 'scroll'

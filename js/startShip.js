@@ -14,7 +14,7 @@ var StartShip = React.createClass({
 			position: 'relative',
 			width: 266,
 			height: this.props.selected ? 159 : 100,
-			marginBottom: '1em',
+			marginTop: this.props.index == 0 ? false : '1em',
 			textAlign: 'center',
 			cursor: 'pointer'
 		};

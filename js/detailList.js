@@ -38,7 +38,7 @@ var DetailList = React.createClass({
 			}
 
 			ships = ids.map(function (id, index) {
-				return <DetailShip key={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
+				return <DetailShip key={index} index={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
 			}, this);
 		}
 
@@ -54,7 +54,6 @@ var DetailList = React.createClass({
 		style.header = {
 			display: this.props.paths ? 'block' : 'none',
 			position: 'relative',
-			width: 1020,
 			marginBottom: '1em',
 			padding: '0.5em 0',
 			borderBottom: gs.dimBorder
@@ -62,10 +61,12 @@ var DetailList = React.createClass({
 		style.convertList = {
 			position: 'absolute',
 			top: 50,
-			right: 0,
 			bottom: 0,
-			left: 0,
+			width: 'calc(100% + 2em + 18px)',
 			overflow: 'auto'
+		};
+		style.convertContainer = {
+			width: 1040
 		};
 		style.h1 =  {
 			display: 'inline-block'
@@ -106,53 +107,6 @@ var DetailList = React.createClass({
 			position: 'absolute',
 			top: '50%',
 			transform: 'translateY(-50%)'			
-		};
-
-		var showLimitedStyle = _.extend({}, gs.headerFont, {
-
-		});
-
-		var controlIcon = _.extend({}, {
-			display: this.state.showSettings ? 'none' : 'block',
-			cursor: 'default',
-			float: 'right'
-		});
-
-		var closeControlsArea = {
-			position: 'fixed',
-			top: 0,
-			right: 0,
-			bottom: 0,
-			left: 0,
-			background: 'transparent',
-			zIndex: 1
-		};
-
-		var controlsStyle = {
-			display: this.state.showSettings ? 'block' : 'none',
-			position: 'absolute',
-			top: 0,
-			right: 0,
-			zIndex: 2,
-			background: 'rgba(0, 11, 24, 0.8)',
-			border: '1px solid #0c67a1',
-			padding: '1em',
-			textAlign: 'right'
-		};
-
-		var sortByStyle = _.extend({}, gs.headerFont, {
-			background: 'black',
-			border: '1px solid #1f5b84',
-			padding: '0.5em',
-  			fontSize: '12px',
-  			lineHeight: '16px',
-  			marginBottom: '0.5em'
-		});
-
-		var emptyStyle = {
-			position: 'absolute',
-			top: '50%',
-			transform: 'translateY(-50%)'
 		};
 
 		var fromShip = this.props.paths ?
@@ -205,8 +159,10 @@ var DetailList = React.createClass({
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>
-				<div className="detailList" style={style.convertList}>
-					{onEmpty}
+				<div style={style.convertList}>
+					<div style={style.convertContainer}>
+						{onEmpty}
+					</div>
 				</div>
 			</div>
 		);
