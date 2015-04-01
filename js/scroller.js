@@ -9,7 +9,7 @@ var Scroller = React.createClass({
 	componentDidMount: function () {
 		this.isScrolling = false;
 		if (this.checkShowScroller()) { this.syncScroller(); }
-		window.addEventListener('resize', this.checkShowScroller());
+		window.addEventListener('resize', this.checkShowScroller);
 	},
 	componentDidUpdate: function () {
 		this.checkShowScroller();
@@ -34,13 +34,15 @@ var Scroller = React.createClass({
 		});
 		style.scrollContainer = _.extend({}, inherit, {
 			left: 'calc(100% + ' + this.props.margin + ')',
+			bottom: 100 * +!this.state.showScroller + '%',
 			width: hideWidth,
 			overflow: 'visible',
 			overflowX: 'visible',
 			overflowY: 'visible',
 			backgroundImage: 'url("public/ruler.png")',
 			backgroundRepeat: 'repeat-y',
-			borderRight: '3px solid rgba(13,117,177,0.5)'
+			borderRight: '3px solid rgba(13,117,177,0.5)',
+			transition: '0.5s'
 		});
 		style.scroller = {
 			display: this.state.showScroller ? 'block' : 'none',
@@ -64,7 +66,7 @@ var Scroller = React.createClass({
 			backgroundImage: 'url("public/arrow-left.png")',
 			backgroundPosition: 'center center',
 			opacity: +this.state.glow,
-			transition: '1s'
+			transition: '0.2s'
 		};
 
 
