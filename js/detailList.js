@@ -122,7 +122,7 @@ var DetailList = React.createClass({
 			if (ships.length > 0) {
 				onEmpty = ships;
 			} else {
-				onEmpty = 'No conversions match your criteria. Try changing the filter using the checkboxes above.';
+				onEmpty = 'There are no upgrades available for display. Try including limited ships and paths in OPTIONS, or the ship may not be upgradeable.';
 			}
 		} else {
 			onEmpty = (
