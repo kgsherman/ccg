@@ -349,7 +349,7 @@ module.exports = {
 			},
 			{
 				"ship_id": "300",
-				"price": 0,
+				"price": 25,
 				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LX-To-300i-Upgrade"
 			},
 			{
