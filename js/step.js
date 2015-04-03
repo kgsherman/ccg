@@ -3,6 +3,7 @@ var gs = require('./globalStyles');
 var Step = React.createClass({
 	render: function () {
 		var step = this.props.data;
+		console.log(step);
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none',
 			margin: '0.5em 0'
@@ -36,7 +37,8 @@ var Step = React.createClass({
 			height: '100%',
 			textAlign: 'center',
 			padding: '.5em 1em',
-			display: 'inline-block'
+			display: 'inline-block',
+			color: '#73b1cb'
 		};
 
 		var shipStyle = _.extend({}, gs.headerFont, step.limited ? gs.brightRedFont : gs.brightBlueFont, {
@@ -49,13 +51,23 @@ var Step = React.createClass({
 			borderColor: step.limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		});
 
-		return (
-			<div className="step" style={style}>
-				<div style={arrowStyle}></div>
+		var shipMaybeLink = step.url ?
+			<a target="_blank" href={step.url}>
 				<div style={step.limited ? limitedStyle : upgradeStyle}>
 					<span style={shipStyle}>{db[step.to].display}</span>
 					<span style={priceStyle}>${step.cost}</span>
 				</div>
+			</a>
+			:
+			<div style={step.limited ? limitedStyle : upgradeStyle}>
+				<span style={shipStyle}>{db[step.to].display}</span>
+				<span style={priceStyle}>${step.cost}</span>
+			</div>
+
+		return (
+			<div className="step" style={style}>
+				<div style={arrowStyle}></div>
+				{shipMaybeLink}
 			</div>
 		);
 	}

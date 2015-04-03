@@ -9,9 +9,21 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "constellation_phoenix": 125 },
-			{ "constellation_aquila": 50 },
-			{ "constellation_taurus": 5 }
+			{
+				"ship_id": "constellation_phoenix",
+				"price": 125,
+				"url": null
+			},
+			{
+				"ship_id": "constellation_aquila",
+				"price": 50,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Constellation-Aquila-Upgrade"
+			},
+			{
+				"ship_id": "constellation_taurus",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Constellation-Taurus-Upgrade"
+			}
 		]
 	},
 	"constellation_phoenix": {
@@ -57,9 +69,21 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "freelancer_mis": 55 },
-			{ "freelancer_dur": 15 },
-			{ "freelancer_max": 30 }
+			{
+				"ship_id": "freelancer_mis",
+				"price": 55,
+				"url": null
+			},
+			{
+				"ship_id": "freelancer_dur",
+				"price": 15,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Freelancer-DUR-Upgrade"
+			},
+			{
+				"ship_id": "freelancer_max",
+				"price": 30,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Freelancer-MAX-Upgrade"
+			}
 		]
 	},
 	"freelancer_mis": {
@@ -105,10 +129,26 @@ module.exports = {
 			"rec": 3000
 		},
 		"connects_to": [
-			{ "mustang_beta": 10 },
-			{ "mustang_gamma": 25 },
-			{ "aurora_ln": 5 },
-			{ "aurora_mr": 0 }
+			{
+				"ship_id": "mustang_beta",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Mustang-Alpha-To-Beta-Upgrade"
+			},
+			{
+				"ship_id": "mustang_gamma",
+				"price": 25,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Mustang-Alpha-To-Gamma-Upgrade"
+			},
+			{
+				"ship_id": "aurora_ln",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Alpha-To-Aurora-LN-Upgrade"
+			},
+			{
+				"ship_id": "aurora_mr",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Alpha-To-Aurora-MR-Upgrade"
+			}
 		]
 	},
 	"mustang_beta": {
@@ -121,7 +161,11 @@ module.exports = {
 			"rec": 4000
 		},
 		"connects_to": [
-			{ "aurora_cl": 5 }
+			{
+				"ship_id": "aurora_cl",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Beta-To-Aurora-CL-Upgrade"
+			}
 		]
 	},
 	"mustang_gamma": {
@@ -134,8 +178,16 @@ module.exports = {
 			"rec": 5500
 		},
 		"connects_to": [
-			{ "mustang_delta": 10 },
-			{ "avenger": 5 }
+			{
+				"ship_id": "mustang_delta",
+				"price": 10,
+				"url": null
+			},
+			{
+				"ship_id": "avenger",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Gamma-To-Avenger-Upgrade"
+			}
 		]
 	},
 	"mustang_delta": {
@@ -148,7 +200,11 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "325": 10 }
+			{
+				"ship_id": "325",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Delta-To-325a-Upgrade"
+			}
 		]
 	},
 	"mustang_omega": {
@@ -161,7 +217,11 @@ module.exports = {
 			"reC": null
 		},
 		"connects_to": [
-			{ "mustang_gamma": 0 }
+			{
+				"ship_id": "mustang_gamma",
+				"price": 0,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Mustang-Omega-To-Gamma-Swap"
+			}
 		]
 	},
 	"aurora_es": {
@@ -174,8 +234,16 @@ module.exports = {
 			"rec": 2000
 		},
 		"connects_to": [
-			{ "aurora_ln": 10 },
-			{ "aurora_mr": 5 }
+			{
+				"ship_id": "aurora_ln",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/RSI-Aurora-LN-Upgrade"
+			},
+			{
+				"ship_id": "aurora_mr",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Aurora-ES-To-MR-Upgrade"
+			}
 		]
 	},
 	"aurora_mr": {
@@ -188,10 +256,26 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "mustang_alpha": 0 },
-			{ "300": 30 },
-			{ "m50" : 75 },
-			{ "hornet": 85 }
+			{
+				"ship_id": "mustang_alpha",
+				"price": 0,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-MR-To-Mustang-Alpha-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": 30,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-MR-To-300i-Upgrade"
+			},
+			{
+				"ship_id": "m50",
+				"price": 75,
+				"url": null
+			},
+			{
+				"ship_id": "hornet",
+				"price": 85,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-MR-To-Hornet-Upgrade"
+			}
 		]
 	},
 	"aurora_ln": {
@@ -204,10 +288,26 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "mustang_beta": 5 },
-			{ "300": 20 },
-			{ "m50": 55 },
-			{ "hornet": 75 }
+			{
+				"ship_id": "mustang_beta",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LN-To-Mustang-Beta-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": 20,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LN-To-300i-Upgrade"
+			},
+			{
+				"ship_id": "m50",
+				"price": 55,
+				"url": null
+			},
+			{
+				"ship_id": "hornet",
+				"price": 75,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LN-To-Hornet-Upgrade"
+			}
 		]
 	},
 	"aurora_cl": {
@@ -220,8 +320,16 @@ module.exports = {
 			"rec": 4500
 		},
 		"connects_to": [
-			{ "mustang_gamma": 15 },
-			{ "300": 10 }
+			{
+				"ship_id": "mustang_gamma",
+				"price": 15,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-CL-To-Mustang-Gamma-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-CL-To-300i-Upgrade"
+			}
 		]
 	},
 	"aurora_lx": {
@@ -234,10 +342,26 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "aurora_ln": 5 },
-			{ "300": 0 },
-			{ "m50": 70},
-			{ "hornet": 80 }
+			{
+				"ship_id": "aurora_ln",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Aurora-LX-To-LN-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": 0,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LX-To-300i-Upgrade"
+			},
+			{
+				"ship_id": "m50",
+				"price": 70,
+				"url": null
+			},
+			{
+				"ship_id": "hornet",
+				"price": 80,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LX-To-Hornet-Upgrade"
+			}
 		]
 	},
 	"300": {
@@ -250,12 +374,36 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "315": 15 },
-			{ "325": 15 },
-			{ "350": 70 },
-			{ "m50": 45 },
-			{ "hornet": 55 },
-			{ "mustang_gamma": 0 }
+			{
+				"ship_id": "315",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Origin-315p-Upgrade"
+			},
+			{
+				"ship_id": "325",
+				"price": 15,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Origin-325a-Upgrade"
+			},
+			{
+				"ship_id": "350",
+				"price": 70,
+				"url": null
+			},
+			{
+				"ship_id": "m50",
+				"price": 45,
+				"url": null
+			},
+			{
+				"ship_id": "hornet",
+				"price": 55,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/300i-To-Hornet-Upgrade"
+			},
+			{
+				"ship_id": "mustang_gamma",
+				"price": 0,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/300i-To-Mustang-Gamma-Upgrade"
+			}
 		]
 	},
 	"315": {
@@ -268,10 +416,26 @@ module.exports = {
 			"rec": 6500
 		},
 		"connects_to": [
-			{ "325": 5 },
-			{ "350": -1 },
-			{ "hornet": 45 },
-			{ "m50": 35 }
+			{
+				"ship_id": "325",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/315p-To-325a-Upgrade"
+			},
+			{
+				"ship_id": "350",
+				"price": null,
+				"url": null
+			},
+			{
+				"ship_id": "hornet",
+				"price": 45,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/315p-To-Hornet-Upgrade"
+			},
+			{
+				"ship_id": "m50",
+				"price": 35,
+				"url": null
+			}
 		]
 	},
 	"325": {
@@ -284,11 +448,31 @@ module.exports = {
 			"rec": 7000
 		},
 		"connects_to": [
-			{ "cutlass_black": 30 },
-			{ "gladius": 20 },
-			{ "hornet": 40 },
-			{ "m50": 30 },
-			{ "350": -1 }
+			{
+				"ship_id": "cutlass_black",
+				"price": 30,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/325a-To-Cutlass-Black-Upgrade"
+			},
+			{
+				"ship_id": "gladius",
+				"price": 20,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/325a-To-Gladius-Upgrade"
+			},
+			{
+				"ship_id": "hornet",
+				"price": 40,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/325a-To-Hornet-Upgrade"
+			},
+			{
+				"ship_id": "m50",
+				"price": 30,
+				"url": null
+			},
+			{
+				"ship_id": "350",
+				"price": null,
+				"url": null
+			}
 		]
 	},
 	"350": {
@@ -301,7 +485,11 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "hornet": 10 }
+			{
+				"ship_id": "hornet",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/350r-To-Hornet-Upgrade"
+			}
 		]
 	},
 	"m50": {
@@ -314,10 +502,26 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "350": 25 },
-			{ "cutlass_black": 5 },
-			{ "gladius": 10 },
-			{ "hornet": 20 }
+			{
+				"ship_id": "350",
+				"price": 25,
+				"url": null
+			},
+			{
+				"ship_id": "cutlass_black",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/M50-To-Cutlass-Black-Upgrade"
+			},
+			{
+				"ship_id": "gladius",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/M50-To-Gladius-Upgrade"
+			},
+			{
+				"ship_id": "hornet",
+				"price": 20,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/M50-To-F7C-Hornet-Upgrade"
+			}
 		]
 	},
 	"avenger": {
@@ -330,8 +534,16 @@ module.exports = {
 			"rec": 6000
 		},
 		"connects_to": [
-			{ "mustang_delta": 5 },
-			{ "315": 5 }
+			{
+				"ship_id": "mustang_delta",
+				"price": 5,
+				"url": null
+			},
+			{
+				"ship_id": "315",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Avenger-To-315p-Upgrade"
+			}
 		]
 	},
 	"gladius": {
@@ -344,7 +556,11 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "cutlass_black": 10 }
+			{
+				"ship_id": "cutlass_black",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Gladius-To-Cutlass-Black-Upgrade"
+			}
 		]
 	},
 	"hornet": {
@@ -357,10 +573,26 @@ module.exports = {
 			"rec": 11000
 		},
 		"connects_to": [
-			{ "hornet_ghost": 15 },
-			{ "hornet_tracker": 30 },
-			{ "hornet_super": 55 },
-			{ "cutlass_red": 10 }
+			{
+				"ship_id": "hornet_ghost",
+				"price": 15,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-S-Hornet-Ghost-Upgrade"
+			},
+			{
+				"ship_id": "hornet_tracker",
+				"price": 30,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-R-Hornet-Tracker-Upgrade"
+			},
+			{
+				"ship_id": "hornet_super",
+				"price": 55,
+				"url": null
+			},
+			{
+				"ship_id": "cutlass_red",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/F7C-Hornet-To-Cutlass-Red-Upgrade"
+			}
 		]
 	},
 	"hornet_ghost": {
@@ -373,7 +605,11 @@ module.exports = {
 			"rec": 12500
 		},
 		"connects_to": [
-			{ "hornet_tracker": 15 }
+			{
+				"ship_id": "hornet_tracker",
+				"price": 15,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-S-Hornet-Ghost-To-F7C-R-Tracker-Upgrade"
+			}
 		]
 	},
 	"hornet_tracker": {
@@ -386,7 +622,11 @@ module.exports = {
 			"rec": 14000
 		},
 		"connects_to": [
-			{ "hornet_super": 25 }
+			{
+				"ship_id": "hornet_super",
+				"price": 25,
+				"url": null
+			}
 		]
 	},
 	"hornet_super": {
@@ -421,9 +661,21 @@ module.exports = {
 			"rec": 10000
 		},
 		"connects_to": [
-			{ "hornet": 10 },
-			{ "cutlass_red": 20 },
-			{ "cutlass_blue": 50 }
+			{
+				"ship_id": "hornet",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Cutlass-Black-To-F7C-Hornet-Upgrade"
+			},
+			{
+				"ship_id": "cutlass_red",
+				"price": 20,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Cutlass-Red-Upgrade"
+			},
+			{
+				"ship_id": "cutlass_blue",
+				"price": 50,
+				"url": null
+			}
 		]
 	},
 	"cutlass_red": {
@@ -436,8 +688,16 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "hornet_ghost": 5 },
-			{ "cutlass_blue": 30 }
+			{
+				"ship_id": "hornet_ghost",
+				"price": 5,
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Cutlass-Red-To-F7C-S-Hornet-Ghost-Upgrade"
+			},
+			{
+				"ship_id": "cutlass_blue",
+				"price": 30,
+				"url": null
+			}
 		]
 	},
 	"cutlass_blue": {
@@ -450,7 +710,11 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
-			{ "hornet_super": -1 }
+			{
+				"ship_id": "hornet_super",
+				"price": null,
+				"url": null
+			}
 		]
 	},
 	"retaliator": {

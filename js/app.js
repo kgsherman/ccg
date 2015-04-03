@@ -121,12 +121,13 @@ var App = React.createClass({
 				return;
 
 			connections.forEach(function (connection) {
-				var childID = Object.keys(connection).pop();
+				//var childID = Object.keys(connection).pop();
+				var childID = connection.ship_id;
 
 				if (_.any(steps, {from: childID})) // if we're trying to return to a ship we've already gone over, skip. (prevents loops like aurora MR <-> mustang alpha)
 					return;
 
-				var cost = connection[childID];
+				var cost = connection.price;
 				var _totalCost = totalCost;
 				if (typeof cost === 'number' && cost >= 0) {
 					_totalCost += cost;
@@ -143,7 +144,8 @@ var App = React.createClass({
 					from: parentID,
 					to: childID,
 					cost: cost,
-					limited: isLimited
+					limited: isLimited,
+					url: connection.url
 				});
 
 				shipPaths[childID] = shipPaths[childID] || {};

@@ -19,7 +19,7 @@ var StartList = React.createClass({
 				var connections = db[id].connects_to;
 				var hasConnections = (connections.length > 0);
 				var hasPrices = _.any(connections, function (connection) {
-					return (connection[Object.keys(connection)[0]] >= 0); // there's gotta be a better way to check this...
+					return (typeof connection.price == 'number' && connection.price >= 0);
 				});
 				return (hasConnections && hasPrices); 
 			}, this)
