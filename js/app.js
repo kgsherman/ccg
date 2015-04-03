@@ -4,6 +4,8 @@ var Footer = require('./footer');
 var About = require('./about');
 var gs = require('./globalStyles');
 
+
+
 var App = React.createClass({
 	getInitialState: function () {
 		return ({
@@ -79,7 +81,95 @@ var App = React.createClass({
 			showAbout: false
 		});
 	},
-	getPaths: function (id) {
+	getPaths: function (seedID) {
+		var _id = seedID;
+		var _paths = {};
+
+		getAllPaths();
+		optimizePaths();
+
+		console.log(_paths);
+		this.setState({ 
+			paths: _paths,
+			selected: _id
+		});
+
+
+		function getAllPaths () {
+			var seed = {
+				limits: [],
+				total: 0,
+				steps: []
+			};
+
+			iterate(_id, seed);
+		}
+		
+		function iterate (id, parentPath) {
+			getConnections(id).forEach(function (connection) {
+				addPath(parentPath, connection);
+			});
+		}
+
+		function getConnections (id) {
+			return db[id].connects_to;
+		}
+
+		function addPath (parentPath, connection) {
+			// if limited, add to the parent's list of limited ships
+			var limits = parentPath.limits.slice();
+			if (db[connection.ship_id].limited) { limits.push(connection.ship_id); }
+
+			// if it has price, increment the parent's. otherwise, null
+			var total = (typeof connection.price == 'number') ? parentPath.total + connection.price : null;
+
+			// copy parent's steps, and add this one
+			var steps = parentPath.steps.slice();
+			steps.push(connection);
+
+			// create the new path
+			var newPath = {
+				limits: limits,
+				total: total,
+				steps: steps			
+			};
+
+			// add this path to the paths to this ship
+			_paths[connection.ship_id] = _paths[connection.ship_id] || [];
+			_paths[connection.ship_id].push(newPath);
+
+			// do it again with this ship's children
+			iterate(connection.ship_id, newPath);
+		}
+
+		function optimizePaths  () {
+			_.each(_paths, optimizeShip)
+		}
+
+		function optimizeShip (shipPaths, shipID) {
+			var groupedPathsByLimitCount = _.groupBy(shipPaths, function (path) { return path.limits.length; });
+
+			var optimalPaths = _.map(groupedPathsByLimitCount, function (paths) {
+				return getCheapestShortest(paths);
+			});
+
+			_paths[shipID] = optimalPaths;
+		}
+
+		function getCheapestShortest (paths) {
+
+			var minPricePath = _.min(paths, function (path) { return path.total; });
+			var minPrice = minPricePath.total;
+			var minPricePaths = _.filter(paths, function (path) { return path.total === minPrice; });
+
+			var minStepsPath = _.min(minPricePaths, function (path) { return path.steps.length; });
+			var minSteps = minStepsPath.steps.length;
+			var minStepsPaths = _.filter(minPricePaths, function (path) { return path.steps.length === minSteps; })
+
+			return minStepsPaths[0];
+		}
+	},
+	getPathsold: function (id) {
 		var shipPaths = {};
 		iterate(id);
 
@@ -111,7 +201,7 @@ var App = React.createClass({
 		});
 
 
-		function iterate (parentID, steps, limits, totalCost) {
+		function iterateold (parentID, steps, limits, totalCost) {
 			totalCost = totalCost || 0;
 			steps = steps || [];
 			limits = limits || [];
@@ -160,7 +250,7 @@ var App = React.createClass({
 			});
 		}
 
-		function findCheapestShortest (paths) {
+		function findCheapestShortestold (paths) {
 			// find lowest price
 			var lowestPrice = _.min(paths, 'totalCost').totalCost;
 
