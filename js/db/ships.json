@@ -235,11 +235,6 @@ module.exports = {
 		},
 		"connects_to": [
 			{
-				"ship_id": "aurora_ln",
-				"price": 10,
-				"url": "https://robertsspaceindustries.com/pledge/Upgrades/RSI-Aurora-LN-Upgrade"
-			},
-			{
 				"ship_id": "aurora_mr",
 				"price": 5,
 				"url": "https://robertsspaceindustries.com/pledge/Upgrades/Aurora-ES-To-MR-Upgrade"
@@ -256,6 +251,11 @@ module.exports = {
 			"rec": null
 		},
 		"connects_to": [
+			{
+				"ship_id": "aurora_ln",
+				"price": 10,
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/RSI-Aurora-LN-Upgrade"
+			},
 			{
 				"ship_id": "mustang_alpha",
 				"price": 0,
