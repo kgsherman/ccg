@@ -1,5 +1,6 @@
 var StartShip = require('./startShip');
 var Scroller = require('./scroller');
+var Check = require('./checkbox');
 var gs = require('./globalStyles');
 
 var StartList = React.createClass({
@@ -76,8 +77,8 @@ var StartList = React.createClass({
 					<h1>Your ship</h1>
 				</div>
 				<div style={style.controls}>
-					<label htmlFor="showAll" style={style.showAll}>Include non-upgradeable ships: </label>
-					<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />
+					<Check id='showAll' startChecked={false} onClick={this.toggleShowAll} label='Include non-upgradeable ships?' />
+					{/*<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />*/}
 					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
 				</div>
 				<Scroller style={style.shipList} margin={'1em'}>
