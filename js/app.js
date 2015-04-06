@@ -88,7 +88,6 @@ var App = React.createClass({
 		getAllPaths();
 		optimizePaths();
 
-		console.log(_paths);
 		this.setState({ 
 			paths: _paths,
 			selected: _id
@@ -116,6 +115,11 @@ var App = React.createClass({
 		}
 
 		function addPath (parentPath, connection) {
+			var isLoop = _.any(parentPath.steps, function (step) { return (connection.ship_id == step.ship_id || connection.ship_id == _id) });
+			if (isLoop) { return; }
+
+			if (connection.price === null) { return; }
+
 			// if limited, add to the parent's list of limited ships
 			var limits = parentPath.limits.slice();
 			if (db[connection.ship_id].limited) { limits.push(connection.ship_id); }
@@ -153,7 +157,15 @@ var App = React.createClass({
 				return getCheapestShortest(paths);
 			});
 
-			_paths[shipID] = optimalPaths;
+			var cheapest = _.min(optimalPaths, function (path) { return path.total; });
+			if (cheapest.limits.length > +db[_id].limited) {
+				_.each(optimalPaths, function (path) {
+					if (_.every(_paths[shipID], function (_path) { _path.total < path.total }))
+						_paths[shipID].push(path);
+				 })
+			} else {
+				_paths[shipID] = [cheapest];
+			}
 		}
 
 		function getCheapestShortest (paths) {

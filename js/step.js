@@ -3,7 +3,8 @@ var gs = require('./globalStyles');
 var Step = React.createClass({
 	render: function () {
 		var step = this.props.data;
-		console.log(step);
+		var limited = db[step.ship_id].limited;
+
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none',
 			margin: '0.5em 0'
@@ -41,7 +42,7 @@ var Step = React.createClass({
 			color: '#73b1cb'
 		};
 
-		var shipStyle = _.extend({}, gs.headerFont, step.limited ? gs.brightRedFont : gs.brightBlueFont, {
+		var shipStyle = _.extend({}, gs.headerFont, limited ? gs.brightRedFont : gs.brightBlueFont, {
 			height: '100%',
 			textAlign: 'center',
 			padding: '.5em 1em',
@@ -53,15 +54,15 @@ var Step = React.createClass({
 
 		var shipMaybeLink = step.url ?
 			<a target="_blank" href={step.url}>
-				<div style={step.limited ? limitedStyle : upgradeStyle}>
-					<span style={shipStyle}>{db[step.to].display}</span>
-					<span style={priceStyle}>${step.cost}</span>
+				<div style={limited ? limitedStyle : upgradeStyle}>
+					<span style={shipStyle}>{db[step.ship_id].display}</span>
+					<span style={priceStyle}>${step.price}</span>
 				</div>
 			</a>
 			:
-			<div style={step.limited ? limitedStyle : upgradeStyle}>
-				<span style={shipStyle}>{db[step.to].display}</span>
-				<span style={priceStyle}>${step.cost}</span>
+			<div style={limited ? limitedStyle : upgradeStyle}>
+				<span style={shipStyle}>{db[step.ship_id].display}</span>
+				<span style={priceStyle}>${step.price}</span>
 			</div>
 
 		return (

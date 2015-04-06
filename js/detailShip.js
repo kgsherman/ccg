@@ -15,7 +15,7 @@ var DetailShip = React.createClass({
 		};
 	},
 	render: function () {
-		var paths = this.props.paths.paths;
+		var paths = this.props.paths;
 		var pathsCount = paths.length;
 		var shipInfo = db[this.props.id];
 

@@ -100,7 +100,7 @@ var Path = React.createClass({
 			<div style={baseStyle} className="path-base">
 				<div style={fitCellStyle}>
 					<div style={{textAlign: 'center'}}>
-						<span style={costStyle}>${this.props.data.totalCost}</span>
+						<span style={costStyle}>${this.props.data.total}</span>
 						<span style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</span>
 					</div>
 					{/* limits */}
