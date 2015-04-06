@@ -47,9 +47,9 @@ var Step = React.createClass({
 			textAlign: 'center',
 			padding: '.5em 1em',
 			display: 'inline-block',
-			backgroundColor: step.limited ? 'rgba(178,34,34,0.2)' : 'rgba(30, 60, 100, 0.3)',
+			backgroundColor: limited ? 'rgba(178,34,34,0.2)' : 'rgba(30, 60, 100, 0.3)',
 			borderRight: '1px solid',
-			borderColor: step.limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
+			borderColor: limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		});
 
 		var shipMaybeLink = step.url ?
