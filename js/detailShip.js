@@ -41,6 +41,7 @@ var DetailShip = React.createClass({
 
 		var style = {};
 		style.base = {
+			display: this.props.active ? 'block' : 'none',
 			position: 'relative',
 			width: 1025,
 			marginTop: this.props.index == 0 ? false : '2em',

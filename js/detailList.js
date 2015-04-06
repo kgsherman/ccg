@@ -16,9 +16,6 @@ var DetailList = React.createClass({
 		var ships = [];
 		if (this.props.paths) {
 			var ids = Object.keys(this.props.paths);
-			ids = _.filter(ids, function (id) {
-				return db[id].limited <= this.state.showLimited
-			}.bind(this));
 			switch (this.state.sortBy) {
 				case 'alphabet':
 					ids = _.sortBy(ids, function (id) { return db[id].display });
@@ -40,7 +37,7 @@ var DetailList = React.createClass({
 			}
 
 			ships = ids.map(function (id, index) {
-				return <DetailShip key={index} index={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} />
+				return <DetailShip key={index} index={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} active={db[id].limited ? this.state.showLimited : true} />
 			}, this);
 		}
 

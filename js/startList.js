@@ -13,12 +13,6 @@ var StartList = React.createClass({
 	render: function () {
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
-			/*.filter(function (id) { 
-				if (this.state.showAll) return true; // dont bother if we're showing all ships
-
-				// filter out ships without connections, or with only connections without known prices
-
-			}, this)*/
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
@@ -37,7 +31,7 @@ var StartList = React.createClass({
 			});
 			var hasPaths = (hasConnections && hasPrices); 
 
-			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} active={this.state.showAll ? true : hasPaths} />
+			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} active={hasPaths ? true : this.state.showAll} />
 		}, this);
 
 
