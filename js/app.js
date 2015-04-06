@@ -158,14 +158,11 @@ var App = React.createClass({
 			});
 
 			var cheapest = _.min(optimalPaths, function (path) { return path.total; });
-			if (cheapest.limits.length > +db[_id].limited) {
-				_.each(optimalPaths, function (path) {
-					if (_.every(_paths[shipID], function (_path) { _path.total < path.total }))
-						_paths[shipID].push(path);
-				 })
-			} else {
-				_paths[shipID] = [cheapest];
-			}
+
+			optimalPaths = _.filter(optimalPaths, function (path) {
+				return path.limits.length <= cheapest.limits.length;
+			});
+			_paths[shipID] = optimalPaths;
 		}
 
 		function getCheapestShortest (paths) {
