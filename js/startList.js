@@ -13,17 +13,12 @@ var StartList = React.createClass({
 	render: function () {
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
-			.filter(function (id) { 
+			/*.filter(function (id) { 
 				if (this.state.showAll) return true; // dont bother if we're showing all ships
 
 				// filter out ships without connections, or with only connections without known prices
-				var connections = db[id].connects_to;
-				var hasConnections = (connections.length > 0);
-				var hasPrices = _.any(connections, function (connection) {
-					return (typeof connection.price == 'number' && connection.price >= 0);
-				});
-				return (hasConnections && hasPrices); 
-			}, this)
+
+			}, this)*/
 			.sortBy(function (id) { return id; })
 			.sortBy(function (id) { return db[id].mfg; })
 			.value();
@@ -35,7 +30,14 @@ var StartList = React.createClass({
 		}
 
 		var startShips = ids.map(function (id, index) {
-			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} />
+			var connections = db[id].connects_to;
+			var hasConnections = (connections.length > 0);
+			var hasPrices = _.any(connections, function (connection) {
+				return (typeof connection.price == 'number' && connection.price >= 0);
+			});
+			var hasPaths = (hasConnections && hasPrices); 
+
+			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} active={this.state.showAll ? true : hasPaths} />
 		}, this);
 
 

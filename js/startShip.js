@@ -11,6 +11,7 @@ var StartShip = React.createClass({
 		var style = {}
 
 		style.base = {
+			display: this.props.active ? 'block' : 'none',
 			position: 'relative',
 			width: 266,
 			height: this.props.selected ? 159 : 100,
