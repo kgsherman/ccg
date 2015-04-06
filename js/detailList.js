@@ -1,5 +1,6 @@
 var DetailShip = require('./detailShip');
 var Scroller = require('./scroller');
+var Check = require('./checkbox');
 var gs = require('./globalStyles');
 
 var DetailList = React.createClass({
@@ -72,7 +73,7 @@ var DetailList = React.createClass({
 		style.h1 =  {
 			display: 'inline-block'
 		};
-		style.controls = _.extend({}, gs.headerFont, {
+		style.controls = _.extend({}, {
 			display: this.state.showSettings ? 'block' : 'none',
 			position: 'absolute',
 			top: 0,
@@ -149,14 +150,8 @@ var DetailList = React.createClass({
 								<option value="cost">Total cost</option>
 							</select>
 						</div>
-						<div>
-							<label htmlFor="showPathLimited" style={{verticalAlign: 'middle'}}>Include limited paths:</label>
-							<input type="checkbox" id="showPathLimited" onClick={this.toggleShowPathLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
-						</div>
-						<div>
-							<label htmlFor="showLimited" style={{verticalAlign: 'middle'}}>Show limited ships:</label>
-							<input type="checkbox" id="showLimited" onClick={this.toggleShowLimited} style={{verticalAlign: 'middle', marginRight: 0}} />
-						</div>
+						<Check id='showPathLimited' onClick={this.toggleShowPathLimited} label='Include limited paths?' />
+						<Check id='showLimited' onClick={this.toggleShowLimited} label='Show limited ships?' />
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>

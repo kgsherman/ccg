@@ -44,7 +44,7 @@ var StartList = React.createClass({
 			position: 'absolute',
 			top: 80,
 			bottom: 50,
-			width: 266
+			width: 315
 		};
 		style.header = {
 			width: 266,
@@ -59,14 +59,14 @@ var StartList = React.createClass({
 		style.showAll = gs.headerFont;
 		style.filter = _.extend({}, gs.blueFont, {
 			boxSizing: 'border-box',
-			width: 266,
+			width: 315,
 			padding: '10px 15px',
 			background: 'rgba(0,0,0,0.4)',
 			border: gs.xdimBorder,
 		});
 		style.shipList = {
 			position: 'absolute',
-			width: '100%',
+			width: 266,
 			top: 120,
 			bottom: 0
 		};
@@ -76,14 +76,16 @@ var StartList = React.createClass({
 				<div style={style.header}>
 					<h1>Your ship</h1>
 				</div>
-				<div style={style.controls}>
+				<div id="shipListControls" style={style.controls}>
 					<Check id='showAll' startChecked={false} onClick={this.toggleShowAll} label='Include non-upgradeable ships?' />
 					{/*<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />*/}
 					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
 				</div>
+
 				<Scroller style={style.shipList} margin={'1em'}>
 					{startShips}
 				</Scroller>
+
 			</div>
 		);
 	},

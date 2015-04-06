@@ -21,9 +21,20 @@ var Scroller = React.createClass({
 		var hideWidth = 37;
 		var style = {};
 
-		style.wrapper = _.extend({}, inherit, {
-			overflow: 'hidden'
+		style.base = _.extend({}, inherit, {
+			overflow: 'visible'
 		});
+		/*style.wrapper = _.extend({}, inherit, {
+			overflow: 'hidden'
+		});*/
+		style.wrapper = {
+			position: 'absolute',
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0,
+			overflow: 'hidden'
+		};
 		style.content = _.extend({}, {
 			position: 'absolute',
 			top: 0,
@@ -34,7 +45,9 @@ var Scroller = React.createClass({
 			overflowY: 'scroll',
 			width: 'calc(100% + ' + hideWidth + 'px + ' + this.props.margin + ')'
 		});
-		style.scrollContainer = _.extend({}, inherit, {
+		style.scrollContainer = _.extend({}, {
+			position: 'absolute',
+			top: 0,
 			left: 'calc(100% + ' + this.props.margin + ')',
 			bottom: 100 * +!this.state.showScroller + '%',
 			width: hideWidth,
@@ -74,7 +87,7 @@ var Scroller = React.createClass({
 
 
 		return (
-			<div>
+			<div style={style.base}>
 				<div style={style.wrapper}>
 					<div style={style.content} ref="content" onScroll={this.syncScroller}>
 						{this.props.children}

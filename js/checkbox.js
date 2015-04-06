@@ -6,13 +6,18 @@ var Chx = React.createClass({
 	},
 	render: function () {
 		style = {};
+		style.wrapper = {
+			position: 'relative',
+			whiteSpace: 'pre',
+			height: 20
+		};
 		style.base = {
 			display: 'inline-block',
 			position: 'relative',
-			margin: '0.5em',
 			whiteSpace: 'pre'
 		};
 		style.label = {
+			marginRight: '0.5em',
 			color: '#7696ae',
 			fontWeight: 'bold',
 			verticalAlign: 'middle'
@@ -47,7 +52,8 @@ var Chx = React.createClass({
 			backgroundImage: 'url("public/chx-slider.png")',
 			backgroundPosition: 'center center',
 			backgroundRepeat: 'no-repeat',
-			transition: '0.2s'
+			transition: '0.2s',
+			cursor: 'pointer'
 		}
 		this.state.on ? style.slider.right = 0 : style.slider.right = 'calc(100% - 23px)';
 
@@ -63,7 +69,7 @@ var Chx = React.createClass({
 			: false;
 
 		return (
-			<span style={{whiteSpace: 'pre'}}>
+			<div style={style.wrapper}>
 				{label}
 				<div style={style.base}>
 					<span style={style.no}>No</span>
@@ -73,7 +79,7 @@ var Chx = React.createClass({
 					<span style={style.yes}>Yes</span>
 					<input type="checkbox" id={this.props.id} style={style.checkbox} onClick={this.clicked} />
 				</div>
-			</span>
+			</div>
 		);
 	},
 	clicked: function () {
