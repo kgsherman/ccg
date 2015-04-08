@@ -10,6 +10,7 @@ var App = React.createClass({
 		return ({
 			currency: 'usd',
 			vat: 0,
+			includeVAT: true,
 			paths: null,
 			selected: null,
 			showAbout: false
@@ -46,9 +47,10 @@ var App = React.createClass({
 		style.aboutLink = _.extend({}, gs.headerFont, {
 			position: 'absolute',
 			top: 0,
-			right: 0,
+			left: '50%',
 			padding: '0.5em 1em',
 			border: '1px solid #0c67a1',
+			transform: 'translateX(-50%)',
 			cursor: 'pointer'			
 		});
 		style.bright = _.extend({}, gs.headerFont, gs.brightBlueFont);
@@ -63,10 +65,10 @@ var App = React.createClass({
 					<div style={style.aboutLink} onClick={this.showAbout}>
 						About this page
 					</div>
-					<Localization onChangeCurrency={this.updateCurrency} onChangeVAT={this.updateVAT} />
+					<Localization onChangeCurrency={this.updateCurrency} onChangeVAT={this.updateVAT} onToggleIncludeVAT={this.toggleIncludeVAT} />
 				</div>
-				<ShipList currency={this.state.currency} vat={this.state.vat} onSelect={this.updatePaths} selected={this.state.selected} />
-				<DetailList currency={this.state.currency} vat={this.state.vat} paths={this.state.paths} selected={this.state.selected} />
+				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} selected={this.state.selected} />
+				<DetailList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} paths={this.state.paths} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
 				<Footer />
 				{about}
@@ -78,6 +80,9 @@ var App = React.createClass({
 	},
 	updateVAT: function (vat) {
 		this.setState({	vat: vat });
+	},
+	toggleIncludeVAT: function () {
+		this.setState({ includeVAT: !this.state.includeVAT });
 	},
 	showAbout: function () {
 		this.setState({

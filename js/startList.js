@@ -31,7 +31,17 @@ var StartList = React.createClass({
 			}, this);
 			var hasPaths = (hasConnections && hasPrices); 
 
-			return <StartShip key={index} index={index} id={id} currency={this.props.currency} vat={this.props.vat} onSelect={this.props.onSelect} selected={this.props.selected == id} active={hasPaths ? true : this.state.showAll} />
+			return (
+				<StartShip 
+					key={index} index={index} 
+					id={id} 
+					currency={this.props.currency} 
+					vat={this.props.vat} 
+					onSelect={this.props.onSelect} 
+					selected={this.props.selected == id} 
+					active={hasPaths ? true : this.state.showAll} 
+				/>
+			);
 		}, this);
 
 

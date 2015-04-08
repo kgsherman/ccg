@@ -1,12 +1,13 @@
 var VATdb = require('./db/vat.json');
 var gs = require('./globalStyles');
-var camelize = require('underscore.string/camelize');
+var Check = require('./checkbox');
 
 var Local = React.createClass({
 	getInitialState: function () {
 		return {
 			currency: 'usd',
-			vat: 0
+			vat: 0,
+			includeVAT: true
 		};
 	},
 	componentWillMount: function () {
@@ -23,9 +24,13 @@ var Local = React.createClass({
 		style.base = {
 			position: 'absolute',
 			right: 0,
-			bottom: 0,
+			top: 0,
+			height: '100%',
+		};
+		style.countryContainer = {
 			height: 32,
-			lineHeight: '32px'
+			lineHeight: '32px',
+			textAlign: 'right'
 		};
 		style.icon = {
 			position: 'relative',
@@ -33,7 +38,8 @@ var Local = React.createClass({
 			float: 'right',
 			width: 16,
 			height: 11,
-			marginLeft: '0.5em',
+			marginRight: '0.5em',
+			cursor: 'pointer'
 		};
 		style.selector = {
 			position: 'absolute',
@@ -50,13 +56,19 @@ var Local = React.createClass({
 		style.country = _.extend({}, gs.selectBox, {
 			display: this.state.currency == 'eur' ? 'inline-block' : 'none',
 			padding: '2px',
+			marginRight: '0.5em',
 			verticalAlign: 'middle'
 		});
 		style.currentVAT = _.extend({}, gs.headerFont, {
-			display: this.state.vat > 0 ? 'inline-block' : 'none',
+			display: this.state.vat > 0 && this.state.includeVAT ? 'inline-block' : 'none',
 			margin: '0 0.5em',
-			verticalAlign: 'middle'
+			verticalAlign: 'middle',
+			transition: '0.2s'
 		});
+		style.includeVAT = {
+			opacity: this.state.vat > 0 ? '1' : '0',
+			transition: '0.2s'
+		};
 
 		style.iconContainer = {
 			position: 'relative',
@@ -84,19 +96,27 @@ var Local = React.createClass({
 		});
 		return (
 			<div style={style.base}>
-				<span style={style.currentVAT}>Prices include {this.state.vat}% VAT</span>
-				<select ref='countries' style={style.country} onChange={this.selectVAT}>
-					{countries}
-				</select>
-				<div style={style.iconContainer}>
-					<div style={style.selector}></div>
-					<div ref="usd" style={style.usd} onClick={this.selectUSD}></div>
-					<div ref="gbp" style={style.gbp} onClick={this.selectGBP}></div>
-					<div ref="eur" style={style.eur} onClick={this.selectEUR}></div>
-					<div style={{clear: 'both'}}></div>
+				<div style={style.countryContainer}>
+					<select ref='countries' style={style.country} onChange={this.selectVAT}>
+						{countries}
+					</select>
+					<div style={style.iconContainer}>
+						<div style={style.selector}></div>
+						<div ref="usd" style={style.usd} onClick={this.selectUSD}></div>
+						<div ref="gbp" style={style.gbp} onClick={this.selectGBP}></div>
+						<div ref="eur" style={style.eur} onClick={this.selectEUR}></div>
+						<div style={{clear: 'both'}}></div>
+					</div>
+				</div>
+				<div style={style.includeVAT}>
+					<Check id='includeVAT' startChecked={true} onClick={this.toggleIncludeVAT} label={'Include VAT (' + this.state.vat + '%) in prices?'} />
 				</div>
 			</div>
 		);
+	},
+	toggleIncludeVAT: function () {
+		this.setState({ includeVAT: !this.state.includeVAT });
+		this.props.onToggleIncludeVAT();
 	},
 	selectEUR: function () {
 		this.setState({
