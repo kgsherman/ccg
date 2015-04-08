@@ -3,7 +3,7 @@ var Scroller = React.createClass({
 
 		var canvas = React.findDOMNode(this.refs.scrollCanvas);
 		var container = React.findDOMNode(this.refs.scrollContainer);
-		console.log('width:', container.clientWidth, 'height', container.clientHeight);
+		
 		canvas.width = container.clientWidth;
 		canvas.height = container.clientHeight + 1;
 

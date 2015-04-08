@@ -37,7 +37,17 @@ var DetailList = React.createClass({
 			}
 
 			ships = ids.map(function (id, index) {
-				return <DetailShip key={index} index={index} id={id} paths={this.props.paths[id]} selected={this.props.selected} includeLimited={this.state.showPathLimited} active={db[id].limited ? this.state.showLimited : true} />
+				return <DetailShip 
+					key={index} 
+					index={index} 
+					id={id} 
+					paths={this.props.paths[id]} 
+					selected={this.props.selected} 
+					includeLimited={this.state.showPathLimited} 
+					active={db[id].limited ? this.state.showLimited : true} 
+					currency={this.props.currency}
+					vat={this.props.vat}
+				/>
 			}, this);
 		}
 
@@ -94,13 +104,8 @@ var DetailList = React.createClass({
 			left: 0,
 			zIndex: 1			
 		};
-		style.sortBy = _.extend({}, gs.headerFont, {
+		style.sortBy = _.extend({}, gs.selectBox, {
   			marginBottom: '0.5em',
-			background: 'black',
-			border: '1px solid #1f5b84',
-			padding: '0.5em',
-  			fontSize: '12px',
-  			lineHeight: '16px'
 		});
 		style.starter = {
 			position: 'absolute',

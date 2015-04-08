@@ -41,6 +41,14 @@ var Style = {
 	blueFont: {
 		color: 'rgb(111, 216, 255)'
 	}
-}
+};
+
+Style.selectBox = _.extend({}, Style.headerFont, {
+	background: 'black',
+	border: '1px solid #1f5b84',
+	padding: '0.5em',
+	fontSize: '12px',
+	lineHeight: '16px'
+});
 
 module.exports = Style;

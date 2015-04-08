@@ -1,5 +1,6 @@
 var Step = require('./step');
 var gs = require('./globalStyles');
+var numberFormat = require('underscore.string/numberFormat');
 
 var Path = React.createClass({
 	getInitialState: function () {
@@ -14,11 +15,20 @@ var Path = React.createClass({
 		});
 	},
 	render: function () {
+		var currency = this.props.currency;
+		var vat = this.props.vat;
 
 		var steps = this.props.data.steps.map(function (step, index) {
-			return <Step key={index} data={step} show={true} />
+			return (
+				<Step 
+					key={index} 
+					data={step} 
+					show={true} 
+					currency={currency}
+					vat={vat}
+				/>
+			);
 		}, this);
-
 
 		var baseStyle = _.extend({}, gs.linebg, {
 			display: 'table-row',
@@ -96,11 +106,30 @@ var Path = React.createClass({
 			</div> 
 			: false;
 
+		var priceSymbol = (function () {
+			switch (currency) {
+				case 'usd':
+					return '$';
+				case 'eur': 
+					return '€';
+				case 'gbp': 
+					return '£';
+			}
+		})();
+
+		var priceRaw = this.props.data.total[currency] * (1 + vat/100);
+
+		var priceFormatted = currency == 'eur' ? 
+			numberFormat(priceRaw, 2, ',', '.') 
+			: numberFormat(priceRaw, 2, '.', ',');
+
+		var price = priceSymbol + priceFormatted;
+
 		return (
 			<div style={baseStyle} className="path-base">
 				<div style={fitCellStyle}>
 					<div style={{textAlign: 'center'}}>
-						<span style={costStyle}>${this.props.data.total}</span>
+						<span style={costStyle}>{price}</span>
 						<span style={countStyle}>{this.props.data.steps.length} step{this.props.data.steps.length == 1 ? '' : 's'}</span>
 					</div>
 					{/* limits */}

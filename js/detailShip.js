@@ -33,7 +33,9 @@ var DetailShip = React.createClass({
 						data={path} 
 						selected={this.props.selected}
 						showAtStart={pathsCount == 1}
-						showAll={this.state.showAll} 
+						showAll={this.state.showAll}
+						currency={this.props.currency}
+						vat={this.props.vat}
 					/>
 				);
 			}, this)

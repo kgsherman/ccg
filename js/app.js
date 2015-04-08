@@ -2,107 +2,14 @@ var ShipList = require('./startList');
 var DetailList = require('./detailList');
 var Footer = require('./footer');
 var About = require('./about');
+var Localization = require('./localization');
 var gs = require('./globalStyles');
-
-function getPaths (seedID) {
-	var _id = seedID;
-	var _paths = {};
-
-	getAllPaths();
-	optimizePaths();
-
-	return _paths;
-
-	function getAllPaths () {
-		var seed = {
-			limits: [],
-			total: 0,
-			steps: []
-		};
-
-		iterate(_id, seed);
-	}
-	
-	function iterate (id, parentPath) {
-		getConnections(id).forEach(function (connection) {
-			addPath(parentPath, connection);
-		});
-	}
-
-	function getConnections (id) {
-		return db[id].connects_to;
-	}
-
-	function addPath (parentPath, connection) {
-		var isLoop = _.any(parentPath.steps, function (step) { return (connection.ship_id == step.ship_id || connection.ship_id == _id) });
-		if (isLoop) { return; }
-
-		if (connection.price === null) { return; }
-
-		// if limited, add to the parent's list of limited ships
-		var limits = parentPath.limits.slice();
-		if (db[connection.ship_id].limited) { limits.push(connection.ship_id); }
-
-		// if it has price, increment the parent's. otherwise, null
-		var total = (typeof connection.price == 'number') ? parentPath.total + connection.price : null;
-
-		// copy parent's steps, and add this one
-		var steps = parentPath.steps.slice();
-		steps.push(connection);
-
-		// create the new path
-		var newPath = {
-			limits: limits,
-			total: total,
-			steps: steps			
-		};
-
-		// add this path to the paths to this ship
-		_paths[connection.ship_id] = _paths[connection.ship_id] || [];
-		_paths[connection.ship_id].push(newPath);
-
-		// do it again with this ship's children
-		iterate(connection.ship_id, newPath);
-	}
-
-	function optimizePaths  () {
-		_.each(_paths, optimizeShip)
-	}
-
-	function optimizeShip (shipPaths, shipID) {
-		// group paths by the amount of limited ships they go through
-		var groupedPathsByLimitCount = _.groupBy(shipPaths, function (path) { return path.limits.length; });
-
-		// get one optimal path per limit number
-		var optimalPaths = _.map(groupedPathsByLimitCount, function (paths) { return getCheapestShortest(paths); });
-
-		var cheapest = _.min(optimalPaths, function (path) { return path.total; });
-
-		optimalPaths = _.chain(optimalPaths)
-			.filter(function (path) { return path.limits.length <= cheapest.limits.length })
-			.sortBy('total')
-			.value();
-
-		_paths[shipID] = optimalPaths;
-	}
-
-	function getCheapestShortest (paths) {
-
-		var minPricePath = _.min(paths, function (path) { return path.total; });
-		var minPrice = minPricePath.total;
-		var minPricePaths = _.filter(paths, function (path) { return path.total === minPrice; });
-
-		var minStepsPath = _.min(minPricePaths, function (path) { return path.steps.length; });
-		var minSteps = minStepsPath.steps.length;
-		var minStepsPaths = _.filter(minPricePaths, function (path) { return path.steps.length === minSteps; })
-
-		return minStepsPaths[0];
-	}
-}
 
 var App = React.createClass({
 	getInitialState: function () {
 		return ({
+			currency: 'usd',
+			vat: 0,
 			paths: null,
 			selected: null,
 			showAbout: false
@@ -156,14 +63,21 @@ var App = React.createClass({
 					<div style={style.aboutLink} onClick={this.showAbout}>
 						About this page
 					</div>
+					<Localization onChangeCurrency={this.updateCurrency} onChangeVAT={this.updateVAT} />
 				</div>
-				<ShipList onSelect={this.updatePaths} selected={this.state.selected} />
-				<DetailList paths={this.state.paths} selected={this.state.selected} />
+				<ShipList currency={this.state.currency} vat={this.state.vat} onSelect={this.updatePaths} selected={this.state.selected} />
+				<DetailList currency={this.state.currency} vat={this.state.vat} paths={this.state.paths} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
 				<Footer />
 				{about}
 			</div>
 		);
+	},
+	updateCurrency: function (currency) {
+		this.setState({	currency: currency });
+	},
+	updateVAT: function (vat) {
+		this.setState({	vat: vat });
 	},
 	showAbout: function () {
 		this.setState({
@@ -176,11 +90,113 @@ var App = React.createClass({
 		});
 	},
 	updatePaths: function (id) {
-		var paths = getPaths(id);
+		var paths = this.getPaths(id);
 		this.setState({ 
 			paths: paths,
 			selected: id
 		});
+	},
+	getPaths: function (seedID) {
+		var _id = seedID;
+		var _paths = {};
+
+		getAllPaths();
+		optimizePaths();
+
+		return _paths;
+
+		function getAllPaths () {
+			var seed = {
+				limits: [],
+				total: {
+					usd: 0,
+					eur: 0,
+					gbp: 0
+				},
+				steps: []
+			};
+
+			iterate(_id, seed);
+		}
+		
+		function iterate (id, parentPath) {
+			getConnections(id).forEach(function (connection) {
+				addPath(parentPath, connection);
+			});
+		}
+
+		function getConnections (id) {
+			return db[id].connects_to;
+		}
+
+		function addPath (parentPath, connection) {
+			var isLoop = _.any(parentPath.steps, function (step) { return (connection.ship_id == step.ship_id || connection.ship_id == _id) });
+			if (isLoop) { return; }
+
+			if (connection.price['usd'] === null) { return; }
+
+			// if limited, add to the parent's list of limited ships
+			var limits = parentPath.limits.slice();
+			if (db[connection.ship_id].limited) { limits.push(connection.ship_id); }
+
+			// if it has price, increment the parent's. otherwise, null
+			var total = _.mapValues(connection.price, function (price, currency) {
+				return (typeof price == 'number') ? parentPath.total[currency] + price : null;
+			});
+
+
+			// copy parent's steps, and add this one
+			var steps = parentPath.steps.slice();
+			steps.push(connection);
+
+			// create the new path
+			var newPath = {
+				limits: limits,
+				total: total,
+				steps: steps			
+			};
+
+			// add this path to the paths to this ship
+			_paths[connection.ship_id] = _paths[connection.ship_id] || [];
+			_paths[connection.ship_id].push(newPath);
+
+			// do it again with this ship's children
+			iterate(connection.ship_id, newPath);
+		}
+
+		function optimizePaths  () {
+			_.each(_paths, optimizeShip)
+		}
+
+		function optimizeShip (shipPaths, shipID) {
+			// group paths by the amount of limited ships they go through
+			var groupedPathsByLimitCount = _.groupBy(shipPaths, function (path) { return path.limits.length; });
+
+			// get one optimal path per limit number
+			var optimalPaths = _.map(groupedPathsByLimitCount, function (paths) { return getCheapestShortest(paths); });
+
+			var cheapest = _.min(optimalPaths, function (path) { return path.total['usd']; });
+
+			optimalPaths = _.chain(optimalPaths)
+				.filter(function (path) { return path.limits.length <= cheapest.limits.length })
+				.sortBy('total')
+				.value();
+
+			_paths[shipID] = optimalPaths;
+		}
+
+		function getCheapestShortest (paths) {
+
+			var minPricePath = _.min(paths, function (path) { return path.total['usd']; });
+			var minPrice = minPricePath.total['usd'];
+			var minPricePaths = _.filter(paths, function (path) { return path.total['usd'] === minPrice; });
+
+			var minStepsPath = _.min(minPricePaths, function (path) { return path.steps.length; });
+			var minSteps = minStepsPath.steps.length;
+			var minStepsPaths = _.filter(minPricePaths, function (path) { return path.steps.length === minSteps; })
+
+			return minStepsPaths[0];
+		}
 	}
 });
 

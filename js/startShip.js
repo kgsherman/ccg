@@ -1,10 +1,14 @@
 var gs = require('./globalStyles');
+var numberFormat = require('underscore.string/numberFormat');
 
 var StartShip = React.createClass({
 	render: function () {
 		var data = db[this.props.id];
 		var name = data.display; // TODO: add mfg before display
-		var priceUSD = (data.price.usd) ? data.price.usd : '---';
+		var currency = this.props.currency;
+		var price = data.price[currency];
+		var vat = this.props.vat
+
 		var priceREC = (data.price.rec) ? data.price.rec : "---";
 		var pic = 'public/' + this.props.id + '.jpg';
 
@@ -74,6 +78,33 @@ var StartShip = React.createClass({
 			borderLeft: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
 		});
 
+		var priceSymbol = (function () {
+			switch (currency) {
+				case 'usd':
+					return '$';
+				case 'eur': 
+					return '€';
+				case 'gbp': 
+					return '£';
+			}
+		})();
+
+
+		var priceFormatted = (function () {
+			if (price) {
+				var priceRaw = price * (1 + (vat / 100));
+				return (
+					currency == 'eur' ? 
+						numberFormat(priceRaw, 2, ',', '.') 
+						: numberFormat(priceRaw, 2, '.', ',')
+				);
+			} else {
+				return '---';
+			}
+		})();
+
+		var price = priceSymbol + priceFormatted;
+
 		return (
 			<div style={style.base} onClick={this.select}>
 				<div style={style.background}></div>
@@ -82,7 +113,7 @@ var StartShip = React.createClass({
 						<h2 style={style.h1}>{name}</h2>
 					</div>
 				</div>
-				<span style={style.usd}><h4 style={style.h4}>${priceUSD}</h4></span>
+				<span style={style.usd}><h4 style={style.h4}>{price}</h4></span>
 				<span style={style.rec}><h4 style={style.h4}>¤{priceREC}</h4></span>
 			</div>
 		);

@@ -1,9 +1,12 @@
 var gs = require('./globalStyles');
+var numberFormat = require('underscore.string/numberFormat');
 
 var Step = React.createClass({
 	render: function () {
 		var step = this.props.data;
 		var limited = db[step.ship_id].limited;
+		var currency = this.props.currency;
+		var vat = this.props.vat;
 
 		var style = {
 			display: this.props.show ? 'inline-block' : 'none',
@@ -52,17 +55,36 @@ var Step = React.createClass({
 			borderColor: limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		});
 
+		var priceSymbol = (function () {
+			switch (currency) {
+				case 'usd':
+					return '$';
+				case 'eur': 
+					return '€';
+				case 'gbp': 
+					return '£';
+			}
+		})();
+
+		var priceRaw = step.price[currency] * (1 + vat/100);
+
+		var priceFormatted = currency == 'eur' ? 
+			numberFormat(priceRaw, 2, ',', '.') 
+			: numberFormat(priceRaw, 2, '.', ',');
+
+		var price = priceSymbol + priceFormatted;
+
 		var shipMaybeLink = step.url ?
 			<a target="_blank" href={step.url}>
 				<div style={limited ? limitedStyle : upgradeStyle}>
 					<span style={shipStyle}>{db[step.ship_id].display}</span>
-					<span style={priceStyle}>${step.price}</span>
+					<span style={priceStyle}>{price}</span>
 				</div>
 			</a>
 			:
 			<div style={limited ? limitedStyle : upgradeStyle}>
 				<span style={shipStyle}>{db[step.ship_id].display}</span>
-				<span style={priceStyle}>${step.price}</span>
+				<span style={priceStyle}>{price}</span>
 			</div>
 
 		return (

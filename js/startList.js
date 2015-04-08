@@ -27,11 +27,11 @@ var StartList = React.createClass({
 			var connections = db[id].connects_to;
 			var hasConnections = (connections.length > 0);
 			var hasPrices = _.any(connections, function (connection) {
-				return (typeof connection.price == 'number' && connection.price >= 0);
-			});
+				return (typeof connection.price[this.props.currency] == 'number' && connection.price[this.props.currency] >= 0);
+			}, this);
 			var hasPaths = (hasConnections && hasPrices); 
 
-			return <StartShip key={index} index={index} id={id} onSelect={this.props.onSelect} selected={this.props.selected == id} active={hasPaths ? true : this.state.showAll} />
+			return <StartShip key={index} index={index} id={id} currency={this.props.currency} vat={this.props.vat} onSelect={this.props.onSelect} selected={this.props.selected == id} active={hasPaths ? true : this.state.showAll} />
 		}, this);
 
 
