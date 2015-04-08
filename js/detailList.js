@@ -29,7 +29,7 @@ var DetailList = React.createClass({
 				case 'cost':
 					ids = _.sortBy(ids, function (id) {
 						return _.chain(this.props.paths[id])
-							.map('total')
+							.map(function(path) {return path.total['usd']})
 							.min()
 							.value();
 					}, this);
