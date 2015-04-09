@@ -61,7 +61,7 @@ var About = React.createClass({
 							In some cases, the cheapest paths include converting to ships that aren't currently on sale. These paths are filtered out by default, but can be shown using the checkbox at the top of the result list.
 						</p>
 						<p>
-							This site was built for use by the <a target="_blank" href="http://robertsspaceindustries.com/" style={style.link}>Star Citizen</a> community. The data it utilizes was based on a <a target="_blank" href="http://i.imgur.com/JzlD7Nd.png" style={style.link}>chart</a> created by <a target="_blank" href="http://www.reddit.com/r/starcitizen/comments/2zwtw7/star_citizen_upgrade_paths_flowchart_now_with_rec/" style={style.link}>/u/NimmoG on Reddit</a>. This data is available in JSON format on Github:
+							This site was built for use by the <a target="_blank" href="http://robertsspaceindustries.com/" style={style.link}>Star Citizen</a> community. The data it utilizes was based on a <a target="_blank" href="http://i.imgur.com/JzlD7Nd.png" style={style.link}>chart</a> <a target="_blank" href="http://www.reddit.com/r/starcitizen/comments/2zwtw7/star_citizen_upgrade_paths_flowchart_now_with_rec/" style={style.link}>created by /u/NimmoG</a> and <a href="http://www.reddit.com/r/Baragoon/comments/2jrafw/official_star_citizen_price_list/" target="_blank" style={style.link}>data assembled by /u/Baragoon</a> on Reddit. This data is available in JSON format on Github:
 							<ul>
 								<li><a target="_blank" href="https://github.com/kgsherman/ccg/blob/master/js/db/ships.json" style={style.link}>Ship data</a></li>
 								<li><a target="_blank" href="https://github.com/kgsherman/ccg/blob/master/js/db/mfg.json" style={style.link}>Manufacturer data</a></li>
