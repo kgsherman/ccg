@@ -407,9 +407,9 @@ module.exports = {
 			{
 				"ship_id": "mustang_beta",
 				"price": {
-					"usd": 75,
-					"eur": 60,
-					"gbp": 52.5
+					"usd": 5,
+					"eur": 4,
+					"gbp": 3.5
 				},
 				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LN-To-Mustang-Beta-Upgrade"
 			},
