@@ -1,6 +1,10 @@
 var Scroller = React.createClass({
+	countActiveChildren: function (children) {
+		return _.filter(children, function (child) { 
+			return (React.isValidElement(child) && child.props.active); 
+		}).length;
+	},
 	drawScroller: function () {
-
 		var canvas = React.findDOMNode(this.refs.scrollCanvas);
 		var container = React.findDOMNode(this.refs.scrollContainer);
 		
@@ -9,7 +13,7 @@ var Scroller = React.createClass({
 
 		var ctx = canvas.getContext('2d');
 
-		var children = React.Children.count(this.refs.content.props.children);
+		var children = this.countActiveChildren(this.refs.content.props.children);
 		var interval = container.clientHeight / children;
 
 		ctx.beginPath();
@@ -68,7 +72,7 @@ var Scroller = React.createClass({
 		window.addEventListener('resize', this.checkShowScroller);
 	},
 	componentDidUpdate: function (prevProps, prevState) {
-		if (React.Children.count(prevProps.children) !== React.Children.count(this.props.children)) {
+		if (this.countActiveChildren(prevProps.children) !== this.countActiveChildren(this.refs.content.props.children)) {
 			if (this.checkShowScroller()) { 
 				this.drawScroller();
 				this.content.scrollTop = 0;  
