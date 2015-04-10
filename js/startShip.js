@@ -1,5 +1,5 @@
 var gs = require('./globalStyles');
-var numberFormat = require('underscore.string/numberFormat');
+var formatPrice = require('./formatPrice');
 
 var StartShip = React.createClass({
 	render: function () {
@@ -78,32 +78,7 @@ var StartShip = React.createClass({
 			borderLeft: this.props.selected ? 'thin solid rgba(32, 76, 122, 0.5)' : 'none'
 		});
 
-		var priceSymbol = (function () {
-			switch (currency) {
-				case 'usd':
-					return '$';
-				case 'eur': 
-					return '€';
-				case 'gbp': 
-					return '£';
-			}
-		})();
-
-
-		var priceFormatted = (function () {
-			if (price) {
-				var priceRaw = price * (1 + (vat / 100));
-				return (
-					currency == 'eur' ? 
-						numberFormat(priceRaw, 2, ',', '.') 
-						: numberFormat(priceRaw, 2, '.', ',')
-				);
-			} else {
-				return '---';
-			}
-		})();
-
-		var price = priceSymbol + priceFormatted;
+		var price = formatPrice(data.price, currency, vat);
 
 		return (
 			<div style={style.base} onClick={this.select}>

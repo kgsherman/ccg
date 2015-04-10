@@ -1,5 +1,5 @@
 var gs = require('./globalStyles');
-var numberFormat = require('underscore.string/numberFormat');
+var formatPrice = require('./formatPrice');
 
 var Step = React.createClass({
 	render: function () {
@@ -55,24 +55,7 @@ var Step = React.createClass({
 			borderColor: limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		});
 
-		var priceSymbol = (function () {
-			switch (currency) {
-				case 'usd':
-					return '$';
-				case 'eur': 
-					return '€';
-				case 'gbp': 
-					return '£';
-			}
-		})();
-
-		var priceRaw = step.price[currency] * (1 + vat/100);
-
-		var priceFormatted = currency == 'eur' ? 
-			numberFormat(priceRaw, 2, ',', '.') 
-			: numberFormat(priceRaw, 2, '.', ',');
-
-		var price = priceSymbol + priceFormatted;
+		var price = formatPrice(step.price, currency, vat);
 
 		var shipMaybeLink = step.url ?
 			<a target="_blank" href={step.url}>
