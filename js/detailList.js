@@ -37,6 +37,11 @@ var DetailList = React.createClass({
 			}
 
 			ships = ids.map(function (id, index) {
+				var limited = db[id].limited;
+				var shouldShowLimited = limited ? this.state.showLimited : true;
+				var hasPathsToShow = this.state.showPathLimited ? true : (this.props.paths[id].length == 1 || _.any(this.props.paths[id], function (path) { return path.limits.length == +limited; }));
+				var active = shouldShowLimited && hasPathsToShow;
+
 				return <DetailShip 
 					key={index} 
 					index={index} 
@@ -44,7 +49,7 @@ var DetailList = React.createClass({
 					paths={this.props.paths[id]} 
 					selected={this.props.selected} 
 					includeLimited={this.state.showPathLimited} 
-					active={db[id].limited ? this.state.showLimited : true} 
+					active={active} 
 					currency={this.props.currency}
 					vat={this.props.vat}
 				/>
@@ -121,8 +126,20 @@ var DetailList = React.createClass({
 			: false;
 
 		var onEmpty;
+
+		/*var anyActive = _.any(this.props.paths, function (shipPaths, shipID) {
+			return _.any(shipPaths, function (path) {
+				var isNotLimited = this.state.showLimited ? true : !db[shipID].limited;
+				var isNotPathLimited = this.state.showPathLimited ? true : path.limits.length == +db[shipID].limited;
+				return (isNotLimited && isNotPathLimited);
+			}, this);
+		}, this)*/
+
+		var anyActive = _.any(ships, function (ship) { return ship.props.active; });
+
+
 		if (this.props.paths) {
-			if (ships.length > 0) {
+			if (ships.length > 0 && anyActive) { 
 				onEmpty = ships;
 			} else {
 				onEmpty = 'There are no upgrades available for display. Try including limited ships and paths in OPTIONS, or the ship may not be upgradeable.';

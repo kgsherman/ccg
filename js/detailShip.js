@@ -21,7 +21,7 @@ var DetailShip = React.createClass({
 
 		var pathNodes = _.chain(paths)
 			.filter(function (path) {
-				if (!this.props.includeLimited && path.limits.length > 0 && !(db[this.props.id].limited && path.limits.length == 1)) return false;
+				if (paths.length > 1 && !this.props.includeLimited && path.limits.length > 0 && !(db[this.props.id].limited && path.limits.length == 1)) return false;
 				else return true;
 			}, this)
 			.map(function (path, index) {
