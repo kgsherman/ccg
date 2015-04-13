@@ -4,6 +4,7 @@ module.exports = {
 		"class": "constellation",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Constellation-Andromeda",
 		"price": {
 			"usd": 225,
 			"eur": 180,
@@ -46,6 +47,7 @@ module.exports = {
 		"class": "constellation",
 		"mfg": "rsi",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 350,
 			"eur": 280,
@@ -70,6 +72,7 @@ module.exports = {
 		"class": "constellation",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Constellation-Aquila",
 		"price": {
 			"usd": 275,
 			"eur": 220,
@@ -94,6 +97,7 @@ module.exports = {
 		"class": "constellation",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Constellation-Taurus",
 		"price": {
 			"usd": 150,
 			"eur": 120,
@@ -118,6 +122,7 @@ module.exports = {
 		"class": "freelancer",
 		"mfg": "misc",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/MISC-Freelancer",
 		"price": {
 			"usd": 110,
 			"eur": 88,
@@ -160,6 +165,7 @@ module.exports = {
 		"class": "freelancer",
 		"mfg": "misc",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 165,
 			"eur": 132,
@@ -184,6 +190,7 @@ module.exports = {
 		"class": "freelancer",
 		"mfg": "misc",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Freelancer-DUR",
 		"price": {
 			"usd": 125,
 			"eur": 100,
@@ -208,6 +215,7 @@ module.exports = {
 		"class": "freelancer",
 		"mfg": "misc",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Freelancer-MAX",
 		"price": {
 			"usd": 140,
 			"eur": 112,
@@ -232,6 +240,7 @@ module.exports = {
 		"class": "mustang",
 		"mfg": "co",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Mustang-Alpha",
 		"price": {
 			"usd": 30,
 			"eur": 24,
@@ -293,6 +302,7 @@ module.exports = {
 		"class": "mustang",
 		"mfg": "co",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Mustang-Beta",
 		"price": {
 			"usd": 40,
 			"eur": 32,
@@ -336,6 +346,7 @@ module.exports = {
 		"class": "mustang",
 		"mfg": "co",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Mustang-Gamma",
 		"price": {
 			"usd": 55,
 			"eur": 44,
@@ -406,6 +417,7 @@ module.exports = {
 		"class": "mustang",
 		"mfg": "co",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 65,
 			"eur": 52,
@@ -449,6 +461,7 @@ module.exports = {
 		"class": "mustang",
 		"mfg": "co",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -473,6 +486,7 @@ module.exports = {
 		"class": "aurora",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Aurora-ES",
 		"price": {
 			"usd": 20,
 			"eur": 16,
@@ -497,6 +511,7 @@ module.exports = {
 		"class": "aurora",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/RSI-Aurora",
 		"price": {
 			"usd": 25,
 			"eur": 20,
@@ -576,6 +591,7 @@ module.exports = {
 		"class": "aurora",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/RSI-Aurora-LN",
 		"price": {
 			"usd": 35,
 			"eur": 28,
@@ -655,6 +671,7 @@ module.exports = {
 		"class": "aurora",
 		"mfg": "rsi",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Aurora-CL",
 		"price": {
 			"usd": 45,
 			"eur": 36,
@@ -698,6 +715,7 @@ module.exports = {
 		"class": "aurora",
 		"mfg": "rsi",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -749,6 +767,7 @@ module.exports = {
 		"class": "300",
 		"mfg": "origin",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Origin-Jumpworks-300i",
 		"price": {
 			"usd": 55,
 			"eur": 44,
@@ -855,6 +874,7 @@ module.exports = {
 		"class": "300",
 		"mfg": "origin",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Origin-315p-Explorer",
 		"price": {
 			"usd": 65,
 			"eur": 52,
@@ -925,6 +945,7 @@ module.exports = {
 		"class": "300",
 		"mfg": "origin",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Origin-325a-Fighter",
 		"price": {
 			"usd": 70,
 			"eur": 56,
@@ -1013,6 +1034,7 @@ module.exports = {
 		"class": "300",
 		"mfg": "origin",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 125,
 			"eur": 100,
@@ -1074,6 +1096,7 @@ module.exports = {
 		"class": null,
 		"mfg": "origin",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 100,
 			"eur": 80,
@@ -1180,6 +1203,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Aegis-Dynamics-Avenger",
 		"price": {
 			"usd": 60,
 			"eur": 48,
@@ -1223,6 +1247,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Aegis-Gladius",
 		"price": {
 			"usd": 90,
 			"eur": 72,
@@ -1266,6 +1291,7 @@ module.exports = {
 		"class": "hornet",
 		"mfg": "anvil",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Anvil-Hornet",
 		"price": {
 			"usd": 110,
 			"eur": 88,
@@ -1399,6 +1425,7 @@ module.exports = {
 		"class": "hornet",
 		"mfg": "anvil",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/F7C-S-Hornet-Ghost",
 		"price": {
 			"usd": 125,
 			"eur": 100,
@@ -1442,6 +1469,7 @@ module.exports = {
 		"class": "hornet",
 		"mfg": "anvil",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/F7C-R-Hornet-Tracker",
 		"price": {
 			"usd": 140,
 			"eur": 112,
@@ -1494,6 +1522,7 @@ module.exports = {
 		"class": "hornet",
 		"mfg": "anvil",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/F7C-M-Super-Hornet",
 		"price": {
 			"usd": 165,
 			"eur": 132,
@@ -1555,6 +1584,7 @@ module.exports = {
 		"class": null,
 		"mfg": "anvil",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Anvil-Gladiator",
 		"price": {
 			"usd": 165,
 			"eur": 132,
@@ -1598,6 +1628,7 @@ module.exports = {
 		"class": "hornet",
 		"mfg": "anvil",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1612,6 +1643,7 @@ module.exports = {
 		"class": "cutlass",
 		"mfg": "drake",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Cutlass-Black",
 		"price": {
 			"usd": 100,
 			"eur": 80,
@@ -1682,6 +1714,7 @@ module.exports = {
 		"class": "cutlass",
 		"mfg": "drake",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Cutlass-Red",
 		"price": {
 			"usd": 120,
 			"eur": 96,
@@ -1734,6 +1767,7 @@ module.exports = {
 		"class": "cutlass",
 		"mfg": "drake",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 150,
 			"eur": 120,
@@ -1777,6 +1811,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 275,
 			"eur": null,
@@ -1791,6 +1826,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": false,
+		"url": "https://robertsspaceindustries.com/pledge/Standalone-Ships/Aegis-Redeemer",
 		"price": {
 			"usd": 250,
 			"eur": 200,
@@ -1805,6 +1841,7 @@ module.exports = {
 		"class": null,
 		"mfg": "anvil",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 350,
 			"eur": null,
@@ -1819,6 +1856,7 @@ module.exports = {
 		"class": null,
 		"mfg": "rsi",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 350,
 			"eur": 260,
@@ -1833,6 +1871,7 @@ module.exports = {
 		"class": null,
 		"mfg": "misc",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1847,6 +1886,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 350,
 			"eur": 280,
@@ -1861,6 +1901,7 @@ module.exports = {
 		"class": null,
 		"mfg": "origin",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 600,
 			"eur": 480,
@@ -1875,6 +1916,7 @@ module.exports = {
 		"class": null,
 		"mfg": "banu",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1889,6 +1931,7 @@ module.exports = {
 		"class": null,
 		"mfg": "xian",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 150,
 			"eur": 120,
@@ -1903,6 +1946,7 @@ module.exports = {
 		"class": "idris",
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1917,6 +1961,7 @@ module.exports = {
 		"class": "idris",
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1931,6 +1976,7 @@ module.exports = {
 		"class": null,
 		"mfg": "vanduul",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1945,6 +1991,7 @@ module.exports = {
 		"class": null,
 		"mfg": "drake",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1959,6 +2006,7 @@ module.exports = {
 		"class": null,
 		"mfg": "misc",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": null,
 			"eur": null,
@@ -1973,6 +2021,7 @@ module.exports = {
 		"class": null,
 		"mfg": "drake",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 85,
 			"eur": 68,
@@ -1987,6 +2036,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 2500,
 			"eur": null,
@@ -2001,6 +2051,7 @@ module.exports = {
 		"class": null,
 		"mfg": "aegis",
 		"limited": true,
+		"url": null,
 		"price": {
 			"usd": 250,
 			"eur": 200,

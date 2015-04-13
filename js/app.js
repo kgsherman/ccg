@@ -100,6 +100,7 @@ var App = React.createClass({
 	},
 	updatePaths: function (id) {
 		id = id || this.state.selected;
+		if (id == null) return;
 		var paths = this.getPaths(id, 'connects_' + this.state.direction);
 		this.setState({ 
 			paths: paths,

@@ -22,7 +22,7 @@ var Path = React.createClass({
 		steps.unshift({
 			ship_id: this.props.selected,
 			price: null,
-			url: null
+			url: db[this.props.selected].url
 		});	
 
 		if (this.props.direction == 'to') {
@@ -32,7 +32,7 @@ var Path = React.createClass({
 				return {
 					ship_id: step.ship_id,
 					price: steps[index + 1] ? steps[index + 1].price : null,
-					url: steps[index + 1] ? steps[index + 1].url : null
+					url: steps[index + 1] ? steps[index + 1].url : db[step.ship_id].url
 				};
 			});
 			steps.reverse();
