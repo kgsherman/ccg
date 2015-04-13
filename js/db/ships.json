@@ -922,6 +922,15 @@ module.exports = {
 					"gbp": 17.5
 				},
 				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-R-Tracker-To-F7C-M-Super-Hornet-Upgrade"
+			},
+			{
+				"ship_id": "gladiator",
+				"price": {
+					"usd": 25,
+					"eur": 20,
+					"gbp": 17.5
+				},
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/F7C-R-Hornet-Tracker-To-Gladiator-Upgrade"
 			}
 		]
 	},
@@ -936,7 +945,40 @@ module.exports = {
 			"gbp": 115.5,
 			"rec": 16500
 		},
-		"connects_to": []
+		"connects_to": [
+			{
+				"ship_id": "gladiator",
+				"price": {
+					"usd": 0,
+					"eur": 0,
+					"gbp": 0
+				},
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/F7C-M-Super-Hornet-To-Gladiator-Upgrade"
+			}
+		]
+	},
+	"gladiator": {
+		"display": "Gladiator",
+		"class": null,
+		"mfg": "anvil",
+		"limited": true,
+		"price": {
+			"usd": 165,
+			"eur": 132,
+			"gbp": 115.5,
+			"rec": 16500
+		},
+		"connects_to": [
+			{
+				"ship_id": "hornet_super",
+				"price": {
+					"usd": 0,
+					"eur": 0,
+					"gbp": 0
+				},
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Gladiator-To-F7C-M-Super-Hornet-Upgrade"
+			}
+		]
 	},
 	"hornet_uee": {
 		"display": "F7A Hornet",
