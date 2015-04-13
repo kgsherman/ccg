@@ -862,11 +862,11 @@ module.exports = {
 			{
 				"ship_id": "hornet_super",
 				"price": {
-					"usd": null,
-					"eur": null,
-					"gbp": null
+					"usd": 55,
+					"eur": 44,
+					"gbp": 38.5
 				},
-				"url": null
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-M-Super-Hornet-Upgrade"
 			},
 			{
 				"ship_id": "cutlass_red",
@@ -917,11 +917,11 @@ module.exports = {
 			{
 				"ship_id": "hornet_super",
 				"price": {
-					"usd": null,
-					"eur": null,
-					"gbp": null
+					"usd": 25,
+					"eur": 20,
+					"gbp": 17.5
 				},
-				"url": null
+				"url": "https://robertsspaceindustries.com/pledge/Upgrades/F7C-R-Tracker-To-F7C-M-Super-Hornet-Upgrade"
 			}
 		]
 	},
@@ -932,9 +932,9 @@ module.exports = {
 		"limited": true,
 		"price": {
 			"usd": 165,
-			"eur": null,
-			"gbp": null,
-			"rec": null
+			"eur": 132,
+			"gbp": 115.5,
+			"rec": 16500
 		},
 		"connects_to": []
 	},
@@ -1039,11 +1039,11 @@ module.exports = {
 			{
 				"ship_id": "hornet_super",
 				"price": {
-					"usd": null,
-					"eur": null,
-					"gbp": null
+					"usd": 15,
+					"eur": 12,
+					"gbp": 10.5
 				},
-				"url": null
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Cutlass-Blue-To-Super-Hornet-Upgrade"
 			}
 		]
 	},
