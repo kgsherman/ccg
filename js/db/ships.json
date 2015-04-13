@@ -938,7 +938,7 @@ module.exports = {
 		"display": "F7C-M Super Hornet",
 		"class": "hornet",
 		"mfg": "anvil",
-		"limited": true,
+		"limited": false,
 		"price": {
 			"usd": 165,
 			"eur": 132,
@@ -961,7 +961,7 @@ module.exports = {
 		"display": "Gladiator",
 		"class": null,
 		"mfg": "anvil",
-		"limited": true,
+		"limited": false,
 		"price": {
 			"usd": 165,
 			"eur": 132,
