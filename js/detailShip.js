@@ -85,7 +85,7 @@ var DetailShip = React.createClass({
 			width: '100%'
 		};
 
-		style.cost = _.extend({}, gs.boxGreen, style.iconsLeft, {
+		style.cost = _.extend({}, gs.boxGreen, style.iconsRight, {
 			display: this.props.condensed? 'inline-block' : 'none',
 			padding: '0.5em 1em',
 			margin: '0.5em 1em'
@@ -131,7 +131,6 @@ var DetailShip = React.createClass({
 		return (
 			<div className="detailShip" style={style.base}>
 				<div style={style.header}>
-					{costMarkup}
 					{limitedTag}
 					<div style={style.ship}>
 						<h2 style={style.name}>
@@ -141,6 +140,7 @@ var DetailShip = React.createClass({
 							{mfgDB[db[this.props.id].mfg].name}
 						</h4>
 					</div>
+					{costMarkup}
 					{multiplePaths}
 					<div style={{clear: 'both'}}></div>
 				</div>
