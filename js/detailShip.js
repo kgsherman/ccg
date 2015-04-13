@@ -2,6 +2,7 @@ var Path = require('./path');
 var gs = require('./globalStyles');
 var mfgDB = require('./db/mfg.json');
 var ToolTip = require('./toolTip');
+var formatPrice = require('./formatPrice');
 
 var DetailShip = React.createClass({
 	getInitialState: function () {
@@ -47,7 +48,7 @@ var DetailShip = React.createClass({
 			display: this.props.active ? 'block' : 'none',
 			position: 'relative',
 			width: 1025,
-			marginTop: this.props.index == 0 ? false : '2em',
+			marginTop: this.props.index == 0 ? false : 1 + 1*+!this.props.condensed + 'em',
 			border: 'thin solid rgb(32, 76, 122)',
 			backgroundColor: 'rgba(0, 0, 0, 0.5)'
 		};
@@ -84,6 +85,12 @@ var DetailShip = React.createClass({
 			width: '100%'
 		};
 
+		style.cost = _.extend({}, gs.boxGreen, style.iconsLeft, {
+			display: this.props.condensed? 'inline-block' : 'none',
+			padding: '0.5em 1em',
+			margin: '0.5em 1em'
+		});
+
 		var toolTip = function (text, align, showCondition, hideFunction) {
 			if (!showCondition) return false;
 			return (
@@ -108,10 +115,24 @@ var DetailShip = React.createClass({
 			: false;
 
 
+		var costMarkup = (
+			<div style={style.cost}>
+				{formatPrice(this.props.paths[0].total, this.props.currency, this.props.vat)}
+			</div>
+		);
+
+
+		var pathsMarkup = !this.props.condensed?
+			<div style={style.paths}>
+				{pathNodes}
+			</div>
+			: null;
+
 		return (
 			<div className="detailShip" style={style.base}>
 				<div style={style.header}>
 					{limitedTag}
+					{costMarkup}
 					<div style={style.ship}>
 						<h2 style={style.name}>
 							{db[this.props.id].display}
@@ -123,9 +144,7 @@ var DetailShip = React.createClass({
 					{multiplePaths}
 					<div style={{clear: 'both'}}></div>
 				</div>
-				<div style={style.paths}>
-					{pathNodes}
-				</div>
+				{pathsMarkup}
 			</div>
 		);
 	},

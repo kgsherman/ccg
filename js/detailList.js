@@ -9,6 +9,7 @@ var DetailList = React.createClass({
 			showSettings: false,
 			showLimited: false,
 			showPathLimited: false,
+			condensed: false,
 			sortBy: 'cost'
 		}
 	},
@@ -52,6 +53,7 @@ var DetailList = React.createClass({
 					currency={this.props.currency}
 					vat={this.props.vat}
 					direction={this.props.direction}
+					condensed={this.state.condensed}
 				/>
 			}, this);
 		}
@@ -161,6 +163,7 @@ var DetailList = React.createClass({
 						</div>
 						<Check id='showPathLimited' onClick={this.toggleShowPathLimited} label='Include limited paths?' />
 						<Check id='showLimited' onClick={this.toggleShowLimited} label='Show limited ships?' />
+						<Check id='showCondensed' onClick={this.toggleCondensed} label='Show condensed view?' />
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>
@@ -193,6 +196,11 @@ var DetailList = React.createClass({
 	toggleShowPathLimited: function () {
 		this.setState({
 			showPathLimited: !this.state.showPathLimited
+		});
+	},
+	toggleCondensed: function () {
+		this.setState({
+			condensed: !this.state.condensed
 		});
 	}
 });
