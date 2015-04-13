@@ -342,7 +342,7 @@ module.exports = {
 			"usd": 25,
 			"eur": 20,
 			"gbp": 17.5,
-			"rec": null
+			"rec": 2500
 		},
 		"connects_to": [
 			{
@@ -401,7 +401,7 @@ module.exports = {
 			"usd": 35,
 			"eur": 28,
 			"gbp": 24.5,
-			"rec": null
+			"rec": 3500
 		},
 		"connects_to": [
 			{
@@ -533,7 +533,7 @@ module.exports = {
 			"usd": 55,
 			"eur": 44,
 			"gbp": 38.5,
-			"rec": null
+			"rec": 5500
 		},
 		"connects_to": [
 			{
@@ -815,7 +815,7 @@ module.exports = {
 			"usd": 90,
 			"eur": 72,
 			"gbp": 63,
-			"rec": null
+			"rec": 9000
 		},
 		"connects_to": [
 			{
