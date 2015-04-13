@@ -131,8 +131,8 @@ var DetailShip = React.createClass({
 		return (
 			<div className="detailShip" style={style.base}>
 				<div style={style.header}>
-					{limitedTag}
 					{costMarkup}
+					{limitedTag}
 					<div style={style.ship}>
 						<h2 style={style.name}>
 							{db[this.props.id].display}
