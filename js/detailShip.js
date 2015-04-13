@@ -36,6 +36,7 @@ var DetailShip = React.createClass({
 						showAll={this.state.showAll}
 						currency={this.props.currency}
 						vat={this.props.vat}
+						direction={this.props.direction}
 					/>
 				);
 			}, this)

@@ -8,10 +8,11 @@ var StartList = React.createClass({
 		return ({
 			filter: null,
 			showAll: false,
-			direction: 'from'
+			direction: 'to'
 		});
 	},
 	render: function () {
+		var connect_direction = 'connects_' + this.state.direction;
 		var ids = Object.keys(db);
 		ids = _.chain(ids)
 			.sortBy(function (id) { return id; })
@@ -25,7 +26,7 @@ var StartList = React.createClass({
 		}
 
 		var startShips = ids.map(function (id, index) {
-			var connections = db[id].connects_to;
+			var connections = db[id][connect_direction];
 			var hasConnections = (connections.length > 0);
 			var hasPrices = _.any(connections, function (connection) {
 				return (typeof connection.price[this.props.currency] == 'number' && connection.price[this.props.currency] >= 0);
@@ -84,13 +85,13 @@ var StartList = React.createClass({
 					<h1>Your ship</h1>
 				</div>
 				<div id="shipListControls" style={style.controls}>
-					<Check id='tofrom' startChecked={false} onClick={this.toggleToFrom} label='Find paths...' yes='To' no='From' />
+					<Check id='tofrom' startChecked={false} onClick={this.toggleToFrom} label='Find upgrades...' yes='To' no='From' />
 					<Check id='showAll' startChecked={false} onClick={this.toggleShowAll} label='Include non-upgradeable ships?' />
 					{/*<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />*/}
 					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
 				</div>
 
-				<Scroller style={style.shipList} margin={'1em'}>
+				<Scroller style={style.shipList} margin={'1em'} noResetOnUpdate={true}>
 					{startShips}
 				</Scroller>
 
@@ -100,6 +101,8 @@ var StartList = React.createClass({
 	toggleToFrom: function () {
 		this.setState({
 			direction: this.state.direction == 'to' ? 'from' : 'to'
+		}, function () {
+			this.props.setDirection(this.state.direction);
 		});
 	},
 	toggleShowAll: function () {

@@ -41,7 +41,6 @@ var DetailList = React.createClass({
 				var shouldShowLimited = limited ? this.state.showLimited : true;
 				var hasPathsToShow = this.state.showPathLimited ? true : (this.props.paths[id].length == 1 || _.any(this.props.paths[id], function (path) { return path.limits.length == +limited; }));
 				var active = shouldShowLimited && hasPathsToShow;
-
 				return <DetailShip 
 					key={index} 
 					index={index} 
@@ -52,6 +51,7 @@ var DetailList = React.createClass({
 					active={active} 
 					currency={this.props.currency}
 					vat={this.props.vat}
+					direction={this.props.direction}
 				/>
 			}, this);
 		}
@@ -97,7 +97,7 @@ var DetailList = React.createClass({
 			textAlign: 'right'			
 		});
 		style.controlIcon = {
-			display: this.state.showSettings ? 'none' : 'block',
+			display: this.state.showSettings ? 'none' : 'inline-block',
 			cursor: 'default',
 			float: 'right'			
 		};
@@ -118,26 +118,8 @@ var DetailList = React.createClass({
 			transform: 'translateY(-50%)'			
 		};
 
-		var fromShip = this.props.paths ?
-			<span>
-				<span> from </span>
-				<h1 style={style.h1}>{db[this.props.selected].display}</h1>
-			</span>
-			: false;
-
 		var onEmpty;
-
-		/*var anyActive = _.any(this.props.paths, function (shipPaths, shipID) {
-			return _.any(shipPaths, function (path) {
-				var isNotLimited = this.state.showLimited ? true : !db[shipID].limited;
-				var isNotPathLimited = this.state.showPathLimited ? true : path.limits.length == +db[shipID].limited;
-				return (isNotLimited && isNotPathLimited);
-			}, this);
-		}, this)*/
-
 		var anyActive = _.any(ships, function (ship) { return ship.props.active; });
-
-
 		if (this.props.paths) {
 			if (ships.length > 0 && anyActive) { 
 				onEmpty = ships;
@@ -152,10 +134,18 @@ var DetailList = React.createClass({
 			);
 		}
 
+		var header = this.props.paths ? (
+			<span>
+				<h1 style={style.h1}>Possible conversions</h1>
+				<span> {this.props.direction == 'to' ? 'from' : 'to'} </span>
+				<h1 style={style.h1}>{db[this.props.selected].display}</h1>
+			</span>
+		) : null;
+
 		return (
 			<div style={style.base}>
 				<div style={style.header}>
-					<h1 style={style.h1}>Possible conversions</h1>{fromShip}
+					{header}
 					<h3 style={style.controlIcon} onMouseOver={this.showSettings} onClick={this.showSettings}> {/*duplicate events for mobile*/}
 						[ <i className="fa fa-cogs"></i> Options ]
 					</h3>

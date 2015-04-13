@@ -13,7 +13,8 @@ var App = React.createClass({
 			includeVAT: true,
 			paths: null,
 			selected: null,
-			showAbout: false
+			showAbout: false,
+			direction: 'to'
 		});
 	},
 	render: function () {
@@ -67,13 +68,16 @@ var App = React.createClass({
 					</div>
 					<Localization onChangeCurrency={this.updateCurrency} onChangeVAT={this.updateVAT} onToggleIncludeVAT={this.toggleIncludeVAT} />
 				</div>
-				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} selected={this.state.selected} />
-				<DetailList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} paths={this.state.paths} selected={this.state.selected} />
+				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} setDirection={this.setDirection} selected={this.state.selected} />
+				<DetailList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} paths={this.state.paths} direction={this.state.direction} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
 				<Footer />
 				{about}
 			</div>
 		);
+	},
+	setDirection: function (dir) {
+		this.setState({ direction: dir }, this.updatePaths);
 	},
 	updateCurrency: function (currency) {
 		this.setState({	currency: currency });
@@ -95,13 +99,14 @@ var App = React.createClass({
 		});
 	},
 	updatePaths: function (id) {
-		var paths = this.getPaths(id);
+		id = id || this.state.selected;
+		var paths = this.getPaths(id, 'connects_' + this.state.direction);
 		this.setState({ 
 			paths: paths,
 			selected: id
 		});
 	},
-	getPaths: function (seedID) {
+	getPaths: function (seedID, direction) {
 		var _id = seedID;
 		var _paths = {};
 
@@ -131,10 +136,11 @@ var App = React.createClass({
 		}
 
 		function getConnections (id) {
-			return db[id].connects_to;
+			return db[id][direction];
 		}
 
 		function addPath (parentPath, connection) {
+
 			var isLoop = _.any(parentPath.steps, function (step) { return (connection.ship_id == step.ship_id || connection.ship_id == _id) });
 			if (isLoop) { return; }
 
@@ -146,13 +152,16 @@ var App = React.createClass({
 
 			// if it has price, increment the parent's. otherwise, null
 			var total = _.mapValues(connection.price, function (price, currency) {
-				return (typeof price == 'number') ? parentPath.total[currency] + price : null;
+				return parentPath.total[currency] + price;
+				//return (typeof price == 'number') ? parentPath.total[currency] + price : null;
 			});
 
 
 			// copy parent's steps, and add this one
 			var steps = parentPath.steps.slice();
 			steps.push(connection);
+			
+
 
 			// create the new path
 			var newPath = {
@@ -164,6 +173,7 @@ var App = React.createClass({
 			// add this path to the paths to this ship
 			_paths[connection.ship_id] = _paths[connection.ship_id] || [];
 			_paths[connection.ship_id].push(newPath);
+
 
 			// do it again with this ship's children
 			iterate(connection.ship_id, newPath);

@@ -74,8 +74,12 @@ var Scroller = React.createClass({
 	componentDidUpdate: function (prevProps, prevState) {
 		if (this.countActiveChildren(prevProps.children) !== this.countActiveChildren(this.refs.content.props.children)) {
 			if (this.checkShowScroller()) { 
+				if (this.props.noResetOnUpdate) {
+					this.syncScroller();
+				} else {
+					this.content.scrollTop = 0;  
+				}
 				this.drawScroller();
-				this.content.scrollTop = 0;  
 			}
 		}
 	},

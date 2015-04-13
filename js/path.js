@@ -18,10 +18,31 @@ var Path = React.createClass({
 		var currency = this.props.currency;
 		var vat = this.props.vat;
 
-		var steps = this.props.data.steps.map(function (step, index) {
+		var steps = _.cloneDeep(this.props.data.steps);
+		steps.unshift({
+			ship_id: this.props.selected,
+			price: null,
+			url: null
+		});	
+
+		if (this.props.direction == 'to') {
+
+		} else {
+			steps = steps.map(function (step, index) {
+				return {
+					ship_id: step.ship_id,
+					price: steps[index + 1] ? steps[index + 1].price : null,
+					url: steps[index + 1] ? steps[index + 1].url : null
+				};
+			});
+			steps.reverse();
+		};
+
+		steps = steps.map(function (step, index) {
 			return (
 				<Step 
 					key={index} 
+					index={index}
 					data={step} 
 					show={true} 
 					currency={currency}
@@ -118,7 +139,6 @@ var Path = React.createClass({
 					{/* limits */}
 				</div>
 				<div style={stepsNewStyle}>
-					<div style={fromStyle}>{db[this.props.selected].display}</div>
 					{steps}
 				</div>
 			</div>
@@ -127,20 +147,6 @@ var Path = React.createClass({
 	toggle: function (e) {
 		e.preventDefault();
 		this.setState({ showSteps: !this.state.showSteps });
-	},
-	keepold: function () {
-		return
-		<div>
-		 				<div style={stepsStyle} className="path-steps-container">
-					<span style={fromStyle}>{db[this.props.selected].display}</span>
-					{steps}
-				</div>
-
-
-									<div style={{display: 'table-cell', width: 1}}>
-						<div style={expanderStyle}>[{this.state.showSteps ? '-' : '+'}]</div>
-					</div>
-				</div>
 	}
 });
 

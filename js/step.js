@@ -42,7 +42,9 @@ var Step = React.createClass({
 			textAlign: 'center',
 			padding: '.5em 1em',
 			display: 'inline-block',
-			color: '#73b1cb'
+			color: '#73b1cb',
+			borderLeft: '1px solid',
+			borderColor: limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
 		};
 
 		var shipStyle = _.extend({}, gs.headerFont, limited ? gs.brightRedFont : gs.brightBlueFont, {
@@ -50,29 +52,28 @@ var Step = React.createClass({
 			textAlign: 'center',
 			padding: '.5em 1em',
 			display: 'inline-block',
-			backgroundColor: limited ? 'rgba(178,34,34,0.2)' : 'rgba(30, 60, 100, 0.3)',
-			borderRight: '1px solid',
-			borderColor: limited ? 'rgba(255, 0, 0, 0.5)' : 'rgba(0, 230, 255, 0.5)'
+			backgroundColor: limited ? 'rgba(178,34,34,0.2)' : 'rgba(30, 60, 100, 0.3)'
 		});
 
-		var price = formatPrice(step.price, currency, vat);
+		var price = step.price ? formatPrice(step.price, currency, vat) : null;
+		var stepPrice = price ? <span style={priceStyle}>{price}</span> : null;
 
 		var shipMaybeLink = step.url ?
 			<a target="_blank" href={step.url}>
 				<div style={limited ? limitedStyle : upgradeStyle}>
 					<span style={shipStyle}>{db[step.ship_id].display}</span>
-					<span style={priceStyle}>{price}</span>
+					{stepPrice}
 				</div>
 			</a>
 			:
 			<div style={limited ? limitedStyle : upgradeStyle}>
 				<span style={shipStyle}>{db[step.ship_id].display}</span>
-				<span style={priceStyle}>{price}</span>
+				{stepPrice}
 			</div>
 
 		return (
 			<div className="step" style={style}>
-				<div style={arrowStyle}></div>
+				{this.props.index > 0 ? <div style={arrowStyle}></div> : null}
 				{shipMaybeLink}
 			</div>
 		);
