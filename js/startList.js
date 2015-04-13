@@ -7,7 +7,8 @@ var StartList = React.createClass({
 	getInitialState: function () {
 		return ({
 			filter: null,
-			showAll: false
+			showAll: false,
+			direction: 'from'
 		});
 	},
 	render: function () {
@@ -60,7 +61,7 @@ var StartList = React.createClass({
 			textAlign: 'left'			
 		};
 		style.controls = {
-			
+			textAlign: 'right'
 		};
 		style.showAll = gs.headerFont;
 		style.filter = _.extend({}, gs.blueFont, {
@@ -73,7 +74,7 @@ var StartList = React.createClass({
 		style.shipList = {
 			position: 'absolute',
 			width: 266,
-			top: 120,
+			top: 140,
 			bottom: 0
 		};
 
@@ -83,6 +84,7 @@ var StartList = React.createClass({
 					<h1>Your ship</h1>
 				</div>
 				<div id="shipListControls" style={style.controls}>
+					<Check id='tofrom' startChecked={false} onClick={this.toggleToFrom} label='Find paths...' yes='To' no='From' />
 					<Check id='showAll' startChecked={false} onClick={this.toggleShowAll} label='Include non-upgradeable ships?' />
 					{/*<input type="checkbox" id="showAll" onClick={this.toggleShowAll} style={{verticalAlign: 'middle'}} />*/}
 					<input type="text" id="filter" name="filter" style={style.filter} placeholder="Search..." onInput={this.filter} />
@@ -94,6 +96,11 @@ var StartList = React.createClass({
 
 			</div>
 		);
+	},
+	toggleToFrom: function () {
+		this.setState({
+			direction: this.state.direction == 'to' ? 'from' : 'to'
+		});
 	},
 	toggleShowAll: function () {
 		this.setState({

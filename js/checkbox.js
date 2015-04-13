@@ -72,11 +72,11 @@ var Chx = React.createClass({
 			<div style={style.wrapper}>
 				{label}
 				<div style={style.base}>
-					<span style={style.no}>No</span>
+					<span style={style.no}>{this.props.no || 'No'}</span>
 					<div style={style.container}>
 						<label htmlFor={this.props.id} style={style.slider}></label>
 					</div>
-					<span style={style.yes}>Yes</span>
+					<span style={style.yes}>{this.props.yes || 'Yes'}</span>
 					<input type="checkbox" id={this.props.id} style={style.checkbox} onClick={this.clicked} />
 				</div>
 			</div>
