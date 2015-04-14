@@ -9,6 +9,7 @@ var VATdb = require('./db/vat.json');
 var App = React.createClass({
 	getInitialState: function () {
 		this.startIncludeVAT = localStorage.getItem('includeVAT') === 'true';
+		this.initialDirection = sessionStorage.getItem('direction') || 'to';
 		return ({
 			currency: localStorage.getItem('currency') || 'usd',
 			country: localStorage.getItem('country') || null,
@@ -17,7 +18,7 @@ var App = React.createClass({
 			paths: null,
 			selected: null,
 			showAbout: false,
-			direction: sessionStorage.getItem('direction') || 'to'
+			direction: this.initialDirection
 		});
 	},
 	render: function () {
@@ -71,7 +72,7 @@ var App = React.createClass({
 					</div>
 					<Localization initialIncludeVAT={this.startIncludeVAT} initialCurrency={this.state.currency} initialCountry={this.state.country} onChangeCurrency={this.updateCurrency} onChangeCountry={this.updateCountry} onToggleIncludeVAT={this.toggleIncludeVAT} />
 				</div>
-				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} setDirection={this.setDirection} selected={this.state.selected} />
+				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} initialDirection={this.initialDirection} setDirection={this.setDirection} selected={this.state.selected} />
 				<DetailList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} paths={this.state.paths} direction={this.state.direction} selected={this.state.selected} />
 				<div style={{clear: 'both'}}></div>
 				<Footer />
