@@ -4,17 +4,20 @@ var Footer = require('./footer');
 var About = require('./about');
 var Localization = require('./localization');
 var gs = require('./globalStyles');
+var VATdb = require('./db/vat.json');
 
 var App = React.createClass({
 	getInitialState: function () {
+		this.startIncludeVAT = localStorage.getItem('includeVAT') === 'true';
 		return ({
-			currency: 'usd',
-			vat: 0,
-			includeVAT: true,
+			currency: localStorage.getItem('currency') || 'usd',
+			country: localStorage.getItem('country') || null,
+			vat: parseInt(localStorage.getItem('vat')) || 0,
+			includeVAT: this.startIncludeVAT,
 			paths: null,
 			selected: null,
 			showAbout: false,
-			direction: 'to'
+			direction: sessionStorage.getItem('direction') || 'to'
 		});
 	},
 	render: function () {
@@ -66,7 +69,7 @@ var App = React.createClass({
 					<div style={style.aboutLink} onClick={this.showAbout}>
 						About this page
 					</div>
-					<Localization onChangeCurrency={this.updateCurrency} onChangeVAT={this.updateVAT} onToggleIncludeVAT={this.toggleIncludeVAT} />
+					<Localization initialIncludeVAT={this.startIncludeVAT} initialCurrency={this.state.currency} initialCountry={this.state.country} onChangeCurrency={this.updateCurrency} onChangeCountry={this.updateCountry} onToggleIncludeVAT={this.toggleIncludeVAT} />
 				</div>
 				<ShipList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} onSelect={this.updatePaths} setDirection={this.setDirection} selected={this.state.selected} />
 				<DetailList currency={this.state.currency} vat={this.state.includeVAT ? this.state.vat : 0} paths={this.state.paths} direction={this.state.direction} selected={this.state.selected} />
@@ -78,15 +81,24 @@ var App = React.createClass({
 	},
 	setDirection: function (dir) {
 		this.setState({ direction: dir }, this.updatePaths);
+		sessionStorage.setItem('direction', dir);
 	},
 	updateCurrency: function (currency) {
 		this.setState({	currency: currency });
+		localStorage.setItem('currency', currency);
 	},
-	updateVAT: function (vat) {
-		this.setState({	vat: vat });
+	updateCountry: function (country) {
+		this.setState({	
+			country: country,
+			vat: VATdb[country] || 0
+		});
+		localStorage.setItem('country', country);
+		localStorage.setItem('vat', VATdb[country]);
 	},
 	toggleIncludeVAT: function () {
-		this.setState({ includeVAT: !this.state.includeVAT });
+		this.setState({ includeVAT: !this.state.includeVAT }, function () {
+			localStorage.setItem('includeVAT', this.state.includeVAT);
+		});
 	},
 	showAbout: function () {
 		this.setState({

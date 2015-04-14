@@ -5,9 +5,9 @@ var Check = require('./checkbox');
 var Local = React.createClass({
 	getInitialState: function () {
 		return {
-			currency: 'usd',
-			vat: 0,
-			includeVAT: true
+			currency: this.props.initialCurrency,
+			country: this.props.initialCountry,
+			includeVAT: this.props.initialIncludeVAT
 		};
 	},
 	componentWillMount: function () {
@@ -60,13 +60,13 @@ var Local = React.createClass({
 			verticalAlign: 'middle'
 		});
 		style.currentVAT = _.extend({}, gs.headerFont, {
-			display: this.state.vat > 0 && this.state.includeVAT ? 'inline-block' : 'none',
+			display: VATdb[this.state.country] > 0 && this.state.includeVAT ? 'inline-block' : 'none',
 			margin: '0 0.5em',
 			verticalAlign: 'middle',
 			transition: '0.2s'
 		});
 		style.includeVAT = {
-			opacity: this.state.vat > 0 ? '1' : '0',
+			opacity: VATdb[this.state.country] > 0 ? '1' : '0',
 			transition: '0.2s'
 		};
 
@@ -97,7 +97,7 @@ var Local = React.createClass({
 		return (
 			<div style={style.base}>
 				<div style={style.countryContainer}>
-					<select ref='countries' style={style.country} onChange={this.selectVAT}>
+					<select ref='countries' style={style.country} onChange={this.selectCountry} value={this.props.initialCountry}>
 						{countries}
 					</select>
 					<div style={style.iconContainer}>
@@ -109,7 +109,7 @@ var Local = React.createClass({
 					</div>
 				</div>
 				<div style={style.includeVAT}>
-					<Check id='includeVAT' startChecked={true} onClick={this.toggleIncludeVAT} label={'Include VAT (' + this.state.vat + '%) in prices?'} />
+					<Check id='includeVAT' startChecked={this.props.initialIncludeVAT} onClick={this.toggleIncludeVAT} label={'Include VAT (' + VATdb[this.state.country] + '%) in prices?'} />
 				</div>
 			</div>
 		);
@@ -121,45 +121,45 @@ var Local = React.createClass({
 	selectEUR: function () {
 		this.setState({
 			currency: 'eur',
-			vat: VATdb[React.findDOMNode(this.refs.countries).value]
+			country: React.findDOMNode(this.refs.countries).value
 		}, function () {
-			this.pushCurrency().pushVAT();
+			this.pushCurrency().pushCountry();
 		});
 	},
 	selectGBP: function () {
 		this.setState({
 			currency: 'gbp',
-			vat: VATdb['United Kingdom']
+			country: 'United Kingdom'
 		}, function () {
-			this.pushCurrency().pushVAT();
+			this.pushCurrency().pushCountry();
 		});
 	},
 	selectUSD: function () {
 		this.setState({
 			currency: 'usd',
-			vat: 0
+			country: null
 		}, function () {
-			this.pushCurrency().pushVAT();
+			this.pushCurrency().pushCountry();
 		});
 	},
-	selectVAT: function (e) {
+	selectCountry: function (e) {
 		if (e.target.value == 'United Kingdom') {
 			e.target.value = 'NON-EU'; // reset select
 			this.selectGBP();
 			return;
 		}
 		this.setState({
-			vat: VATdb[e.target.value]
+			country: e.target.value
 		}, function () {
-			this.pushVAT();
+			this.pushCountry();
 		});
 	},
 	pushCurrency: function () {
 		this.props.onChangeCurrency(this.state.currency);
 		return this;
 	},
-	pushVAT: function () {
-		this.props.onChangeVAT(this.state.vat);
+	pushCountry: function () {
+		this.props.onChangeCountry(this.state.country);
 		return this;
 	}
 });

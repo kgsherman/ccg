@@ -5,12 +5,15 @@ var gs = require('./globalStyles');
 
 var DetailList = React.createClass({
 	getInitialState: function () {
+		this.startShowLimited = localStorage.getItem('showLimited') === 'true' || false;
+		this.startShowPathLimited = localStorage.getItem('showPathLimited') === 'true' || false;
+		this.startCondensed = localStorage.getItem('condensed') === 'true' || false;
 		return {
 			showSettings: false,
-			showLimited: false,
-			showPathLimited: false,
-			condensed: false,
-			sortBy: 'cost'
+			showLimited: this.startShowLimited,
+			showPathLimited: this.startShowPathLimited,
+			condensed: this.startCondensed,
+			sortBy: localStorage.getItem('sortBy') || 'cost'
 		}
 	},
 	render: function () {
@@ -161,9 +164,9 @@ var DetailList = React.createClass({
 								<option value="cost">Total cost</option>
 							</select>
 						</div>
-						<Check id='showPathLimited' onClick={this.toggleShowPathLimited} label='Include limited paths?' />
-						<Check id='showLimited' onClick={this.toggleShowLimited} label='Show limited ships?' />
-						<Check id='showCondensed' onClick={this.toggleCondensed} label='Show condensed view?' />
+						<Check id='showPathLimited' startChecked={this.startShowPathLimited} onClick={this.toggleShowPathLimited} label='Include limited paths?' />
+						<Check id='showLimited' startChecked={this.startShowLimited} onClick={this.toggleShowLimited} label='Show limited ships?' />
+						<Check id='showCondensed' startChecked={this.startCondensed} onClick={this.toggleCondensed} label='Show condensed view?' />
 					</div>
 					<div style={{clear: 'both'}}></div>
 				</div>
@@ -177,6 +180,7 @@ var DetailList = React.createClass({
 		this.setState({
 			sortBy: e.target.value
 		});
+		localStorage.setItem('sortBy', e.target.value);
 	},
 	showSettings: function () {
 		this.setState({
@@ -191,16 +195,22 @@ var DetailList = React.createClass({
 	toggleShowLimited: function () {
 		this.setState({
 			showLimited: !this.state.showLimited
+		}, function () {
+			localStorage.setItem('showLimited', this.state.showLimited);
 		});
 	},
 	toggleShowPathLimited: function () {
 		this.setState({
 			showPathLimited: !this.state.showPathLimited
+		}, function () {
+			localStorage.setItem('showPathLimited', this.state.showPathLimited);
 		});
 	},
 	toggleCondensed: function () {
 		this.setState({
 			condensed: !this.state.condensed
+		}, function () {
+			localStorage.setItem('condensed', this.state.condensed);
 		});
 	}
 });
