@@ -1,3 +1,5 @@
+### This tool is deprecated. An official solution has been implemented by CIG [here](https://robertsspaceindustries.com/pledge/ship-upgrades). 
+
 # CCG - Citizen's Conversion Guide
 CCG is a 100% client-side, React-based tool used to find the most efficient upgrade paths for Star Citizen ships.
 
