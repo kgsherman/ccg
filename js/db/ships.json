@@ -371,6 +371,15 @@ module.exports = {
 					"gbp": 3.5
 				},
 				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Gamma-To-Avenger-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": {
+					"usd": 0,
+					"eur": 0,
+					"gbp": 0
+				},
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Gamma-To-300i-Upgrade"
 			}
 		],
 		"connects_from": [
@@ -866,6 +875,15 @@ module.exports = {
 					"gbp": 17.5
 				},
 				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Aurora-LX-To-300i-Upgrade"
+			},
+			{
+				"ship_id": "300",
+				"price": {
+					"usd": 0,
+					"eur": 0,
+					"gbp": 0
+				},
+				"url": "https://robertsspaceindustries.com/pledge/Cross-Chassis-Upgrades/Mustang-Gamma-To-300i-Upgrade"
 			}
 		]
 	},
